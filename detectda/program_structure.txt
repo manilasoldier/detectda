@@ -1,3 +1,0 @@
-identify_polygon is a top-level binary executable.
-
-detectda is module for processing the image series/video.

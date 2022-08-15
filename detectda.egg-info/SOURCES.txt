@@ -1,0 +1,10 @@
+README.md
+setup.py
+detectda/__init__.py
+detectda/_detectda_helper.py
+detectda/detectda.py
+detectda.egg-info/PKG-INFO
+detectda.egg-info/SOURCES.txt
+detectda.egg-info/dependency_links.txt
+detectda.egg-info/requires.txt
+detectda.egg-info/top_level.txt
