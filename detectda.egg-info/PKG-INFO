@@ -5,7 +5,8 @@ Summary: detectda - detecting features in videos using TDA
 Author: Andrew M. Thomas
 Author-email: <me@andrewmthomas.com>
 Keywords: tda,cubical
-Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
 Classifier: Programming Language :: Python
 
 detectda - a cubical persistent homology package for the detection and hypothesis testing of features in greyscale videos

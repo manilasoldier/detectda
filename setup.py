@@ -25,7 +25,8 @@ setup(
 	],
 	keywords = ['tda', 'cubical'],
 	classifiers = [
-		'Operating System :: MacOS :: MacOS X',
+		'Operating System :: MacOS',
+		'Operating System :: Microsoft :: Windows',
 		'Programming Language :: Python'
 	]
 )
