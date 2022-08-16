@@ -1,2 +1,2 @@
 # __init__.py
-from dtda.detectda import *
+from .idpoly import identify_polygon

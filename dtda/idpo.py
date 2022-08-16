@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from shapely.geometry import Polygon
 import numpy as np
 import pickle
@@ -52,8 +51,8 @@ class click_event:
 	    
 	def get_poly(self):
 		return Polygon(self.pts)
-	
-if __name__ == "__main__":
+
+def identify_polygon():	
 	"""
 	What does this do??? Comment it in...
 	"""

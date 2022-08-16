@@ -21,12 +21,17 @@ setup(
 		'numpy',
 		'tqdm',
 		'matplotlib',
-		'cv2'
+		'opencv-python'
 	],
 	keywords = ['tda', 'cubical'],
 	classifiers = [
 		'Operating System :: MacOS',
 		'Operating System :: Microsoft :: Windows',
 		'Programming Language :: Python'
-	]
+	],
+	entry_points={
+		'gui_scripts': [
+			'identify_polygon = dtda:identify_polygon'	
+		]	
+	}
 )

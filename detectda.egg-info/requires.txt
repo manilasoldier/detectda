@@ -6,4 +6,4 @@ sci-kit-learn>=0.23.1
 numpy
 tqdm
 matplotlib
-cv2
+opencv-python
