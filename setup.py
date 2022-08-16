@@ -16,12 +16,12 @@ setup(
 		'gudhi',
 		'shapely',
 		'joblib',
-		'skimage',
-		'sci-kit-learn >= 0.23.1',
+		'scikit-image',
+		'scikit-learn >= 0.23.1',
 		'numpy',
 		'tqdm',
 		'matplotlib',
-		'opencv-python'
+		'opencv-contrib-python'
 	],
 	keywords = ['tda', 'cubical'],
 	classifiers = [

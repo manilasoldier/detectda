@@ -1,2 +1,2 @@
 # __init__.py
-from .idpoly import identify_polygon
+from .idpo import identify_polygon

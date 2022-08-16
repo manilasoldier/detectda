@@ -8,5 +8,5 @@ detectda.egg-info/requires.txt
 detectda.egg-info/top_level.txt
 dtda/__init__.py
 dtda/hlpr.py
-dtda/idpoly.py
-dtda/ims.py
+dtda/idpo.py
+dtda/imgs.py
