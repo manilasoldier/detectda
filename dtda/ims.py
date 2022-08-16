@@ -3,7 +3,7 @@ from shapely.geometry import Polygon
 from joblib import Parallel, delayed
 from skimage import io
 from sklearn.utils.validation import check_is_fitted
-import _detectda_helper as _dh
+from . import hlpr as _dh
 import numpy as np
 import time
 
