@@ -9,6 +9,16 @@ def getxy_col(arr, nrows):
 	x = ((arr-y)/nrows).astype(int)
 	return x,y
 
+def degp_totp(arr, p=1, inf=False):
+	"Note that if inf==True, this overwrites the chosen value of p"
+	if p < 1:
+		raise ValueError("p must be >= 1")
+		
+	if inf:
+		return np.max(arr)
+	else: 
+		return np.sum(arr**p)
+
 def alps(arr):
 	"Get the ALPS statistic of an array of values, not all zero"
 	arr = np.sort(arr)

@@ -34,6 +34,7 @@ class ImageSeries:
 		else: 
 			self.video = np.rint(video/div)
 		
+		self.degp_totp = {}
 		self.polygon = polygon
 		self.div = div
 		self.n_jobs = n_jobs
@@ -60,6 +61,15 @@ class ImageSeries:
 		self.max_death_pixel_int=max_death_pixel_int
 		return self
 	
+	def get_degp_totp(self, p=1, inf=False):
+		"Get degree-p total persistence of each image frame from fitted object."
+		check_is_fitted(self)
+		dgtp = np.fromiter((_dh.degp_totp(x[:,2], p, inf) for x in self.diags_), float)
+		if inf:
+			self.degp_totp['inf'] = dgtp
+		else:
+			self.degp_totp[str(p)] = dgtp
+
 	def get_pers_entr(self, neg=False):	
 		"Get persistent entropy of each image frame from fitted object."
 		check_is_fitted(self)
