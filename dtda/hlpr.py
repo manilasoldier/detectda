@@ -18,6 +18,12 @@ def degp_totp(arr, p=1, inf=False):
 		return np.max(arr)
 	else: 
 		return np.sum(arr**p)
+    
+def block_sum(arr, m, div=1):
+    "Sums adjacent blocks of m frames"
+    ran = int(np.floor(len(arr)/m-1)+1)
+    block_arr = np.stack([np.sum(np.rint(arr[i*m:(i*m+m)]/div), axis=0) for i in range(ran)])
+    return block_arr
 
 def alps(arr):
 	"Get the ALPS statistic of an array of values, not all zero"
@@ -40,6 +46,9 @@ def pers_entr(arr, neg=False):
 		a = -1
 
 	return a*np.sum(Lmod*np.log(Lmod))
+
+def pg0(arr):
+    return np.mean(arr >= arr[0])
 
 
 def fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True):        

@@ -31,14 +31,19 @@ class click_event:
 			img2 = cv2.polylines(self.img, [self.pts],
 			      isClosed, self.color, self.thickness)
 			cv2.imshow('image', img2)
-
+            
 		elif event == cv2.EVENT_RBUTTONDOWN:
 			isClosed = True
 			img2 = cv2.polylines(self.img, [self.pts],
-			      isClosed, self.color, self.thickness)
+						    isClosed, self.color, self.thickness)
 			cv2.imshow('image', img2)
 
 	def crop_poly(self, buff=10):
+		"""
+	    Crops the video to the x and y coordinates of the polygon, with buffer.
+		
+		Note that this buffer is present when choosing a vacuum region as well.
+        """
 		y,x = self.img.shape
 		xmin, xmax = (np.min(self.pts[:,0]), np.max(self.pts[:,0]))
 		ymin, ymax = (np.min(self.pts[:,1]), np.max(self.pts[:,1]))
