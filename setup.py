@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 DESCRIPTION = "detectda - detecting features in videos using TDA"
 LONG_DESCRIPTION = "detectda - a cubical persistent homology package for the detection and hypothesis testing of features in greyscale videos"
 
@@ -23,7 +23,7 @@ setup(
 		'matplotlib',
 		'opencv-contrib-python'
 	],
-	keywords = ['tda', 'cubical'],
+	keywords = ['tda', 'cubical', 'image processing'],
 	classifiers = [
 		'Operating System :: MacOS',
 		'Operating System :: Microsoft :: Windows',
@@ -31,7 +31,7 @@ setup(
 	],
 	entry_points={
 		'gui_scripts': [
-			'identify_polygon = dtda:identify_polygon'	
+			'identify_polygon = detectda.idpo:identify_polygon'	
 		]	
 	}
 )
