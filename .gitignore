@@ -2,5 +2,3 @@ __pycache__
 .ipynb_checkpoints/
 detectda_info.txt
 TODO.md
-detectda/test_video.pkl
-detectda/test_video_vacuum.pkl
