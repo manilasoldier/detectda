@@ -18,8 +18,39 @@ def degp_totp(arr, p=1, inf=False):
 		return np.max(arr)
 	else: 
 		return np.sum(arr**p)
+
+def get_be(arr):
+    """
+    Parameters
+    ----------
+    arr : array_like
+        Boolean array
+
+    Returns
+    -------
+    out: 2-tuple
+      Tuple consisting of two arrays. Index-0 array consists of beginning of "True" sequences,
+      and Index-1 array consists of ends of "True" sequences.
+
+    """
+    begins = []
+    ends = []
+    before = False
+    for x in range(len(arr)):
+        if before==False and arr[x]==True:
+            begins.append(x)
+            before=True
+            if x==(len(arr)-1):
+                ends.append(x)
+        elif before==True and arr[x]==False:
+            ends.append(x-1)
+            before=False
+        elif before==True and x==(len(arr)-1):
+            ends.append(x)
+
+    return (np.array(begins), np.array(ends))
     
-def calc_reject(arr, alpha=0.05):
+def calc_reject(arr, alpha=0.05, conservative=True):
     """
     Parameters
     ----------
@@ -27,20 +58,36 @@ def calc_reject(arr, alpha=0.05):
         Array of probabilities (p-values) between 0 and 1.
     alpha : value between 0 and 1, optional
         Signficance level for BH procedure. The default is 0.05.
+    conservative: default = True
+        Dictates whether or not conservative BH procedure is used. 
 
     Returns
     -------
-    out: index array
-        array of indices of hypotheses that are rejected via BH procedure.
+    out: dictionary of index array, boolean array, rejection threshold index
+        array of indices of hypotheses that are rejected via BH procedure, and 
+        boolean array of whether or not hypothesis is rejected. R
     """
     N = len(arr)
     k = np.arange(1, N+1)
-    CN = np.sum(1/k)
+    if conservative:
+        CN = np.sum(1/k)
+    else:
+        CN = 1
+        
     li = k*alpha/(CN*N)
     
+    arr_argsort = np.argsort(arr)
     arr_sort = np.sort(arr)
-    rej_max = np.where(arr_sort <= li)[0][-1]
-    return np.where(arr <= arr_sort[rej_max])[0]
+    try:
+        rej_max = np.where(arr_sort <= li)[0][-1] #largest element to reject
+        return {"reject_ind": np.where(arr <= arr_sort[rej_max])[0], 
+                "reject_bool": (arr <= arr_sort[rej_max]),
+                "reject_thr_ind": arr_argsort[rej_max]}
+    except IndexError:
+        return {"reject_ind": [], 
+                "reject_bool": np.repeat(False, len(arr)),
+                "reject_thr_ind": None}
+        
     
 def block_sum(arr, m, div=1):
     "Sums adjacent blocks of m frames"

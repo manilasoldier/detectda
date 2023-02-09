@@ -1,6 +1,8 @@
 from joblib import Parallel, delayed
 from sklearn.utils.validation import check_is_fitted
+from skimage import filters
 from . import hlpr as _dh
+import matplotlib.pyplot as plt
 import numpy as np
 import pickle
 import time
@@ -62,31 +64,62 @@ class ImageSeries:
     def get_degp_totp(self, p=1, inf=False):
         "Get degree-p total persistence of each image frame from fitted object."
         check_is_fitted(self)
-        dgtp = np.fromiter((_dh.degp_totp(x[:,2], p, inf) for x in self.diags_), float)
+        dgtp = np.fromiter((_dh.degp_totp(x[x[:,3].astype(np.bool),2], p, inf) for x in self.diags_), float)
         if inf:
             self.degp_totp['inf'] = dgtp
         else:
             self.degp_totp[str(p)] = dgtp
 
+    #.astype(np.bool) is a quick fix and needs to remedied...
     def get_pers_entr(self, neg=True):    
         """
         Get persistent entropy of each image frame from fitted object. For hypothesis testing
         purposes, the default is negative of the entropy
         """
         check_is_fitted(self)
-        self.pers_entr = np.fromiter((_dh.pers_entr(x[:,2], neg) for x in self.diags_), float)
+        self.pers_entr = np.fromiter((_dh.pers_entr(x[x[:,3].astype(np.bool),2], neg) for x in self.diags_), float)
     
     def get_alps(self):
         "Get ALPS statistic of each image frame from fitted object."
         check_is_fitted(self)
-        self.alps = np.fromiter((_dh.alps(x[:,2]) for x in self.diags_), float)  
+        self.alps = np.fromiter((_dh.alps(x[x[:,3].astype(np.bool),2]) for x in self.diags_), float)  
         
-    def plot(self, seq):
+    def plot_im(self, frame, plot_poly=True, plot_pts=True, smooth=True, thr=None):
         """
-        Plot a time series of degp_totp, pers_entr, or alps...
+        Plot an individual frame in the video, with or without the polygonal region superimposed
         """
-        pass
         
+        imd = self.diags_[frame]
+        if smooth:
+            plim = filters.gaussian(self.video[frame], sigma=self.sigma_, preserve_range=True)
+        else:
+            plim = self.video[frame]
+        
+        which_plt = imd[:, 3].astype(bool)
+        if thr==None:
+            pass
+        else:
+            over_thr = (imd[:, 2] > thr) #just right over the threshold, not as a proportion...
+            which_plt = np.logical_and(over_thr, which_plt)
+            
+        if plot_pts:
+            plt0 = plt.scatter(
+                x = imd[which_plt, 0],
+                y = imd[which_plt, 1],
+				c = imd[which_plt, 2],
+				cmap = "autumn"
+			)
+            plt.imshow(plim, cmap="gray")
+            plt.colorbar(plt0)	
+        else:
+            plt.imshow(plim, cmap="gray")
+			 
+        try:
+            if plot_poly:
+                xs, ys = list(zip(*self.polygon.exterior.coords)) #'unzip' exterior coordinates of a polygon for plotting
+                plt.plot(xs,ys, color="cyan")
+        except AttributeError:
+            print("Must set plot_poly to False if polygon not specified")    
 
 
 class ImageSeriesPickle(ImageSeries):

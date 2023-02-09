@@ -3,6 +3,7 @@ from . import imgs
 from . import hlpr as _dh
 import numpy as np
 from sklearn.utils.validation import check_is_fitted
+import matplotlib.pyplot as plt
 import scipy.stats as stat
 
 class VacuumSeries(imgs.ImageSeries):
@@ -23,6 +24,8 @@ class VacuumSeries(imgs.ImageSeries):
 		
     def fit(self):
         """
+        WE NEED TO MAKE SURE THE IMAGE DATA IS INTEGER VALUED!!!
+        
         Fits the Poisson mle for the vacuum region if parametric==True
         
         Else it fits the empirical probability mass function.
@@ -43,42 +46,87 @@ class VacuumSeries(imgs.ImageSeries):
         self.ks_dist = np.max([np.abs(emp_dist.cdf(k)-stat.poisson.cdf(k, self.mle_))
                                for k in range(np.min(self.vals_), np.max(self.vals_)+1)])
 
-    def gen_image(self):
+    def gen_images(self, n):
         "Generate and return a random image according to estimated null distribution"
         check_is_fitted(self)
         if self.parametric:
-            return np.random.poisson(self.mle_, size=self.size)
+            return np.random.poisson(self.mle_, size=(n, *self.size))
         else:
-            return np.random.choice(self.vals_, size=self.size, p=self.probs_)
+            return np.random.choice(self.vals_, size=(n, *self.size), p=self.probs_)
             
-    def transform(self, n, func="pers_entr", seed=0, alpha=0.05):
+    def transform(self, n, func="pers_entr", seed=0, alpha=0.05, conservative=True):
         """
-        WHAT DOES THIS DO? 
+        Collects p-values and rejections for based off n Monte Carlo simulations...
         """
         check_is_fitted(self.observed_ImageSeries)
         np.random.seed(seed)
         if func not in ("pers_entr", "alps", "degp_totp"):
             raise ValueError("func must be pers_entr, alps, or degp_totp")
         
+        self.images = self.gen_images(n)
         def proc_diag(x):
-            return eval("_dh."+func)(_dh.fitsmoo(x, 
-                                                 polygon = self.observed_ImageSeries.polygon,
-                                                 sigma = self.observed_ImageSeries.sigma_,
-                                                 max_death_pixel_int=self.observed_ImageSeries.max_death_pixel_int_)[:,2])
+            y = _dh.fitsmoo(x, polygon = self.observed_ImageSeries.polygon,
+                           sigma = self.observed_ImageSeries.sigma_,
+                           max_death_pixel_int=self.observed_ImageSeries.max_death_pixel_int_)
+            return eval("_dh."+func)(y[y[:,3].astype(np.bool),2]) #make sure columns inside polygon are chosen...
         
-        self.mc_vals = Parallel(n_jobs = self.n_jobs)(delayed(proc_diag)(self.gen_image()) for i in range(n))
+        self.mc_vals = Parallel(n_jobs = self.n_jobs)(delayed(proc_diag)(im) for im in self.images)
         eval("self.observed_ImageSeries.get_"+func)()
         self.obs_vals = eval("self.observed_ImageSeries."+func)
         self.__pvals = np.fromiter((_dh.pg0(np.insert(self.mc_vals, 0, val)) for val in self.obs_vals), float)
+        self.func = func
         
         #Here add in the rejections from the BH procedure
         #See Catalysis Nanoparticles Multiple Testing.ipynb
-        self.rejections = _dh.calc_reject(self.__pvals, alpha=alpha)
+        self.reject_dict = _dh.calc_reject(self.__pvals, alpha=alpha, conservative=conservative)
+        self.alpha=alpha
         
-    """    
-    def plot(self):
-        #Want to be able to plot as in the paper 
-    """
+    def adjust_alpha(self, alpha, conservative=True):
+        self.reject_dict = _dh.calc_reject(self.__pvals, alpha=alpha, conservative=conservative)
+        self.alpha=alpha
+       
+    def plot_hypo(self):
+        """
+        Plots hypothesis testing sequence. 
+        """
+        begins, ends = _dh.get_be(self.reject_dict["reject_bool"])
+        if self.func == "pers_entr":
+            plt.plot(-self.obs_vals, lw=0.7, color="black")
+            plt.scatter(x=self.reject_dict["reject_ind"], y=-self.obs_vals[self.reject_dict["reject_ind"]], 
+                        color="red", s=2)
+            
+            ####Note this plot becomes really bad when there are ties...
+            if self.reject_dict["reject_thr_ind"]==None:
+                print("No hypotheses were rejected.")
+            else:
+                plt.axhline(y=-self.obs_vals[self.reject_dict["reject_thr_ind"]], color="black", linestyle="dashed", linewidth=0.75)
+            
+            plt.hlines(y=-np.repeat(np.max(self.obs_vals)+0.1, len(begins)), xmin=begins, xmax=ends, color="black")
+            #should adjust this 0.1 to be different based on scale...
+            plt.xlabel(r'$k$')
+            plt.ylabel(r'$H(A(I_{k}))$')
+            plt.title("Persistent entropy across frames")
+        
+        else:
+            plt.plot(self.obs_vals, lw=0.7, color="black")
+            plt.scatter(x=self.reject_dict["reject_ind"], y=self.obs_vals[self.reject_dict["reject_ind"]], 
+                        color="red", s=2)
+            
+            ####Note this plot becomes really bad when there are ties...
+            if self.reject_dict["reject_thr_ind"]==None:
+                print("No hypotheses were rejected.")
+            else:
+                plt.axhline(y=self.obs_vals[self.reject_dict["reject_thr_ind"]], color="black", linestyle="dashed", linewidth=0.75)
+            
+            plt.hlines(y=np.repeat(np.max(self.obs_vals)+0.1, len(begins)), xmin=begins, xmax=ends, color="black")
+            #should adjust this 0.1 to be different based on scale...
+            plt.xlabel(r'$k$')
+            if self.func == "alps":
+                plt.ylabel(r'$\Delta(A(I_{k}))$')
+                plt.title("ALPS statistic across frames")
+            elif self.func == "degp_totp":
+                plt.ylabel(r'$L_1(A(I_{k}))$')
+                plt.title("Lifetime sum across frames")
         
         
             
