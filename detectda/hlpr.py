@@ -117,6 +117,14 @@ def pers_entr(arr, neg=True):
 
 	return a*np.sum(Lmod*np.log(Lmod))
 
+def pers_mag(arr):
+    "Gets persistent magnitude"
+    if arr.shape[1] != 2:
+        raise ValueError("Need both birth and death times")
+    else:
+        return np.sum(np.exp(-arr[:,0])-np.exp(-arr[:,1]))
+     
+
 def pg0(arr):
     return np.mean(arr >= arr[0])
 

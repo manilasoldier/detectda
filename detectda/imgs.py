@@ -84,6 +84,15 @@ class ImageSeries:
         check_is_fitted(self)
         self.alps = np.fromiter((_dh.alps(x[x[:,3].astype(np.bool),2]) for x in self.diags_), float)  
         
+    def get_pers_mag(self):
+        """
+        Gets the magnitude of the 0th Persistent homology, as in Govc/Hepworth (2021)
+
+        """
+        check_is_fitted(self)
+        self.pers_mag = np.fromiter((_dh.pers_mag(x[x[:,3].astype(np.bool),0:2]) for x in self.diags_), float)
+        
+        
     def plot_im(self, frame, plot_poly=True, plot_pts=True, smooth=True, thr=None):
         """
         Plot an individual frame in the video, with or without the polygonal region superimposed
