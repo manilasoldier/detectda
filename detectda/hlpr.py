@@ -50,12 +50,14 @@ def get_be(arr):
 
     return (np.array(begins), np.array(ends))
     
-def calc_reject(arr, alpha=0.05, conservative=True):
+def calc_reject(arr, val_arr, alpha=0.05, conservative=True):
     """
     Parameters
     ----------
     arr : array_like
         Array of probabilities (p-values) between 0 and 1.
+    val_arr: array_like
+        Array of values to break ties in p-values.
     alpha : value between 0 and 1, optional
         Signficance level for BH procedure. The default is 0.05.
     conservative: default = True
@@ -76,8 +78,8 @@ def calc_reject(arr, alpha=0.05, conservative=True):
         
     li = k*alpha/(CN*N)
     
-    arr_argsort = np.argsort(arr)
-    arr_sort = np.sort(arr)
+    arr_argsort = np.argsort(-val_arr)
+    arr_sort = arr[arr_argsort]
     try:
         rej_max = np.where(arr_sort <= li)[0][-1] #largest element to reject
         return {"reject_ind": np.where(arr <= arr_sort[rej_max])[0], 
@@ -123,11 +125,49 @@ def pers_mag(arr):
         raise ValueError("Need both birth and death times")
     else:
         return np.sum(np.exp(-arr[:,0])-np.exp(-arr[:,1]))
-     
 
 def pg0(arr):
     return np.mean(arr >= arr[0])
 
+
+def persmoo(im, polygon=None, sigma=None):
+    #throughout this, infinite death becomes max pixel value...
+    if sigma==None:
+        pass	
+    else:
+        im = filters.gaussian(im, sigma=sigma, preserve_range=True)
+        
+    cu_comp = CubicalComplex(top_dimensional_cells=im) 
+    cu_comp.compute_persistence(homology_coeff_field=2)
+    cu_pers_ = cu_comp.persistence()
+    cu_pers = np.array([(d, pers[0], pers[1]) for d, pers in cu_pers_])
+    nr, nc = im.shape
+    
+    #reassign infinite death pixels
+    cu_pers[cu_pers==np.inf] = np.max(im)
+    
+    #get locations of cells...
+    cu_pers_pairs_ = cu_comp.cofaces_of_persistence_pairs()
+    cu_pers_pair0 = cu_pers_pairs_[0][0] #regular persistence pairs of dim-0
+    cu_pers_pair1 = cu_pers_pairs_[0][1] ##regular persistence pairs of dim-1
+    ess_feat0 = cu_pers_pairs_[1][0] #retrieves 'essential feature of dim-0', i.e. component of inf persistence
+    
+    ess_featx, ess_featy = getxy_col(ess_feat0, nr)
+    x_coords0, y_coords0 = getxy_col(cu_pers_pair0, nr)
+    x_coords1, y_coords1 = getxy_col(cu_pers_pair1, nr)
+
+    x_pos0 = np.append(x_coords0[:,0], ess_featx) #x coords of positive cells for dim-0, local minima
+    y_pos0 = np.append(y_coords0[:,0], ess_featy) #y coords of positive cells for dim-0, local minima
+    cu_pos0 = np.stack([x_pos0, y_pos0], axis=1)
+    
+    #concatenate x,y coords of negative cells for dim-1, local maxima
+    cu_pos1 = np.stack([x_coords1[:,1], y_coords1[:,1]], axis=1)
+    
+    return cu_pers
+    """
+    3/11/23 NEED TO CREATE THIS FUNCTION
+    SEE ALSO detectda_persmooTEST
+    """
 
 def fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True):        
 	"""

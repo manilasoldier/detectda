@@ -32,6 +32,7 @@ class VacuumSeries(imgs.ImageSeries):
         """
         emp_vals = np.ndarray.astype(self.video.flatten(), "int64")
         bin_vals = np.bincount(emp_vals)
+        self.n_ = len(emp_vals)
         self.probs_ = bin_vals/np.sum(bin_vals)
         self.vals_ = np.arange(len(bin_vals))
         self.mle_ = np.sum(self.probs_ * self.vals_)
@@ -40,11 +41,16 @@ class VacuumSeries(imgs.ImageSeries):
         """
         Check how far the empirical distribution of vacuum values is from Poisson 
         with parameter equal to mle, in terms of the Kolmogorov distance
+        
+        Uses the DKW inequality with the tight constant = 2 for Poisson testing.
         """
         check_is_fitted(self)
         emp_dist = stat.rv_discrete(values=(self.vals_, self.probs_))
-        self.ks_dist = np.max([np.abs(emp_dist.cdf(k)-stat.poisson.cdf(k, self.mle_))
+        ks_dist = np.max([np.abs(emp_dist.cdf(k)-stat.poisson.cdf(k, self.mle_))
                                for k in range(np.min(self.vals_), np.max(self.vals_)+1)])
+        p_val = 2*np.exp(-2*self.n_*ks_dist**2)
+        self.ks_test = {'p_val': p_val, 'ks_dist': ks_dist}
+        print(self.ks_test)
 
     def gen_images(self, n):
         "Generate and return a random image according to estimated null distribution"
@@ -78,11 +84,15 @@ class VacuumSeries(imgs.ImageSeries):
         
         #Here add in the rejections from the BH procedure
         #See Catalysis Nanoparticles Multiple Testing.ipynb
-        self.reject_dict = _dh.calc_reject(self.__pvals, alpha=alpha, conservative=conservative)
+        self.reject_dict = _dh.calc_reject(self.__pvals, self.obs_vals, alpha=alpha, conservative=conservative)
         self.alpha=alpha
         
     def adjust_alpha(self, alpha, conservative=True):
-        self.reject_dict = _dh.calc_reject(self.__pvals, alpha=alpha, conservative=conservative)
+        """
+        Adjust p-values based on a different alpha value.
+
+        """
+        self.reject_dict = _dh.calc_reject(self.__pvals, self.obs_vals, alpha=alpha, conservative=conservative)
         self.alpha=alpha
        
     def plot_hypo(self):

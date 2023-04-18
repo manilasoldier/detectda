@@ -3,9 +3,8 @@ import numpy as np
 import pickle
 from tqdm import tqdm
 import sys
-from skimage import io
+from skimage import io, color
 import matplotlib
-import matplotlib.pyplot as plt
 import cv2
 
 class _click_event:
@@ -58,43 +57,58 @@ class _click_event:
 		return Polygon(self.pts)
 
 def identify_polygon():	
+    """
+	Takes as input a greyscale video or a color image.
 	"""
-	What does this do??? Comment it in...
-	"""
-	matplotlib.use("TkAgg")
-	while True:
-		file_name = input("File name>>>")
-		if file_name.lower() == "quit":
-			sys.exit()		
-		try:
-			video = io.imread(file_name)
-			break
-		except FileNotFoundError:
-			print("File not found, please try again")
-	
-	vids, rows, cols = video.shape
-	sv = np.empty([rows, cols], 'uint32')
-	for ij in tqdm(range(rows*cols), desc="Summing image"):
-		i, j = (ij // cols, ij % cols)
-		sv[i, j] = np.sum(video[:,i,j])	
+    matplotlib.use("TkAgg")
+    while True:
+        file_name = input("File name>>>")
+        if file_name.lower() == "quit":
+            sys.exit()		
+        try:
+            video = io.imread(file_name)
+            break
+        except FileNotFoundError:
+            print("File not found, please try again")
 
-	#summed_video converted to 'uint8' type for cv2 purposes
-	summed_video = np.rint(sv/np.max(sv)*255).astype('uint8')				
-	click_it = _click_event(summed_video)
-	cv2.imshow('image', click_it.img)
-	cv2.setMouseCallback('image', click_it.upon_click)
-	cv2.waitKey(0)
-	cv2.destroyAllWindows()
-	cv2.waitKey(1)
-	
-	click_it.crop_poly()
-	xmin, xmax = click_it.new_bounds_x
-	ymin, ymax = click_it.new_bounds_y
-	video = video[:, ymin:ymax, xmin:xmax]
-	polygon = click_it.get_poly()
-	output_dict = {'video': video, 'polygon': polygon}
-	savefile_ = input('Save pickle object>>>')
-	savefile = savefile_+".pkl"
-	F = open(savefile, 'wb')
-	pickle.dump(output_dict, F)
-	F.close()	
+    if video.shape[2] == 3:
+        sv = color.rgb2gray(video)
+        two_d = True
+    elif video.shape[2] == 4:
+        sv = color.rgb2gray(color.rgba2rgb(video))
+        two_d = True
+    else:
+        two_d = False
+        vids, rows, cols = video.shape
+        sv = np.empty([rows, cols], 'uint32')
+        for ij in tqdm(range(rows*cols), desc="Summing image"):
+            i, j = (ij // cols, ij % cols)
+            sv[i, j] = np.sum(video[:,i,j])	
+        
+    #summed_video converted to 'uint8' tsype for cv2 purposes
+    summed_video = np.rint(sv/np.max(sv)*255).astype('uint8')				
+    click_it = _click_event(summed_video)
+    cv2.imshow('image', click_it.img)
+    cv2.setMouseCallback('image', click_it.upon_click)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    cv2.waitKey(1)
+    
+    click_it.crop_poly()
+    xmin, xmax = click_it.new_bounds_x
+    ymin, ymax = click_it.new_bounds_y
+    bounds = {'x': (xmin, xmax), 'y': (ymin, ymax)}
+    
+    if two_d:
+        video = sv[ymin:ymax, xmin:xmax]
+    else:
+        video = video[:, ymin:ymax, xmin:xmax]
+        
+        
+    polygon = click_it.get_poly()
+    output_dict = {'video': video, 'polygon': polygon, 'bounds': bounds}
+    savefile_ = input('Save pickle object>>>')
+    savefile = savefile_+".pkl"
+    F = open(savefile, 'wb')
+    pickle.dump(output_dict, F)
+    F.close()	

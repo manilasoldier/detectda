@@ -84,16 +84,8 @@ class ImageSeries:
         check_is_fitted(self)
         self.alps = np.fromiter((_dh.alps(x[x[:,3].astype(np.bool),2]) for x in self.diags_), float)  
         
-    def get_pers_mag(self):
-        """
-        Gets the magnitude of the 0th Persistent homology, as in Govc/Hepworth (2021)
-
-        """
-        check_is_fitted(self)
-        self.pers_mag = np.fromiter((_dh.pers_mag(x[x[:,3].astype(np.bool),0:2]) for x in self.diags_), float)
         
-        
-    def plot_im(self, frame, plot_poly=True, plot_pts=True, smooth=True, thr=None):
+    def plot_im(self, frame, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs):
         """
         Plot an individual frame in the video, with or without the polygonal region superimposed
         """
@@ -116,7 +108,8 @@ class ImageSeries:
                 x = imd[which_plt, 0],
                 y = imd[which_plt, 1],
 				c = imd[which_plt, 2],
-				cmap = "autumn"
+				cmap = "autumn",
+                **kwargs
 			)
             plt.imshow(plim, cmap="gray")
             plt.colorbar(plt0)	
@@ -129,6 +122,23 @@ class ImageSeries:
                 plt.plot(xs,ys, color="cyan")
         except AttributeError:
             print("Must set plot_poly to False if polygon not specified")    
+
+class ImageSeriesPlus:
+    """
+    Reads in an image series (video), either a single or multiple frames. 
+
+    May optionally specify polygonally region, held constant across frames,
+    in which to select specific generators in persistent homology. Similar to ImageSeries,
+    but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
+    """
+    pass
+
+    # def get_pers_mag(self):
+    #     """
+    #     Gets the magnitude of the 0th Persistent homology, as in Govc/Hepworth (2021)
+    #     """
+    #     check_is_fitted(self)
+    #     self.pers_mag = np.fromiter((_dh.pers_mag(x[x[:,3].astype(np.bool),0:2]) for x in self.diags_), float)
 
 
 class ImageSeriesPickle(ImageSeries):
