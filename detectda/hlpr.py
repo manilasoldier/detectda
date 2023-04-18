@@ -69,6 +69,9 @@ def calc_reject(arr, val_arr, alpha=0.05, conservative=True):
         array of indices of hypotheses that are rejected via BH procedure, and 
         boolean array of whether or not hypothesis is rejected. R
     """
+    if alpha <= 0:
+        raise ValueError("alpha must be > 0")
+    
     N = len(arr)
     k = np.arange(1, N+1)
     if conservative:
@@ -118,17 +121,6 @@ def pers_entr(arr, neg=True):
 		a = -1
 
 	return a*np.sum(Lmod*np.log(Lmod))
-
-def pers_mag(arr):
-    "Gets persistent magnitude"
-    if arr.shape[1] != 2:
-        raise ValueError("Need both birth and death times")
-    else:
-        return np.sum(np.exp(-arr[:,0])-np.exp(-arr[:,1]))
-
-def pg0(arr):
-    return np.mean(arr >= arr[0])
-
 
 def persmoo(im, polygon=None, sigma=None):
     #throughout this, infinite death becomes max pixel value...

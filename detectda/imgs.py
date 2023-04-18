@@ -30,7 +30,9 @@ class ImageSeries:
             raise ValueError("Need to initialize with array of 2 or 3 dimensions")
         
         if div==1:
-            self.video = video        
+            self.video = video     
+        elif div <= 0:
+            raise ValueError("div argument cannot be 0 or less")
         else: 
             self.video = np.rint(video/div)
         

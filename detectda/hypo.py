@@ -15,14 +15,14 @@ class VacuumSeries(imgs.ImageSeries):
         super().__init__(vacuum_video, None, div=div, n_jobs=n_jobs)
     
         if not isinstance(observed_ImageSeries, imgs.ImageSeries):
-            raise ValueError("Argument must be of class Image Series")
+            raise TypeError("Argument must be of class Image Series")
          
         self.observed_ImageSeries = observed_ImageSeries
         #last two elements of array corresponding to the shape
         self.size = self.observed_ImageSeries.video.shape[-2:] 
         self.parametric = parametric
-		
-    def fit(self):
+
+    def fit(self, convert_to_int=False):
         """
         WE NEED TO MAKE SURE THE IMAGE DATA IS INTEGER VALUED!!!
         
@@ -30,7 +30,15 @@ class VacuumSeries(imgs.ImageSeries):
         
         Else it fits the empirical probability mass function.
         """
-        emp_vals = np.ndarray.astype(self.video.flatten(), "int64")
+        if convert_to_int:
+            emp_vals = np.ndarray.astype(self.video.flatten(), "int64")
+        else:
+            if self.video.dtype.kind != "i":
+                raise TypeError("Vacuum video must be of signed integer data type. If you would like to convert \
+                                to signed integer data type, rerun self.fit with convert_to_int=True")
+            else:
+                emp_vals = self.video.flatten()
+        
         bin_vals = np.bincount(emp_vals)
         self.n_ = len(emp_vals)
         self.probs_ = bin_vals/np.sum(bin_vals)
