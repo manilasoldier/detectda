@@ -1,6 +1,6 @@
 import numpy as np
 from gudhi import CubicalComplex
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Point
 from skimage import filters
 
 def getxy_col(arr, nrows):
@@ -123,6 +123,23 @@ def pers_entr(arr, neg=True):
 	return a*np.sum(Lmod*np.log(Lmod))
 
 def persmoo(im, polygon=None, sigma=None):
+    """
+
+    Parameters
+    ----------
+    im : TYPE
+        DESCRIPTION.
+    polygon : TYPE, optional
+        DESCRIPTION. The default is None.
+    sigma : TYPE, optional
+        DESCRIPTION. The default is None.
+
+    Returns
+    -------
+    cu_tot : TYPE
+        DESCRIPTION.
+
+    """
     #throughout this, infinite death becomes max pixel value...
     if sigma==None:
         pass	
@@ -147,27 +164,32 @@ def persmoo(im, polygon=None, sigma=None):
     ess_featx, ess_featy = getxy_col(ess_feat0, nr)
     x_coords0, y_coords0 = getxy_col(cu_pers_pair0, nr)
     x_coords1, y_coords1 = getxy_col(cu_pers_pair1, nr)
-
-    x_pos0 = np.append(x_coords0[:,0], ess_featx) #x coords of positive cells for dim-0, local minima
-    y_pos0 = np.append(y_coords0[:,0], ess_featy) #y coords of positive cells for dim-0, local minima
+    
+    x_pos0 = np.append(ess_featx, x_coords0[:,0]) #x coords of positive cells for dim-0, local minima
+    y_pos0 = np.append(ess_featy, y_coords0[:,0]) #y coords of positive cells for dim-0, local minima
     cu_pos0 = np.stack([x_pos0, y_pos0], axis=1)
     
     #concatenate x,y coords of negative cells for dim-1, local maxima
     cu_pos1 = np.stack([x_coords1[:,1], y_coords1[:,1]], axis=1)
+    cu_pos = np.r_[cu_pos1, cu_pos0]
     
-    return cu_pers
-    """
-    3/11/23 NEED TO CREATE THIS FUNCTION
-    SEE ALSO detectda_persmooTEST
-    """
+    if polygon==None:
+    	cu_ex_inpoly=np.repeat(True, len(cu_pers))
+    else:
+    	pers_pts = (Point(x,y) for x,y in zip(cu_pos[:,0], cu_pos[:,1]))
+    	cu_ex_inpoly = [polygon.contains(pt) for pt in pers_pts]
+    
+    cu_tot = np.c_[cu_pos, cu_pers, cu_ex_inpoly]
+    return cu_tot
+
 
 def fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True):        
 	"""
 	Smooths, then fits 0-dimensional cubical persistence on an image. 
 	Returns information on:
 		1) Location of positive cells, i.e. local minima (cu_pos, or index-0 and index-1 columns)
-		3) Lifetime information (cu_totpers, or index-2 column)
-		4) Whether or not a positive cell lies within the polygon (cu_ex_inpoly, or index-3 column)
+		2) Lifetime information (cu_totpers, or index-2 column)
+		3) Whether or not a positive cell lies within the polygon (cu_ex_inpoly, or index-3 column)
 	"""
 	if sigma==None:
 		pass	

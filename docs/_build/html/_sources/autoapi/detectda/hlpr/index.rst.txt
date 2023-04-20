@@ -1,0 +1,100 @@
+:py:mod:`detectda.hlpr`
+=======================
+
+.. py:module:: detectda.hlpr
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   detectda.hlpr.getxy_col
+   detectda.hlpr.degp_totp
+   detectda.hlpr.get_be
+   detectda.hlpr.calc_reject
+   detectda.hlpr.block_sum
+   detectda.hlpr.alps
+   detectda.hlpr.pers_entr
+   detectda.hlpr.persmoo
+   detectda.hlpr.fitsmoo
+
+
+
+.. py:function:: getxy_col(arr, nrows)
+
+   Returns (x,y) coordinates from column-major representation
+
+
+.. py:function:: degp_totp(arr, p=1, inf=False)
+
+   Note that if inf==True, this overwrites the chosen value of p
+
+
+.. py:function:: get_be(arr)
+
+   :param arr: Boolean array
+   :type arr: array_like
+
+   :returns: **out** -- Tuple consisting of two arrays. Index-0 array consists of beginning of "True" sequences,
+             and Index-1 array consists of ends of "True" sequences.
+   :rtype: 2-tuple
+
+
+.. py:function:: calc_reject(arr, val_arr, alpha=0.05, conservative=True)
+
+   :param arr: Array of probabilities (p-values) between 0 and 1.
+   :type arr: array_like
+   :param val_arr: Array of values to break ties in p-values.
+   :type val_arr: array_like
+   :param alpha: Signficance level for BH procedure. The default is 0.05.
+   :type alpha: value between 0 and 1, optional
+   :param conservative: Dictates whether or not conservative BH procedure is used.
+   :type conservative: default = True
+
+   :returns: **out** -- array of indices of hypotheses that are rejected via BH procedure, and
+             boolean array of whether or not hypothesis is rejected. R
+   :rtype: dictionary of index array, boolean array, rejection threshold index
+
+
+.. py:function:: block_sum(arr, m, div=1)
+
+   Sums adjacent blocks of m frames
+
+
+.. py:function:: alps(arr)
+
+   Get the ALPS statistic of an array of values, not all zero
+
+
+.. py:function:: pers_entr(arr, neg=True)
+
+   Gets persistence (shannon) entropy of an array of values, not all zero
+
+
+.. py:function:: persmoo(im, polygon=None, sigma=None)
+
+   :param im: DESCRIPTION.
+   :type im: TYPE
+   :param polygon: DESCRIPTION. The default is None.
+   :type polygon: TYPE, optional
+   :param sigma: DESCRIPTION. The default is None.
+   :type sigma: TYPE, optional
+
+   :returns: **cu_tot** -- DESCRIPTION.
+   :rtype: TYPE
+
+
+.. py:function:: fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True)
+
+   Smooths, then fits 0-dimensional cubical persistence on an image.
+   Returns information on:
+           1) Location of positive cells, i.e. local minima (cu_pos, or index-0 and index-1 columns)
+           2) Lifetime information (cu_totpers, or index-2 column)
+           3) Whether or not a positive cell lies within the polygon (cu_ex_inpoly, or index-3 column)
+
+
