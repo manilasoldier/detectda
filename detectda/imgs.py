@@ -123,25 +123,7 @@ class ImageSeries:
                 xs, ys = list(zip(*self.polygon.exterior.coords)) #'unzip' exterior coordinates of a polygon for plotting
                 plt.plot(xs,ys, color="cyan")
         except AttributeError:
-            print("Must set plot_poly to False if polygon not specified")    
-
-class ImageSeriesPlus:
-    """
-    Reads in an image series (video), either a single or multiple frames. 
-
-    May optionally specify polygonally region, held constant across frames,
-    in which to select specific generators in persistent homology. Similar to ImageSeries,
-    but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
-    """
-    pass
-
-    # def get_pers_mag(self):
-    #     """
-    #     Gets the magnitude of the 0th Persistent homology, as in Govc/Hepworth (2021)
-    #     """
-    #     check_is_fitted(self)
-    #     self.pers_mag = np.fromiter((_dh.pers_mag(x[x[:,3].astype(np.bool),0:2]) for x in self.diags_), float)
-
+            print("Must set plot_poly to False if polygon not specified")
 
 class ImageSeriesPickle(ImageSeries):
     """
