@@ -4,6 +4,7 @@ from skimage import filters
 from . import hlpr as _dh
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy import stats
 import numpy as np
 import pickle
 import time
@@ -52,7 +53,7 @@ class ImageSeries(VidPol):
             processors.
     """
     def __init__(self, video, polygon=None, div=1, n_jobs=None):
-        super().__init__(video, None, div=div, n_jobs=n_jobs)
+        super().__init__(video, polygon, div=div, n_jobs=n_jobs)
         self.degp_totp = {}
     
     def fit(self, sigma=None, max_death_pixel_int=True, print_time=True):
@@ -149,7 +150,7 @@ class ImageSeriesPlus(VidPol):
     but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
     """
     def __init__(self, video, polygon=None, div=1, n_jobs=None):
-        super().__init__(video, None, div=div, n_jobs=n_jobs)
+        super().__init__(video, polygon, div=div, n_jobs=n_jobs)
     
     def fit(self, sigma=None, print_time=True, verbose=0):
             """
@@ -195,7 +196,20 @@ class ImageSeriesPlus(VidPol):
         Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with 
             persistent entropy and ALPS statistics, constituting an embedding into 32-dimensional Euclidean space.
         """
-        pass
+        q25 = lambda x: np.quantile(x, 0.25)
+        q75 = lambda x: np.quantile(x, 0.75)
+        funcs = {'mean': np.mean, 
+                 'variance': np.var,
+                 'skewness': stats.skew, 
+                 'kurtosis': stats.kurtosis, 
+                 'median': np.median,
+                 'iqr': stats.iqr, 
+                 'q25': q25, 
+                 'q75': q75}
+        for dim in [0,1]:
+            for val in ['mid', 'life']:
+                for func in funcs:
+                    pass
     
 
 

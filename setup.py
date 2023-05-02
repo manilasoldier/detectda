@@ -22,7 +22,8 @@ setup(
 		'tqdm',
         'pandas',
 		'matplotlib',
-		'opencv-contrib-python'
+		'opencv-contrib-python',
+        'scipy'
 	],
 	keywords = ['tda', 'cubical', 'image processing'],
 	classifiers = [

@@ -3,11 +3,21 @@ from gudhi import CubicalComplex
 from shapely.geometry import Point
 from skimage import filters
 
+def pg0(arr):
+    return np.mean(arr >= arr[0])
+
 def getxy_col(arr, nrows):
 	"Returns (x,y) coordinates from column-major representation"
 	y = (arr % nrows).astype(int)
 	x = ((arr-y)/nrows).astype(int)
 	return x,y
+
+def std_video(video, flip=False):
+    v_mean = np.mean(video, axis=(1,2))
+    v_std = np.std(video, axis=(1,2))
+    v_means=np.transpose(np.tile(v_mean, (video.shape[1], video.shape[2],1)), (2,0,1))
+    v_stds=np.transpose(np.tile(v_std, (video.shape[1], video.shape[2],1)), (2,0,1))
+    return (-1)**(flip)*(video-v_means)/(v_stds)
 
 def degp_totp(arr, p=1, inf=False):
 	"Note that if inf==True, this overwrites the chosen value of p"
@@ -124,7 +134,6 @@ def pers_entr(arr, neg=True):
 
 def persmoo(im, polygon=None, sigma=None):
     """
-
     Parameters
     ----------
     im : TYPE
@@ -138,7 +147,6 @@ def persmoo(im, polygon=None, sigma=None):
     -------
     cu_tot : TYPE
         DESCRIPTION.
-
     """
     #throughout this, infinite death becomes max pixel value...
     if sigma==None:
@@ -181,7 +189,6 @@ def persmoo(im, polygon=None, sigma=None):
     
     cu_tot = np.c_[cu_pos, cu_pers, cu_ex_inpoly]
     return cu_tot
-
 
 def fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True):        
 	"""
