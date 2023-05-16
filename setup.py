@@ -14,7 +14,7 @@ setup(
 	package=find_packages(),
 	install_requires=[
 		'gudhi',
-		'shapely',
+		'shapely >= 2.0.1',
 		'joblib',
 		'scikit-image',
 		'scikit-learn >= 0.23.1',

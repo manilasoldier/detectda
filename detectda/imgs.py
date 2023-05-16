@@ -2,6 +2,7 @@ from joblib import Parallel, delayed
 from sklearn.utils.validation import check_is_fitted
 from skimage import filters
 from . import hlpr as _dh
+from tqdm import tqdm
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import stats
@@ -206,10 +207,32 @@ class ImageSeriesPlus(VidPol):
                  'iqr': stats.iqr, 
                  'q25': q25, 
                  'q75': q75}
-        for dim in [0,1]:
-            for val in ['mid', 'life']:
-                for func in funcs:
-                    pass
+        
+        stats_vals = []
+        for i, diag in tqdm(enumerate(self.diags_)):
+            stats0 = np.array([])
+            if i == 0: 
+                names = np.array([])
+            for dim in [0,1]:
+                sub_diag = diag[np.logical_and(diag[:,2]==dim, diag[:,5]==1),:]
+                for typ in ['mid', 'life']:
+                    if typ == 'mid':
+                        typ_diag = (sub_diag[:,4]+sub_diag[:,3])/2
+                    else:
+                        typ_diag = (sub_diag[:,4]-sub_diag[:,3])
+                        stats0 = np.append(stats0, [_dh.pers_entr(typ_diag, neg=False), _dh.alps(typ_diag)])
+                        if i == 0: 
+                            names = np.append(names, ["pers_entr_"+str(dim)+"_life", "alps_"+str(dim)+"_life"])
+                    for name, func in funcs.items(): ####NEED TO FIGURE OUT THE ISSUE HERE...
+                        val = func(typ_diag)
+                        stats0 = np.append(stats0, val)
+                        if i == 0: 
+                            names = np.append(names, "_".join([name, str(dim), typ]))
+            stats_vals = np.append(stats_vals, stats0)
+        
+        
+        stats_df = np.reshape(stats_vals, (len(self.diags_), len(names)))
+        return pd.DataFrame(stats_df, columns=names)
     
 
 
