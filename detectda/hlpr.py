@@ -189,6 +189,11 @@ def persmoo(im, polygon=None, sigma=None):
     
     cu_tot = np.c_[cu_pos, cu_pers, cu_ex_inpoly]
     return cu_tot
+    """
+    cu_pos:         #(x,y) coordinates of positive cells (which create components)
+    cu_pers:        #(dimension, birth, death)...
+    cu_ex_inpoly:   #row indices of positive cells located within specified polygon
+    """
 
 def fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True):        
 	"""
