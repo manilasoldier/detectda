@@ -13,7 +13,7 @@ $ python3 setup.py install
 With a video (and optional polygonal region---see below), extracting statistics related to structure and shape of your noisy image could not be easier. Detectda leverages TDA (topological data analysis) to derive such quantities, an illustration
 of which can be seen below. 
 
-![Illustration of the detectda algorithm](../detectdaALGORITHM.png)
+![Illustration of the detectda algorithm](https://github.com/manilasoldier/detectda/blob/main/detectdaALGORITHM.png)
 
 Such processing is accomplished by fitting the class ImageSeries (or ImageSeriesPlus) to your data. Hypothesis testing whether or not images are generated from a vacuum region within the images is accomplished by fitting and transforming VacuumSeries objects. Note that hypothesis testing is only currently supported for the ImageSeries class. 
 
