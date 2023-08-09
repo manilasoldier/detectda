@@ -2,28 +2,18 @@ from joblib import Parallel, delayed
 from sklearn.utils.validation import check_is_fitted
 from skimage import filters
 from . import hlpr as _dh
+from tqdm import tqdm
+import pandas as pd
 import matplotlib.pyplot as plt
+from scipy import stats
 import numpy as np
 import pickle
 import time
 
 #See the following link for information on how to process series of persistence diagrams using GUDHI: https://giotto-ai.github.io/gtda-docs/0.5.1/_modules/gtda/homology/cubical.html#CubicalPersistence.transform
 
-class ImageSeries:
-    """
-    Reads in an image series (video), either a single or multiple frames. 
-
-    May optionally specify polygonally region, held constant across frames,
-    in which to select specific generators in persistent homology.
-    """
+class VidPol:
     def __init__(self, video, polygon=None, div=1, n_jobs=None):
-        """
-        The argument 'div', if not equal to 1, divides each pixel by div
-        and rounds to the nearest integer. 
-
-        The argument n_jobs specifies how many jobs preferred for the 
-        parallel backend. 
-        """
         if video.ndim == 2:
             video = np.expand_dims(video, axis=0)    
         elif video.ndim != 3: 
@@ -36,10 +26,36 @@ class ImageSeries:
         else: 
             self.video = np.rint(video/div)
         
-        self.degp_totp = {}
         self.polygon = polygon
         self.div = div
         self.n_jobs = n_jobs
+        
+
+class ImageSeries(VidPol):
+    """
+    Reads in an image series (video), either a single or multiple frames. 
+
+    May optionally specify polygonally region, held constant across frames,
+    in which to select specific generators in persistent homology.
+
+    Parameters
+    ----------
+    video : array_like
+            Image series. Index on axis=0 represents the frame index, unless a single image (2d array) is provided. 
+    polygon : shapely.Polygon, optional, default is ``None``
+            Polygonal region outside of which positive cells of 0th persistent homology will be excluded. 
+    div : positive int/float, optional, default is ``1``.
+            In nanoparticle imaging process, pixel intensities are often registered as something close to a(div), 
+            so dividing by div and rounding to nearest integer will give pixel intensities that conform more strongly 
+            to common parametric assumptions.
+    n_jobs : int or None, optional, default is ``None``
+            The number of jobs to use for the computation. ``None`` means 1 unless
+            in a :obj:`joblib.parallel_backend` context. ``-1`` means using all
+            processors.
+    """
+    def __init__(self, video, polygon=None, div=1, n_jobs=None):
+        super().__init__(video, polygon, div=div, n_jobs=n_jobs)
+        self.degp_totp = {}
     
     def fit(self, sigma=None, max_death_pixel_int=True, print_time=True):
         """
@@ -66,25 +82,24 @@ class ImageSeries:
     def get_degp_totp(self, p=1, inf=False):
         "Get degree-p total persistence of each image frame from fitted object."
         check_is_fitted(self)
-        dgtp = np.fromiter((_dh.degp_totp(x[x[:,3].astype(np.bool),2], p, inf) for x in self.diags_), float)
+        dgtp = np.fromiter((_dh.degp_totp(x[x[:,3].astype(bool),2], p, inf) for x in self.diags_), float)
         if inf:
             self.degp_totp['inf'] = dgtp
         else:
             self.degp_totp[str(p)] = dgtp
 
-    #.astype(np.bool) is a quick fix and needs to remedied...
     def get_pers_entr(self, neg=True):    
         """
         Get persistent entropy of each image frame from fitted object. For hypothesis testing
         purposes, the default is negative of the entropy
         """
         check_is_fitted(self)
-        self.pers_entr = np.fromiter((_dh.pers_entr(x[x[:,3].astype(np.bool),2], neg) for x in self.diags_), float)
+        self.pers_entr = np.fromiter((_dh.pers_entr(x[x[:,3].astype(bool),2], neg) for x in self.diags_), float)
     
     def get_alps(self):
         "Get ALPS statistic of each image frame from fitted object."
         check_is_fitted(self)
-        self.alps = np.fromiter((_dh.alps(x[x[:,3].astype(np.bool),2]) for x in self.diags_), float)  
+        self.alps = np.fromiter((_dh.alps(x[x[:,3].astype(bool),2]) for x in self.diags_), float)  
         
         
     def plot_im(self, frame, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs):
@@ -123,8 +138,101 @@ class ImageSeries:
                 xs, ys = list(zip(*self.polygon.exterior.coords)) #'unzip' exterior coordinates of a polygon for plotting
                 plt.plot(xs,ys, color="cyan")
         except AttributeError:
-            print("Must set plot_poly to False if polygon not specified")
+            print("Must set plot_poly to False if polygon not specified")    
 
+
+class ImageSeriesPlus(VidPol):
+    """
+    Reads in an image series (video), either a single or multiple frames. 
+
+    May optionally specify polygonal region, held constant across frames,
+    in which to select specific generators in persistent homology. Similar to ImageSeries,
+    but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
+    """
+    def __init__(self, video, polygon=None, div=1, n_jobs=None):
+        super().__init__(video, polygon, div=div, n_jobs=n_jobs)
+    
+    def fit(self, sigma=None, print_time=True, verbose=0):
+            """
+            Fit method for ImageSeriesPlus object.
+
+            Optional Gaussian smoothing with sigma parameter.
+
+            The argument max_death_pixel_int controls whether or not 
+            the maximum death time is the largest pixel value (within an image),
+            or the largest finite death time (within an image).
+            """
+            if print_time:
+                tic=time.perf_counter()        
+            self.diags_ = Parallel(n_jobs = self.n_jobs, verbose=verbose)(
+                                    delayed(_dh.persmoo)(im, self.polygon, sigma) 
+                                    for im in self.video)    
+            if print_time:
+                toc=time.perf_counter()
+                print(f"Video processed in {toc - tic:0.4f} seconds")
+            
+            self.sigma_=sigma
+            return self
+        
+    def convert_to_df(self):
+        check_is_fitted(self)
+        col_names = ["x_coord", "y_coord", "hom_dim", "birth", "death", "in_poly"]
+        self.dfs_ = [pd.DataFrame(x, columns=col_names) for x in self.diags_]
+    
+    def get_lifetimes(self):
+        check_is_fitted(self)
+        self.lifetimes = [x[:,4]-x[:,3] for x in self.diags_]
+    
+    def get_midlife_coords(self):
+        check_is_fitted(self)
+        self.midlife_coords = [(x[:,4]+x[:,3])/2 for x in self.diags_]
+        
+    def get_pers_mag(self):
+        check_is_fitted(self)
+        self.pers_mag = [np.sum((-1)**(x[:,2])*(np.exp(-x[:,3])-np.exp(-x[:,4]))) for x in self.diags_]
+    
+    def get_pers_stats(self):
+        """
+        Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with 
+            persistent entropy and ALPS statistics, constituting an embedding into 32-dimensional Euclidean space.
+        """
+        q25 = lambda x: np.quantile(x, 0.25)
+        q75 = lambda x: np.quantile(x, 0.75)
+        funcs = {'mean': np.mean, 
+                 'variance': np.var,
+                 'skewness': stats.skew, 
+                 'kurtosis': stats.kurtosis, 
+                 'median': np.median,
+                 'iqr': stats.iqr, 
+                 'q25': q25, 
+                 'q75': q75}
+        
+        stats_vals = []
+        for i, diag in tqdm(enumerate(self.diags_)):
+            stats0 = np.array([])
+            if i == 0: 
+                names = np.array([])
+            for dim in [0,1]:
+                sub_diag = diag[np.logical_and(diag[:,2]==dim, diag[:,5]==1),:]
+                for typ in ['mid', 'life']:
+                    if typ == 'mid':
+                        typ_diag = (sub_diag[:,4]+sub_diag[:,3])/2
+                    else:
+                        typ_diag = (sub_diag[:,4]-sub_diag[:,3])
+                        stats0 = np.append(stats0, [_dh.pers_entr(typ_diag, neg=False), _dh.alps(typ_diag)])
+                        if i == 0: 
+                            names = np.append(names, ["pers_entr_"+str(dim)+"_life", "alps_"+str(dim)+"_life"])
+                    for name, func in funcs.items(): ####NEED TO FIGURE OUT THE ISSUE HERE...
+                        val = func(typ_diag)
+                        stats0 = np.append(stats0, val)
+                        if i == 0: 
+                            names = np.append(names, "_".join([name, str(dim), typ]))
+            stats_vals = np.append(stats_vals, stats0)
+        
+        
+        stats_df = np.reshape(stats_vals, (len(self.diags_), len(names)))
+        return pd.DataFrame(stats_df, columns=names)
+    
 class ImageSeriesPickle(ImageSeries):
     """
     Designed for use with output of identify_polygon script

@@ -1,8 +1,25 @@
 # detectda
 
+Detect topological features and perform hypothesis testing on sequences of noisy images. 
+
+## Installation
+
+```
+$ python3 setup.py install
+```
+
+## Summarizing an image series
+
+With a video (and optional polygonal region---see below), extracting statistics related to structure and shape of your noisy image could not be easier. Detectda leverages TDA (topological data analysis) to derive such quantities, an illustration
+of which can be seen below. 
+
+![Illustration of the detectda algorithm](../detectdaALGORITHM.png)
+
+Such processing is accomplished by fitting the class ImageSeries (or ImageSeriesPlus) to your data. Hypothesis testing whether or not images are generated from a vacuum region within the images is accomplished by fitting and transforming VacuumSeries objects. Note that hypothesis testing is only currently supported for the ImageSeries class. 
+
 ## Using the identify_polygon script 
 
-A python package for detection and hypothesis testing of noisy greyscale images and videos using TDA.
+`detectda` is python package for detection and hypothesis testing of noisy greyscale images and videos using TDA.
 
 To use the identify_polygon script, run the script in the command line (after running python setup.py install, or similar). 
 	1. Enter the name of your .tif video (such as test_video.tif). 

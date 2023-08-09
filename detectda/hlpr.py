@@ -3,11 +3,21 @@ from gudhi import CubicalComplex
 from shapely.geometry import Point
 from skimage import filters
 
+def pg0(arr):
+    return np.mean(arr >= arr[0])
+
 def getxy_col(arr, nrows):
 	"Returns (x,y) coordinates from column-major representation"
 	y = (arr % nrows).astype(int)
 	x = ((arr-y)/nrows).astype(int)
 	return x,y
+
+def std_video(video, flip=False):
+    v_mean = np.mean(video, axis=(1,2))
+    v_std = np.std(video, axis=(1,2))
+    v_means=np.transpose(np.tile(v_mean, (video.shape[1], video.shape[2],1)), (2,0,1))
+    v_stds=np.transpose(np.tile(v_std, (video.shape[1], video.shape[2],1)), (2,0,1))
+    return (-1)**(flip)*(video-v_means)/(v_stds)
 
 def degp_totp(arr, p=1, inf=False):
 	"Note that if inf==True, this overwrites the chosen value of p"
@@ -122,16 +132,76 @@ def pers_entr(arr, neg=True):
 
 	return a*np.sum(Lmod*np.log(Lmod))
 
-def pg0(arr):
-    return np.mean(arr >= arr[0])
+def persmoo(im, polygon=None, sigma=None):
+    """
+    Parameters
+    ----------
+    im : individual image, i.e. two-dimensional array
+        Greyscale image on which sublevelset homology will be calculated.
+    polygon : Shapely.Polygon object, optional
+        Not necessary, only if one wants to restrict region to focus on. The default is None.
+    sigma : smoothing parameter sigma, optional
+        Smoothing parameter sigma for Gaussian filter. The default is None.
+
+    Returns
+    -------
+    cu_tot : TYPE
+        Returns array with positional and homology information
+    """
+    #throughout this, infinite death becomes max pixel value...
+    if sigma==None:
+        pass	
+    else:
+        im = filters.gaussian(im, sigma=sigma, preserve_range=True)
+        
+    cu_comp = CubicalComplex(top_dimensional_cells=im) 
+    cu_comp.compute_persistence(homology_coeff_field=2)
+    cu_pers_ = cu_comp.persistence()
+    cu_pers = np.array([(d, pers[0], pers[1]) for d, pers in cu_pers_])
+    nr, nc = im.shape
+    
+    #reassign infinite death pixels
+    cu_pers[cu_pers==np.inf] = np.max(im)
+    
+    #get locations of cells...
+    cu_pers_pairs_ = cu_comp.cofaces_of_persistence_pairs()
+    cu_pers_pair0 = cu_pers_pairs_[0][0] #regular persistence pairs of dim-0
+    cu_pers_pair1 = cu_pers_pairs_[0][1] ##regular persistence pairs of dim-1
+    ess_feat0 = cu_pers_pairs_[1][0] #retrieves 'essential feature of dim-0', i.e. component of inf persistence
+    
+    ess_featx, ess_featy = getxy_col(ess_feat0, nr)
+    x_coords0, y_coords0 = getxy_col(cu_pers_pair0, nr)
+    x_coords1, y_coords1 = getxy_col(cu_pers_pair1, nr)
+    
+    x_pos0 = np.append(ess_featx, x_coords0[:,0]) #x coords of positive cells for dim-0, local minima
+    y_pos0 = np.append(ess_featy, y_coords0[:,0]) #y coords of positive cells for dim-0, local minima
+    cu_pos0 = np.stack([x_pos0, y_pos0], axis=1)
+    
+    #concatenate x,y coords of negative cells for dim-1, local maxima
+    cu_pos1 = np.stack([x_coords1[:,1], y_coords1[:,1]], axis=1)
+    cu_pos = np.r_[cu_pos1, cu_pos0]
+    
+    if polygon==None:
+    	cu_ex_inpoly=np.repeat(True, len(cu_pers))
+    else:
+    	pers_pts = (Point(x,y) for x,y in zip(cu_pos[:,0], cu_pos[:,1]))
+    	cu_ex_inpoly = [polygon.contains(pt) for pt in pers_pts]
+    
+    cu_tot = np.c_[cu_pos, cu_pers, cu_ex_inpoly]
+    return cu_tot
+    """
+    cu_pos:         #(x,y) coordinates of positive/negative cells (which create components/destroy loops)
+    cu_pers:        #(dimension, birth, death)...
+    cu_ex_inpoly:   #row indices of positive/negative cells located within specified polygon
+    """
 
 def fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True):        
 	"""
 	Smooths, then fits 0-dimensional cubical persistence on an image. 
 	Returns information on:
 		1) Location of positive cells, i.e. local minima (cu_pos, or index-0 and index-1 columns)
-		3) Lifetime information (cu_totpers, or index-2 column)
-		4) Whether or not a positive cell lies within the polygon (cu_ex_inpoly, or index-3 column)
+		2) Lifetime information (cu_totpers, or index-2 column)
+		3) Whether or not a positive cell lies within the polygon (cu_ex_inpoly, or index-3 column)
 	"""
 	if sigma==None:
 		pass	

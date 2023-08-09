@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.3.2'
+VERSION = '0.4.1'
 DESCRIPTION = "detectda - detecting features in videos using TDA"
 LONG_DESCRIPTION = "detectda - a cubical persistent homology package for the detection and hypothesis testing of features in greyscale videos"
 
@@ -20,8 +20,10 @@ setup(
 		'scikit-learn >= 0.23.1',
 		'numpy',
 		'tqdm',
+        'pandas',
 		'matplotlib',
-		'opencv-contrib-python'
+		'opencv-contrib-python',
+        'scipy'
 	],
 	keywords = ['tda', 'cubical', 'image processing'],
 	classifiers = [

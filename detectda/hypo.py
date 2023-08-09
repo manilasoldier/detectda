@@ -8,7 +8,7 @@ import scipy.stats as stat
 
 class VacuumSeries(imgs.ImageSeries):
     """
-    Functionality to generate vacuum region videos for multiple hypothesis testing...
+    Functionality to generate vacuum region videos for multiple hypothesis testing.
     """
     def __init__(self, vacuum_video, observed_ImageSeries, 
                  parametric=True, div=1, n_jobs=None):
@@ -24,11 +24,9 @@ class VacuumSeries(imgs.ImageSeries):
 
     def fit(self, convert_to_int=False):
         """
-        WE NEED TO MAKE SURE THE IMAGE DATA IS INTEGER VALUED!!!
-        
         Fits the Poisson mle for the vacuum region if parametric==True
         
-        Else it fits the empirical probability mass function.
+        Else, it fits the empirical probability mass function.
         """
         if convert_to_int:
             emp_vals = np.ndarray.astype(self.video.flatten(), "int64")

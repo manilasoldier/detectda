@@ -1,0 +1,62 @@
+:py:mod:`detectda.hypo`
+=======================
+
+.. py:module:: detectda.hypo
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   detectda.hypo.VacuumSeries
+
+
+
+
+.. py:class:: VacuumSeries(vacuum_video, observed_ImageSeries, parametric=True, div=1, n_jobs=None)
+
+   Bases: :py:obj:`detectda.imgs.ImageSeries`
+
+   Functionality to generate vacuum region videos for multiple hypothesis testing.
+
+   .. py:method:: fit(convert_to_int=False)
+
+      Fits the Poisson mle for the vacuum region if parametric==True
+
+      Else, it fits the empirical probability mass function.
+
+
+   .. py:method:: kolm_dist()
+
+      Check how far the empirical distribution of vacuum values is from Poisson
+      with parameter equal to mle, in terms of the Kolmogorov distance
+
+      Uses the DKW inequality with the tight constant = 2 for Poisson testing.
+
+
+   .. py:method:: gen_images(n)
+
+      Generate and return a random image according to estimated null distribution
+
+
+   .. py:method:: transform(n, func='pers_entr', seed=0, alpha=0.05, conservative=True)
+
+      Collects p-values and rejections for based off n Monte Carlo simulations...
+
+
+   .. py:method:: adjust_alpha(alpha, conservative=True)
+
+      Adjust p-values based on a different alpha value.
+
+
+
+   .. py:method:: plot_hypo()
+
+      Plots hypothesis testing sequence.
+
+
+

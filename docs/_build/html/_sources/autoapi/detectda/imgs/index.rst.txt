@@ -1,0 +1,127 @@
+:py:mod:`detectda.imgs`
+=======================
+
+.. py:module:: detectda.imgs
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   detectda.imgs.VidPol
+   detectda.imgs.ImageSeries
+   detectda.imgs.ImageSeriesPlus
+   detectda.imgs.ImageSeriesPickle
+
+
+
+
+.. py:class:: VidPol(video, polygon=None, div=1, n_jobs=None)
+
+
+.. py:class:: ImageSeries(video, polygon=None, div=1, n_jobs=None)
+
+   Bases: :py:obj:`VidPol`
+
+   Reads in an image series (video), either a single or multiple frames.
+
+   May optionally specify polygonally region, held constant across frames,
+   in which to select specific generators in persistent homology.
+
+   :param video: Image series. Index on axis=0 represents the frame index, unless a single image (2d array) is provided.
+   :type video: array_like
+   :param polygon: Polygonal region outside of which positive cells of 0th persistent homology will be excluded.
+   :type polygon: shapely.Polygon, optional, default is ``None``
+   :param div: In nanoparticle imaging process, pixel intensities are often registered as something close to a(div),
+               so dividing by div and rounding to nearest integer will give pixel intensities that conform more strongly
+               to common parametric assumptions.
+   :type div: positive int/float, optional, default is ``1``.
+   :param n_jobs: The number of jobs to use for the computation. ``None`` means 1 unless
+                  in a :obj:`joblib.parallel_backend` context. ``-1`` means using all
+                  processors.
+   :type n_jobs: int or None, optional, default is ``None``
+
+   .. py:method:: fit(sigma=None, max_death_pixel_int=True, print_time=True)
+
+      Fit method for ImageSeries object.
+
+      Optional Gaussian smoothing with sigma parameter.
+
+      The argument max_death_pixel_int controls whether or not
+      the maximum death time is the largest pixel value (within an image),
+      or the largest finite death time (within an image).
+
+
+   .. py:method:: get_degp_totp(p=1, inf=False)
+
+      Get degree-p total persistence of each image frame from fitted object.
+
+
+   .. py:method:: get_pers_entr(neg=True)
+
+      Get persistent entropy of each image frame from fitted object. For hypothesis testing
+      purposes, the default is negative of the entropy
+
+
+   .. py:method:: get_alps()
+
+      Get ALPS statistic of each image frame from fitted object.
+
+
+   .. py:method:: plot_im(frame, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs)
+
+      Plot an individual frame in the video, with or without the polygonal region superimposed
+
+
+
+.. py:class:: ImageSeriesPlus(video, polygon=None, div=1, n_jobs=None)
+
+   Bases: :py:obj:`VidPol`
+
+   Reads in an image series (video), either a single or multiple frames.
+
+   May optionally specify polygonal region, held constant across frames,
+   in which to select specific generators in persistent homology. Similar to ImageSeries,
+   but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
+
+   .. py:method:: fit(sigma=None, print_time=True, verbose=0)
+
+      Fit method for ImageSeriesPlus object.
+
+      Optional Gaussian smoothing with sigma parameter.
+
+      The argument max_death_pixel_int controls whether or not
+      the maximum death time is the largest pixel value (within an image),
+      or the largest finite death time (within an image).
+
+
+   .. py:method:: convert_to_df()
+
+
+   .. py:method:: get_lifetimes()
+
+
+   .. py:method:: get_midlife_coords()
+
+
+   .. py:method:: get_pers_mag()
+
+
+   .. py:method:: get_pers_stats()
+
+      Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with
+          persistent entropy and ALPS statistics, constituting an embedding into 32-dimensional Euclidean space.
+
+
+
+.. py:class:: ImageSeriesPickle(file_path, div=1, n_jobs=None)
+
+   Bases: :py:obj:`ImageSeries`
+
+   Designed for use with output of identify_polygon script
+
+
