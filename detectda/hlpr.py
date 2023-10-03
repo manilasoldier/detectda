@@ -195,7 +195,28 @@ def pers_entr(arr, neg=True):
 
 	return a*np.sum(Lmod*np.log(Lmod))
 
-def pd_thresh_calc(diag, minv, maxv, dim="both"):
+def pd_thresh_calc(diag, minv, maxv, dim="both", otsu=True):
+    """
+    Calculates best persistence preserving threshold as described in Chung and Day (2018).
+
+    Parameters
+    ----------
+    diag : ndarray of shape (n_samples, 6)
+        Persistence diagram object a la the output of the persmoo function
+    minv : float
+        Minimum threshold to consider.
+    maxv : float
+        Maximum threshold to consider.
+    dim : str or int, optional
+        Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
+        The default is "both", corresponding to both dimensions 0 and 1. 
+
+    Returns
+    -------
+    float
+        The best topology- and geometry-preserving threshold
+
+    """
     if dim=="both":
         sub_diag = diag
     elif isinstance(dim, int):
@@ -229,6 +250,7 @@ def pd_thresh_calc(diag, minv, maxv, dim="both"):
             Phi_plus = 1
             
         Phi_t.append(Phi_orig*Phi_minus*Phi_plus)
+    
     return thrs[np.argmax(Phi_t)]
 
 def persmoo(im, polygon=None, sigma=None):
@@ -245,14 +267,17 @@ def persmoo(im, polygon=None, sigma=None):
     Returns
     -------
     cu_tot : ndarray
-        Returns array with positional and homology information
+        Array with positional and homology information, as follows:
+        cu_pos:         #(x,y) coordinates of positive/negative cells (which create components/destroy loops)
+        cu_pers:        #(dimension, birth, death)...
+        cu_ex_inpoly:   #row indices of positive/negative cells located within specified polygon
     """
     #throughout this, infinite death becomes max pixel value...
     if sigma==None:
         pass	
     else:
         im = filters.gaussian(im, sigma=sigma, preserve_range=True)
-        
+    
     cu_comp = CubicalComplex(top_dimensional_cells=im) 
     cu_comp.compute_persistence(homology_coeff_field=2)
     cu_pers_ = cu_comp.persistence()
@@ -264,21 +289,28 @@ def persmoo(im, polygon=None, sigma=None):
     
     #get locations of cells...
     cu_pers_pairs_ = cu_comp.cofaces_of_persistence_pairs()
-    cu_pers_pair0 = cu_pers_pairs_[0][0] #regular persistence pairs of dim-0
-    cu_pers_pair1 = cu_pers_pairs_[0][1] ##regular persistence pairs of dim-1
-    ess_feat0 = cu_pers_pairs_[1][0] #retrieves 'essential feature of dim-0', i.e. component of inf persistence
     
+    #retrieves 'essential feature of dim-0', i.e. component of inf persistence
+    ess_feat0 = cu_pers_pairs_[1][0]
     ess_featx, ess_featy = getxy_col(ess_feat0, nr)
-    x_coords0, y_coords0 = getxy_col(cu_pers_pair0, nr)
-    x_coords1, y_coords1 = getxy_col(cu_pers_pair1, nr)
-    
-    x_pos0 = np.append(ess_featx, x_coords0[:,0]) #x coords of positive cells for dim-0, local minima
-    y_pos0 = np.append(ess_featy, y_coords0[:,0]) #y coords of positive cells for dim-0, local minima
-    cu_pos0 = np.stack([x_pos0, y_pos0], axis=1)
-    
-    #concatenate x,y coords of negative cells for dim-1, local maxima
-    cu_pos1 = np.stack([x_coords1[:,1], y_coords1[:,1]], axis=1)
-    cu_pos = np.r_[cu_pos1, cu_pos0]
+    #this is to account for the specific cases when their is no 1st homology or no non-infinite generators of H_0
+    if len(cu_pers_pairs_[0]) == 0:
+        cu_pos = np.array([ess_featx, ess_featy]).T
+    else:
+        cu_pers_pair0 = cu_pers_pairs_[0][0] #regular persistence pairs of dim-0
+        x_coords0, y_coords0 = getxy_col(cu_pers_pair0, nr)
+        x_pos0 = np.append(ess_featx, x_coords0[:,0]) #x coords of positive cells for dim-0, local minima
+        y_pos0 = np.append(ess_featy, y_coords0[:,0]) #y coords of positive cells for dim-0, local minima
+        cu_pos0 = np.stack([x_pos0, y_pos0], axis=1)
+        
+        if len(cu_pers_pairs_[0]) == 2:
+            cu_pers_pair1 = cu_pers_pairs_[0][1] ##regular persistence pairs of dim-1
+            x_coords1, y_coords1 = getxy_col(cu_pers_pair1, nr)
+            #concatenate x,y coords of negative cells for dim-1, local maxima
+            cu_pos1 = np.stack([x_coords1[:,1], y_coords1[:,1]], axis=1)
+            cu_pos = np.r_[cu_pos1, cu_pos0]
+        else:
+            cu_pos = cu_pos0
     
     if polygon==None:
     	cu_ex_inpoly=np.repeat(True, len(cu_pers))
@@ -288,11 +320,6 @@ def persmoo(im, polygon=None, sigma=None):
     
     cu_tot = np.c_[cu_pos, cu_pers, cu_ex_inpoly]
     return cu_tot
-    """
-    cu_pos:         #(x,y) coordinates of positive/negative cells (which create components/destroy loops)
-    cu_pers:        #(dimension, birth, death)...
-    cu_ex_inpoly:   #row indices of positive/negative cells located within specified polygon
-    """
 
 def fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True):        
 	"""

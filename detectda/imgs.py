@@ -144,6 +144,10 @@ class ImageSeries(VidPol):
             print("Must set plot_poly to False if polygon not specified")    
 
 
+class HomologyError(Exception):
+    "Raised when homology for a given dimension is insufficient for calculating some quantity"
+    pass
+
 class ImageSeriesPlus(VidPol):
     """
     Reads in an image series (video), either a single or multiple frames. 
@@ -156,6 +160,8 @@ class ImageSeriesPlus(VidPol):
         if im_list:
             self.video = video
             self.n_jobs = n_jobs
+            self.polygon=None
+            self.div=1
         else:
             super().__init__(video, polygon, div=div, n_jobs=n_jobs)
             self.video = [im for im in self.video]
@@ -170,7 +176,8 @@ class ImageSeriesPlus(VidPol):
                 tic=time.perf_counter()
             self.diags_ = Parallel(n_jobs = self.n_jobs, verbose=verbose)(
                                     delayed(_dh.persmoo)(im, self.polygon, sigma) 
-                                    for im in self.video)    
+                                    for im in self.video)
+            
             if print_time:
                 toc=time.perf_counter()
                 print(f"Images processed in {toc - tic:0.4f} seconds")
@@ -179,11 +186,38 @@ class ImageSeriesPlus(VidPol):
             return self
         
     def pd_threshold(self, minv, maxv, dim="both"):
+        """
+
+        Parameters
+        ----------
+        minv : float
+            Minimum threshold to consider.
+        maxv : float
+            Maximum threshold to consider.
+        dim : str or int, optional
+            Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
+            The default is "both", corresponding to both dimensions 0 and 1. 
+
+        Raises
+        ------
+        HomologyError
+            DESCRIPTION.
+
+        Returns
+        -------
+        ims_t : TYPE
+            DESCRIPTION.
+
+        """
         check_is_fitted(self)
         ims_t = []
         for index, im in enumerate(self.video):
             smim = filters.gaussian(im, sigma=self.sigma_, preserve_range=True)
-            thresh = _dh.pd_thresh_calc(self.diags_[index], minv, maxv, dim)
+            try:
+                thresh = _dh.pd_thresh_calc(self.diags_[index], minv, maxv, dim)
+            except ValueError:
+                raise HomologyError("Not enough homology information to calculate threshold for image index "+str(index)) from None
+                    
             ims_t.append(np.rint(smim > thresh))
             
         return ims_t
