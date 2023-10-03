@@ -187,7 +187,6 @@ class ImageSeriesPlus(VidPol):
         
     def pd_threshold(self, minv, maxv, dim="both"):
         """
-
         Parameters
         ----------
         minv : float
@@ -201,12 +200,12 @@ class ImageSeriesPlus(VidPol):
         Raises
         ------
         HomologyError
-            DESCRIPTION.
+           Error raised due to lack of sufficient homology to perform PD thresholding.
 
         Returns
         -------
-        ims_t : TYPE
-            DESCRIPTION.
+        ims_t : list of ndarray. 
+            Binary, thresholded images.
 
         """
         check_is_fitted(self)

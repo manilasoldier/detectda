@@ -22,7 +22,7 @@ def pg0(arr):
 
 def getxy_col(arr, nrows):
     """
-    Returns (x,y) coordinates from column-major representation
+    Returns (x,y) image coordinates from column-major representation
 
     Parameters
     ----------
@@ -34,10 +34,13 @@ def getxy_col(arr, nrows):
     Returns
     -------
     x : int
-        The x-coordinate from column-major representation
+        The x-coordinate from column-major representation. Note that x-coordinate (for an image)
+        corresponds to the column of the matrix
     y : int
-        The y-coordinate from column-major representation
+        The y-coordinate from column-major representation. Note that y-coordinate (for an image)
+        corresponds to the row of the matrix
     """
+    assert isinstance(arr, np.ndarray), "Array must be numpy ndarray"
     y = (arr % nrows).astype(int)
     x = ((arr-y)/nrows).astype(int)
     return x,y
