@@ -13,6 +13,9 @@ import time
 #See the following link for information on how to process series of persistence diagrams using GUDHI: https://giotto-ai.github.io/gtda-docs/0.5.1/_modules/gtda/homology/cubical.html#CubicalPersistence.transform
 
 class VidPol:
+    """
+    Superclass for ImageSeries and ImageSeriesPlus classes
+    """
     def __init__(self, video, polygon=None, div=1, n_jobs=None):
         if video.ndim == 2:
             video = np.expand_dims(video, axis=0)    
@@ -29,7 +32,7 @@ class VidPol:
         self.polygon = polygon
         self.div = div
         self.n_jobs = n_jobs
-        
+           
 
 class ImageSeries(VidPol):
     """
@@ -149,52 +152,95 @@ class ImageSeriesPlus(VidPol):
     in which to select specific generators in persistent homology. Similar to ImageSeries,
     but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
     """
-    def __init__(self, video, polygon=None, div=1, n_jobs=None):
-        super().__init__(video, polygon, div=div, n_jobs=n_jobs)
+    def __init__(self, video, polygon=None, div=1, n_jobs=None, im_list=False):
+        if im_list:
+            self.video = video
+            self.n_jobs = n_jobs
+        else:
+            super().__init__(video, polygon, div=div, n_jobs=n_jobs)
+            self.video = [im for im in self.video]
     
     def fit(self, sigma=None, print_time=True, verbose=0):
             """
             Fit method for ImageSeriesPlus object.
 
             Optional Gaussian smoothing with sigma parameter.
-
-            The argument max_death_pixel_int controls whether or not 
-            the maximum death time is the largest pixel value (within an image),
-            or the largest finite death time (within an image).
             """
             if print_time:
-                tic=time.perf_counter()        
+                tic=time.perf_counter()
             self.diags_ = Parallel(n_jobs = self.n_jobs, verbose=verbose)(
                                     delayed(_dh.persmoo)(im, self.polygon, sigma) 
                                     for im in self.video)    
             if print_time:
                 toc=time.perf_counter()
-                print(f"Video processed in {toc - tic:0.4f} seconds")
+                print(f"Images processed in {toc - tic:0.4f} seconds")
             
             self.sigma_=sigma
             return self
         
+    def pd_threshold(self, minv, maxv, dim="both"):
+        check_is_fitted(self)
+        ims_t = []
+        for index, im in enumerate(self.video):
+            smim = filters.gaussian(im, sigma=self.sigma_, preserve_range=True)
+            thresh = _dh.pd_thresh_calc(self.diags_[index], minv, maxv, dim)
+            ims_t.append(np.rint(smim > thresh))
+            
+        return ims_t
+        
     def convert_to_df(self):
+        """
+        Creates pandas DataFrames (self.dfs_) from persistence information calculated from detectda algorithm.
+
+        Returns
+        -------
+        None.
+
+        """
         check_is_fitted(self)
         col_names = ["x_coord", "y_coord", "hom_dim", "birth", "death", "in_poly"]
         self.dfs_ = [pd.DataFrame(x, columns=col_names) for x in self.diags_]
     
     def get_lifetimes(self):
+        """
+        Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.
+
+        Returns
+        -------
+        None.
+
+        """
         check_is_fitted(self)
         self.lifetimes = [x[:,4]-x[:,3] for x in self.diags_]
     
     def get_midlife_coords(self):
+        """
+        Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.
+
+        Returns
+        -------
+        None.
+
+        """
         check_is_fitted(self)
         self.midlife_coords = [(x[:,4]+x[:,3])/2 for x in self.diags_]
         
     def get_pers_mag(self):
+        """
+        Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.
+
+        Returns
+        -------
+        None.
+
+        """
         check_is_fitted(self)
         self.pers_mag = [np.sum((-1)**(x[:,2])*(np.exp(-x[:,3])-np.exp(-x[:,4]))) for x in self.diags_]
     
     def get_pers_stats(self):
         """
         Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with 
-            persistent entropy and ALPS statistics, constituting an embedding into 32-dimensional Euclidean space.
+            persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.
         """
         q25 = lambda x: np.quantile(x, 0.25)
         q75 = lambda x: np.quantile(x, 0.75)
@@ -232,10 +278,11 @@ class ImageSeriesPlus(VidPol):
         
         stats_df = np.reshape(stats_vals, (len(self.diags_), len(names)))
         return pd.DataFrame(stats_df, columns=names)
+        
     
 class ImageSeriesPickle(ImageSeries):
     """
-    Designed for use with output of identify_polygon script
+    Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.
     """
     def __init__(self, file_path, div=1, n_jobs=None):
         file = open(file_path, 'rb')

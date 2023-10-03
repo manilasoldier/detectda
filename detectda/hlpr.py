@@ -4,13 +4,44 @@ from shapely.geometry import Point
 from skimage import filters
 
 def pg0(arr):
-    return np.mean(arr >= arr[0])
+    """
+    Calculate the proportion of the entire array which is at least as much as the first element.
+    
+    Parameters
+    ----------
+    arr : array_like
+        Input array consists of numerical values.
+
+    Returns
+    -------
+    prop : double
+        The aforementioned proportion. 
+    """
+    prop = np.mean(arr >= arr[0])
+    return prop
 
 def getxy_col(arr, nrows):
-	"Returns (x,y) coordinates from column-major representation"
-	y = (arr % nrows).astype(int)
-	x = ((arr-y)/nrows).astype(int)
-	return x,y
+    """
+    Returns (x,y) coordinates from column-major representation
+
+    Parameters
+    ----------
+    arr : ndarray of shape (dim,)
+        Should be a 1d numpy array
+    nrows : int
+        The number of rows in the 2d array. Should be factor of len(arr)
+
+    Returns
+    -------
+    x : int
+        The x-coordinate from column-major representation
+    y : int
+        The y-coordinate from column-major representation
+    """
+    y = (arr % nrows).astype(int)
+    x = ((arr-y)/nrows).astype(int)
+    return x,y
+        
 
 def std_video(video, flip=False):
     v_mean = np.mean(video, axis=(1,2))
@@ -20,17 +51,46 @@ def std_video(video, flip=False):
     return (-1)**(flip)*(video-v_means)/(v_stds)
 
 def degp_totp(arr, p=1, inf=False):
-	"Note that if inf==True, this overwrites the chosen value of p"
-	if p < 1:
-		raise ValueError("p must be >= 1")
-		
-	if inf:
-		return np.max(arr)
-	else: 
-		return np.sum(arr**p)
+    """
+    Parameters
+    ----------
+    arr: array_like
+        Should be an array of persistence lifetimes, with nonnegative entries
+    p : double, optional
+        Exponent for degree p total lifetime. The default is 1.
+    inf : bool, optional
+        Whether or not to calculate infinity norm. The default is False.
+
+    Raises
+    ------
+    ValueError
+        Raises error if p less than 1
+
+    Returns
+    -------
+    double
+        The degree-p total persistence. 
+        
+    Notes
+    ------
+    The degree-p total (0-dimensional) persistence is specified as:
+        
+    .. math:: L_p(A(I)) := \sum_{(b,d) \in PD_0} (d-b)^p.
+    
+    If inf==True, this overwrites the chosen value of p.
+    
+    """
+    if p < 1:
+        raise ValueError("p must be >= 1")
+    if inf:
+        return np.max(arr)
+    else: 
+        return np.sum(arr**p)
 
 def get_be(arr):
     """
+    Gets beginnings and ends of `True` sequences in Boolean arrays.
+    
     Parameters
     ----------
     arr : array_like
@@ -62,6 +122,10 @@ def get_be(arr):
     
 def calc_reject(arr, val_arr, alpha=0.05, conservative=True):
     """
+    Returns dictionary of index array, boolean array, rejection threshold index
+        array of indices of hypotheses that are rejected via BH procedure, and 
+        boolean array of whether or not hypothesis is rejected. 
+    
     Parameters
     ----------
     arr : array_like
@@ -75,9 +139,8 @@ def calc_reject(arr, val_arr, alpha=0.05, conservative=True):
 
     Returns
     -------
-    out: dictionary of index array, boolean array, rejection threshold index
-        array of indices of hypotheses that are rejected via BH procedure, and 
-        boolean array of whether or not hypothesis is rejected. R
+    out: dict
+        Dictionary containing information listed above. 
     """
     if alpha <= 0:
         raise ValueError("alpha must be > 0")
@@ -132,6 +195,42 @@ def pers_entr(arr, neg=True):
 
 	return a*np.sum(Lmod*np.log(Lmod))
 
+def pd_thresh_calc(diag, minv, maxv, dim="both"):
+    if dim=="both":
+        sub_diag = diag
+    elif isinstance(dim, int):
+        select = (diag[:, 2]==dim)
+        sub_diag = diag[select,:]
+
+    thrs_ = np.unique(sub_diag[:, [3,4]])
+    thrs = thrs_[np.logical_and(thrs_ > minv, thrs_ < maxv)]
+    
+    Phi_t = []
+    for thr in thrs:
+        
+        orig = np.logical_and(sub_diag[:, 3] <= thr, sub_diag[:, 4] > thr)
+        minus = (sub_diag[:, 4] <= thr)
+        plus = (sub_diag[:, 3] > thr)
+        
+        #Augmenting the persistence diagram in the case of emptiness
+        if len(orig) >= 1:
+            Phi_orig = (1/(np.sum(orig)+1))*np.sum((sub_diag[orig, 4]-thr)*(thr-sub_diag[orig, 3]))
+        else:
+            Phi_orig = (maxv-minv)
+        
+        if len(minus) >= 1:
+            Phi_minus = np.sum((thr-sub_diag[minus, 4])/(sub_diag[minus, 4]-sub_diag[minus, 3]))
+        else:
+            Phi_minus = 1
+            
+        if len(plus) >= 1:
+            Phi_plus = np.sum((sub_diag[plus, 3]-thr)/(sub_diag[plus, 4]-sub_diag[plus, 3]))
+        else:
+            Phi_plus = 1
+            
+        Phi_t.append(Phi_orig*Phi_minus*Phi_plus)
+    return thrs[np.argmax(Phi_t)]
+
 def persmoo(im, polygon=None, sigma=None):
     """
     Parameters
@@ -145,7 +244,7 @@ def persmoo(im, polygon=None, sigma=None):
 
     Returns
     -------
-    cu_tot : TYPE
+    cu_tot : ndarray
         Returns array with positional and homology information
     """
     #throughout this, infinite death becomes max pixel value...

@@ -17,9 +17,9 @@ of which can be seen below.
 
 Such processing is accomplished by fitting the class ImageSeries (or ImageSeriesPlus) to your data. Hypothesis testing whether or not images are generated from a vacuum region within the images is accomplished by fitting and transforming VacuumSeries objects. Note that hypothesis testing is only currently supported for the ImageSeries class. 
 
-## Using the identify_polygon script 
+## Usage
 
-`detectda` is python package for detection and hypothesis testing of noisy greyscale images and videos using TDA.
+`detectda` is a Python package for detection and hypothesis testing of noisy greyscale images and videos using TDA.
 
 To use the identify_polygon script, run the script in the command line (after running python setup.py install, or similar). 
 	1. Enter the name of your .tif video (such as test_video.tif). 
@@ -31,4 +31,8 @@ You will then be able to use this data to process your video with the persistent
 
 ## Test video
 
-I would like to thank the Crozier Research Group for providing 'test_video.tif'. Please see the accompanying paper: ["Feature detection and hypothesis testing for extremely noisy nanoparticle images using topological data analysis" (2023) by Thomas, Crozier, Xu, and Matteson](https://arxiv.org/abs/2209.13584) for information on how the video was collected. 
+I would like to thank the Crozier Research Group for providing 'test_video.tif'. Please see the accompanying paper: ["Feature detection and hypothesis testing for extremely noisy nanoparticle images using topological data analysis" (2023) by Thomas, Crozier, Xu, and Matteson](https://www.tandfonline.com/doi/epdf/10.1080/00401706.2023.2203744) for information on how the video was collected.
+
+## License
+
+`detectda` was created by Andrew M. Thomas. It is licensed under the terms of the MIT license. 
