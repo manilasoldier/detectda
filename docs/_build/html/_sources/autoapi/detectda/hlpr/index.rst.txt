@@ -13,29 +13,76 @@ Functions
 
 .. autoapisummary::
 
+   detectda.hlpr.pg0
    detectda.hlpr.getxy_col
+   detectda.hlpr.std_video
    detectda.hlpr.degp_totp
    detectda.hlpr.get_be
    detectda.hlpr.calc_reject
    detectda.hlpr.block_sum
    detectda.hlpr.alps
    detectda.hlpr.pers_entr
+   detectda.hlpr.pd_thresh_calc
    detectda.hlpr.persmoo
    detectda.hlpr.fitsmoo
 
 
 
+.. py:function:: pg0(arr)
+
+   Calculate the proportion of the entire array which is at least as much as the first element.
+
+   :param arr: Input array consists of numerical values.
+   :type arr: array_like
+
+   :returns: **prop** -- The aforementioned proportion.
+   :rtype: double
+
+
 .. py:function:: getxy_col(arr, nrows)
 
-   Returns (x,y) coordinates from column-major representation
+   Returns (x,y) image coordinates from column-major representation
+
+   :param arr: Should be a 1d numpy array
+   :type arr: ndarray of shape (dim,)
+   :param nrows: The number of rows in the 2d array. Should be factor of len(arr)
+   :type nrows: int
+
+   :returns: * **x** (*int*) -- The x-coordinate from column-major representation. Note that x-coordinate (for an image)
+               corresponds to the column of the matrix
+             * **y** (*int*) -- The y-coordinate from column-major representation. Note that y-coordinate (for an image)
+               corresponds to the row of the matrix
+
+
+.. py:function:: std_video(video, flip=False)
 
 
 .. py:function:: degp_totp(arr, p=1, inf=False)
 
-   Note that if inf==True, this overwrites the chosen value of p
+   :param arr: Should be an array of persistence lifetimes, with nonnegative entries
+   :type arr: array_like
+   :param p: Exponent for degree p total lifetime. The default is 1.
+   :type p: double, optional
+   :param inf: Whether or not to calculate infinity norm. The default is False.
+   :type inf: bool, optional
+
+   :raises ValueError: Raises error if p less than 1
+
+   :returns: The degree-p total persistence.
+   :rtype: double
+
+   .. rubric:: Notes
+
+   The degree-p total (0-dimensional) persistence is specified as:
+
+   .. math:: L_p(A(I)) := \sum_{(b,d) \in PD_0} (d-b)^p.
+
+   If inf==True, this overwrites the chosen value of p.
 
 
 .. py:function:: get_be(arr)
+
+   Gets beginnings and ends of `True` sequences in Boolean arrays.
 
    :param arr: Boolean array
    :type arr: array_like
@@ -47,6 +94,10 @@ Functions
 
 .. py:function:: calc_reject(arr, val_arr, alpha=0.05, conservative=True)
 
+   Returns dictionary of index array, boolean array, rejection threshold index
+       array of indices of hypotheses that are rejected via BH procedure, and
+       boolean array of whether or not hypothesis is rejected.
+
    :param arr: Array of probabilities (p-values) between 0 and 1.
    :type arr: array_like
    :param val_arr: Array of values to break ties in p-values.
@@ -56,9 +107,8 @@ Functions
    :param conservative: Dictates whether or not conservative BH procedure is used.
    :type conservative: default = True
 
-   :returns: **out** -- array of indices of hypotheses that are rejected via BH procedure, and
-             boolean array of whether or not hypothesis is rejected. R
-   :rtype: dictionary of index array, boolean array, rejection threshold index
+   :returns: **out** -- Dictionary containing information listed above.
+   :rtype: dict
 
 
 .. py:function:: block_sum(arr, m, div=1)
@@ -76,17 +126,38 @@ Functions
    Gets persistence (shannon) entropy of an array of values, not all zero
 
 
+.. py:function:: pd_thresh_calc(diag, minv, maxv, dim='both', otsu=True)
+
+   Calculates best persistence preserving threshold as described in Chung and Day (2018).
+
+   :param diag: Persistence diagram object a la the output of the persmoo function
+   :type diag: ndarray of shape (n_samples, 6)
+   :param minv: Minimum threshold to consider.
+   :type minv: float
+   :param maxv: Maximum threshold to consider.
+   :type maxv: float
+   :param dim: Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
+               The default is "both", corresponding to both dimensions 0 and 1.
+   :type dim: str or int, optional
+
+   :returns: The best topology- and geometry-preserving threshold
+   :rtype: float
+
+
 .. py:function:: persmoo(im, polygon=None, sigma=None)
 
-   :param im: DESCRIPTION.
-   :type im: TYPE
-   :param polygon: DESCRIPTION. The default is None.
-   :type polygon: TYPE, optional
-   :param sigma: DESCRIPTION. The default is None.
-   :type sigma: TYPE, optional
+   :param im: Greyscale image on which sublevelset homology will be calculated.
+   :type im: individual image, i.e. two-dimensional array
+   :param polygon: Not necessary, only if one wants to restrict region to focus on. The default is None.
+   :type polygon: Shapely.Polygon object, optional
+   :param sigma: Smoothing parameter sigma for Gaussian filter. The default is None.
+   :type sigma: smoothing parameter sigma, optional
 
-   :returns: **cu_tot** -- DESCRIPTION.
-   :rtype: TYPE
+   :returns: **cu_tot** -- Array with positional and homology information, as follows:
+             cu_pos:         #(x,y) coordinates of positive/negative cells (which create components/destroy loops)
+             cu_pers:        #(dimension, birth, death)...
+             cu_ex_inpoly:   #row indices of positive/negative cells located within specified polygon
+   :rtype: ndarray
 
 
 .. py:function:: fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True)

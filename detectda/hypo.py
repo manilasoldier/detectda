@@ -80,7 +80,7 @@ class VacuumSeries(imgs.ImageSeries):
             y = _dh.fitsmoo(x, polygon = self.observed_ImageSeries.polygon,
                            sigma = self.observed_ImageSeries.sigma_,
                            max_death_pixel_int=self.observed_ImageSeries.max_death_pixel_int_)
-            return eval("_dh."+func)(y[y[:,3].astype(np.bool),2]) #make sure columns inside polygon are chosen...
+            return eval("_dh."+func)(y[y[:,3].astype(bool),2]) #make sure columns inside polygon are chosen...
         
         self.mc_vals = Parallel(n_jobs = self.n_jobs)(delayed(proc_diag)(im) for im in self.images)
         eval("self.observed_ImageSeries.get_"+func)()

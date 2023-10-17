@@ -1,0 +1,20 @@
+:orphan:
+
+:py:mod:`detectda.tests`
+========================
+
+.. py:module:: detectda.tests
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   test_hlpr/index.rst
+   test_hypo/index.rst
+   test_idpo/index.rst
+   test_imgs/index.rst
+
+

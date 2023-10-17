@@ -2,8 +2,8 @@
 ```
 
 ```{toctree}
-:maxdepth: 1
+:maxdepth: 2
 :hidden:
 
-../detectda_demo.ipynb
+detectda_demo.md
 autoapi/index

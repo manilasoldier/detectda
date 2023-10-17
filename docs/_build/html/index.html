@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda &mdash; detectda 0.3.2 documentation</title>
+  <title>detectda &mdash; detectda 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -22,7 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Reference" href="autoapi/index.html" /> 
+    <link rel="next" title="Examples" href="detectda_demo.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,6 +45,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="detectda_demo.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
 </ul>
 
@@ -86,11 +87,11 @@
 <p>With a video (and optional polygonal region—see below), extracting statistics related to structure and shape of your noisy image could not be easier. Detectda leverages TDA (topological data analysis) to derive such quantities, an illustration
 of which can be seen below.</p>
 <p><img alt="Illustration of the detectda algorithm" src="_images/detectdaALGORITHM.png" /></p>
-<p>Such processing is accomplished by fitting the class ImageSeries to your data. Hypothesis testing whether or not images are generated from a vacuum region within the images is accomplished by fitting and transforming VacuumSeries objects.</p>
+<p>Such processing is accomplished by fitting the class ImageSeries (or ImageSeriesPlus) to your data. Hypothesis testing whether or not images are generated from a vacuum region within the images is accomplished by fitting and transforming VacuumSeries objects. Note that hypothesis testing is only currently supported for the ImageSeries class.</p>
 </section>
-<section id="using-the-identify-polygon-script">
-<h2>Using the identify_polygon script<a class="headerlink" href="#using-the-identify-polygon-script" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">detectda</span></code> is python package for detection and hypothesis testing of noisy greyscale images and videos using TDA.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">detectda</span></code> is a Python package for detection and hypothesis testing of noisy greyscale images and videos using TDA.</p>
 <p>To use the identify_polygon script, run the script in the command line (after running python setup.py install, or similar).
 1. Enter the name of your .tif video (such as test_video.tif).
 2. Then right-click to select the boundaries of your polygon. Double-click to connect the polygon together and press any key (such as “space” or “enter”) to exit and save.
@@ -100,7 +101,11 @@ of which can be seen below.</p>
 </section>
 <section id="test-video">
 <h2>Test video<a class="headerlink" href="#test-video" title="Permalink to this heading"></a></h2>
-<p>I would like to thank the Crozier Research Group for providing ‘test_video.tif’. Please see the accompanying paper: <a class="reference external" href="https://arxiv.org/abs/2209.13584">“Feature detection and hypothesis testing for extremely noisy nanoparticle images using topological data analysis” (2023) by Thomas, Crozier, Xu, and Matteson</a> for information on how the video was collected.</p>
+<p>I would like to thank the Crozier Research Group for providing ‘test_video.tif’. Please see the accompanying paper: <a class="reference external" href="https://www.tandfonline.com/doi/epdf/10.1080/00401706.2023.2203744">“Feature detection and hypothesis testing for extremely noisy nanoparticle images using topological data analysis” (2023) by Thomas, Crozier, Xu, and Matteson</a> for information on how the video was collected.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">detectda</span></code> was created by Andrew M. Thomas. It is licensed under the terms of the MIT license.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -110,7 +115,7 @@ of which can be seen below.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="autoapi/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="detectda_demo.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

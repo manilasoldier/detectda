@@ -22,6 +22,8 @@ Classes
 
 .. py:class:: VidPol(video, polygon=None, div=1, n_jobs=None)
 
+   Superclass for ImageSeries and ImageSeriesPlus classes
+
 
 .. py:class:: ImageSeries(video, polygon=None, div=1, n_jobs=None)
 
@@ -78,7 +80,14 @@ Classes
 
 
 
-.. py:class:: ImageSeriesPlus(video, polygon=None, div=1, n_jobs=None)
+.. py:exception:: HomologyError
+
+   Bases: :py:obj:`Exception`
+
+   Raised when homology for a given dimension is insufficient for calculating some quantity
+
+
+.. py:class:: ImageSeriesPlus(video, polygon=None, div=1, n_jobs=None, im_list=False)
 
    Bases: :py:obj:`VidPol`
 
@@ -94,27 +103,55 @@ Classes
 
       Optional Gaussian smoothing with sigma parameter.
 
-      The argument max_death_pixel_int controls whether or not
-      the maximum death time is the largest pixel value (within an image),
-      or the largest finite death time (within an image).
+
+   .. py:method:: pd_threshold(minv, maxv, dim='both')
+
+      :param minv: Minimum threshold to consider.
+      :type minv: float
+      :param maxv: Maximum threshold to consider.
+      :type maxv: float
+      :param dim: Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
+                  The default is "both", corresponding to both dimensions 0 and 1.
+      :type dim: str or int, optional
+
+      :raises HomologyError: Error raised due to lack of sufficient homology to perform PD thresholding.
+
+      :returns: **ims_t** -- Binary, thresholded images.
+      :rtype: list of ndarray.
 
 
    .. py:method:: convert_to_df()
 
+      Creates pandas DataFrames (self.dfs_) from persistence information calculated from detectda algorithm.
+
+      :rtype: None.
+
 
    .. py:method:: get_lifetimes()
+
+      Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.
+
+      :rtype: None.
 
 
    .. py:method:: get_midlife_coords()
 
+      Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.
+
+      :rtype: None.
+
 
    .. py:method:: get_pers_mag()
+
+      Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.
+
+      :rtype: None.
 
 
    .. py:method:: get_pers_stats()
 
       Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with
-          persistent entropy and ALPS statistics, constituting an embedding into 32-dimensional Euclidean space.
+          persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.
 
 
 
@@ -122,6 +159,6 @@ Classes
 
    Bases: :py:obj:`ImageSeries`
 
-   Designed for use with output of identify_polygon script
+   Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.
 
 

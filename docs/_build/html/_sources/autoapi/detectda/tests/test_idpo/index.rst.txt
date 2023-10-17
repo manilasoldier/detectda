@@ -1,0 +1,6 @@
+:py:mod:`detectda.tests.test_idpo`
+==================================
+
+.. py:module:: detectda.tests.test_idpo
+
+

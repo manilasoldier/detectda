@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.hlpr &mdash; detectda 0.3.2 documentation</title>
+  <title>detectda.hlpr &mdash; detectda 0.4.3 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -19,6 +19,7 @@
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -46,6 +47,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../detectda_demo.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda</span></code></a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
@@ -58,7 +60,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../tests_hypo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tests_hypo</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -97,27 +98,28 @@
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#detectda.hlpr.getxy_col" title="detectda.hlpr.getxy_col"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getxy_col</span></code></a>(arr, nrows)</p></td>
-<td><p>Returns (x,y) coordinates from column-major representation</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#detectda.hlpr.pg0" title="detectda.hlpr.pg0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pg0</span></code></a>(arr)</p></td>
+<td><p>Calculate the proportion of the entire array which is at least as much as the first element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#detectda.hlpr.getxy_col" title="detectda.hlpr.getxy_col"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getxy_col</span></code></a>(arr, nrows)</p></td>
+<td><p>Returns (x,y) image coordinates from column-major representation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#detectda.hlpr.std_video" title="detectda.hlpr.std_video"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std_video</span></code></a>(video[, flip])</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#detectda.hlpr.degp_totp" title="detectda.hlpr.degp_totp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">degp_totp</span></code></a>(arr[, p, inf])</p></td>
-<td><p>Note that if inf==True, this overwrites the chosen value of p</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param arr<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Should be an array of persistence lifetimes, with nonnegative entries</p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#detectda.hlpr.get_be" title="detectda.hlpr.get_be"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_be</span></code></a>(arr)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param arr<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Boolean array</p>
-</dd>
-</dl>
-</p></td>
+<td><p>Gets beginnings and ends of <cite>True</cite> sequences in Boolean arrays.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#detectda.hlpr.calc_reject" title="detectda.hlpr.calc_reject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calc_reject</span></code></a>(arr, val_arr[, alpha, conservative])</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param arr<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Array of probabilities (p-values) between 0 and 1.</p>
-</dd>
-</dl>
-</p></td>
+<td><p>Returns dictionary of index array, boolean array, rejection threshold index</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#detectda.hlpr.block_sum" title="detectda.hlpr.block_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">block_sum</span></code></a>(arr, m[, div])</p></td>
 <td><p>Sums adjacent blocks of m frames</p></td>
@@ -128,35 +130,100 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#detectda.hlpr.pers_entr" title="detectda.hlpr.pers_entr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pers_entr</span></code></a>(arr[, neg])</p></td>
 <td><p>Gets persistence (shannon) entropy of an array of values, not all zero</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#detectda.hlpr.persmoo" title="detectda.hlpr.persmoo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">persmoo</span></code></a>(im[, polygon, sigma])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#detectda.hlpr.pd_thresh_calc" title="detectda.hlpr.pd_thresh_calc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd_thresh_calc</span></code></a>(diag, minv, maxv[, dim, otsu])</p></td>
+<td><p>Calculates best persistence preserving threshold as described in Chung and Day (2018).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#detectda.hlpr.persmoo" title="detectda.hlpr.persmoo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">persmoo</span></code></a>(im[, polygon, sigma])</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param im<span class="colon">:</span></dt>
-<dd class="field-odd"><p>DESCRIPTION.</p>
+<dd class="field-odd"><p>Greyscale image on which sublevelset homology will be calculated.</p>
 </dd>
 </dl>
 </p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#detectda.hlpr.fitsmoo" title="detectda.hlpr.fitsmoo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fitsmoo</span></code></a>(im[, polygon, sigma, max_death_pixel_int])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#detectda.hlpr.fitsmoo" title="detectda.hlpr.fitsmoo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fitsmoo</span></code></a>(im[, polygon, sigma, max_death_pixel_int])</p></td>
 <td><p>Smooths, then fits 0-dimensional cubical persistence on an image.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py function">
+<dt class="sig sig-object py" id="detectda.hlpr.pg0">
+<span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">pg0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#pg0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.pg0" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the proportion of the entire array which is at least as much as the first element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>arr</strong> (<em>array_like</em>) – Input array consists of numerical values.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>prop</strong> – The aforementioned proportion.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="detectda.hlpr.getxy_col">
 <span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">getxy_col</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#getxy_col"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.getxy_col" title="Permalink to this definition"></a></dt>
-<dd><p>Returns (x,y) coordinates from column-major representation</p>
+<dd><p>Returns (x,y) image coordinates from column-major representation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>dim</em><em>,</em><em>)</em>) – Should be a 1d numpy array</p></li>
+<li><p><strong>nrows</strong> (<em>int</em>) – The number of rows in the 2d array. Should be factor of len(arr)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x</strong> (<em>int</em>) – The x-coordinate from column-major representation. Note that x-coordinate (for an image)
+corresponds to the column of the matrix</p></li>
+<li><p><strong>y</strong> (<em>int</em>) – The y-coordinate from column-major representation. Note that y-coordinate (for an image)
+corresponds to the row of the matrix</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="detectda.hlpr.std_video">
+<span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">std_video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#std_video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.std_video" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="detectda.hlpr.degp_totp">
 <span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">degp_totp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#degp_totp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.degp_totp" title="Permalink to this definition"></a></dt>
-<dd><p>Note that if inf==True, this overwrites the chosen value of p</p>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr</strong> (<em>array_like</em>) – Should be an array of persistence lifetimes, with nonnegative entries</p></li>
+<li><p><strong>p</strong> (<em>double</em><em>, </em><em>optional</em>) – Exponent for degree p total lifetime. The default is 1.</p></li>
+<li><p><strong>inf</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether or not to calculate infinity norm. The default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises error if p less than 1</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The degree-p total persistence.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>double</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The degree-p total (0-dimensional) persistence is specified as:</p>
+<div class="math notranslate nohighlight">
+\[L_p(A(I)) := \sum_{(b,d) \in PD_0} (d-b)^p.\]</div>
+<p>If inf==True, this overwrites the chosen value of p.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="detectda.hlpr.get_be">
 <span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">get_be</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#get_be"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.get_be" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Gets beginnings and ends of <cite>True</cite> sequences in Boolean arrays.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>arr</strong> (<em>array_like</em>) – Boolean array</p>
 </dd>
@@ -173,7 +240,12 @@ and Index-1 array consists of ends of “True” sequences.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="detectda.hlpr.calc_reject">
 <span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">calc_reject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#calc_reject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.calc_reject" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><dl class="simple">
+<dt>Returns dictionary of index array, boolean array, rejection threshold index</dt><dd><p>array of indices of hypotheses that are rejected via BH procedure, and
+boolean array of whether or not hypothesis is rejected.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>arr</strong> (<em>array_like</em>) – Array of probabilities (p-values) between 0 and 1.</p></li>
@@ -183,11 +255,10 @@ and Index-1 array consists of ends of “True” sequences.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>out</strong> – array of indices of hypotheses that are rejected via BH procedure, and
-boolean array of whether or not hypothesis is rejected. R</p>
+<dd class="field-even"><p><strong>out</strong> – Dictionary containing information listed above.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dictionary of index array, boolean array, rejection threshold index</p>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -211,21 +282,47 @@ boolean array of whether or not hypothesis is rejected. R</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="detectda.hlpr.pd_thresh_calc">
+<span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">pd_thresh_calc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">otsu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#pd_thresh_calc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.pd_thresh_calc" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates best persistence preserving threshold as described in Chung and Day (2018).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diag</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>6</em><em>)</em>) – Persistence diagram object a la the output of the persmoo function</p></li>
+<li><p><strong>minv</strong> (<em>float</em>) – Minimum threshold to consider.</p></li>
+<li><p><strong>maxv</strong> (<em>float</em>) – Maximum threshold to consider.</p></li>
+<li><p><strong>dim</strong> (<em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
+The default is “both”, corresponding to both dimensions 0 and 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The best topology- and geometry-preserving threshold</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="detectda.hlpr.persmoo">
 <span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">persmoo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#persmoo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.persmoo" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>im</strong> (<em>TYPE</em>) – DESCRIPTION.</p></li>
-<li><p><strong>polygon</strong> (<em>TYPE</em><em>, </em><em>optional</em>) – DESCRIPTION. The default is None.</p></li>
-<li><p><strong>sigma</strong> (<em>TYPE</em><em>, </em><em>optional</em>) – DESCRIPTION. The default is None.</p></li>
+<li><p><strong>im</strong> (<em>individual image</em><em>, </em><em>i.e. two-dimensional array</em>) – Greyscale image on which sublevelset homology will be calculated.</p></li>
+<li><p><strong>polygon</strong> (<em>Shapely.Polygon object</em><em>, </em><em>optional</em>) – Not necessary, only if one wants to restrict region to focus on. The default is None.</p></li>
+<li><p><strong>sigma</strong> (<em>smoothing parameter sigma</em><em>, </em><em>optional</em>) – Smoothing parameter sigma for Gaussian filter. The default is None.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>cu_tot</strong> – DESCRIPTION.</p>
+<dd class="field-even"><p><strong>cu_tot</strong> – Array with positional and homology information, as follows:
+cu_pos:         #(x,y) coordinates of positive/negative cells (which create components/destroy loops)
+cu_pers:        #(dimension, birth, death)…
+cu_ex_inpoly:   #row indices of positive/negative cells located within specified polygon</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>TYPE</p>
+<dd class="field-odd"><p>ndarray</p>
 </dd>
 </dl>
 </dd></dl>

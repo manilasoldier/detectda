@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.hlpr &mdash; detectda 0.3.2 documentation</title>
+  <title>detectda.hlpr &mdash; detectda 0.4.3 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -43,6 +43,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../detectda_demo.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
 </ul>
 
@@ -76,24 +77,97 @@
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
 
+<div class="viewcode-block" id="pg0"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pg0">[docs]</a><span class="k">def</span> <span class="nf">pg0</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the proportion of the entire array which is at least as much as the first element.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arr : array_like</span>
+<span class="sd">        Input array consists of numerical values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    prop : double</span>
+<span class="sd">        The aforementioned proportion. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">arr</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">prop</span></div>
+
 <div class="viewcode-block" id="getxy_col"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.getxy_col">[docs]</a><span class="k">def</span> <span class="nf">getxy_col</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">nrows</span><span class="p">):</span>
-	<span class="s2">&quot;Returns (x,y) coordinates from column-major representation&quot;</span>
-	<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span> <span class="o">%</span> <span class="n">nrows</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-	<span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">arr</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">nrows</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-	<span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns (x,y) image coordinates from column-major representation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arr : ndarray of shape (dim,)</span>
+<span class="sd">        Should be a 1d numpy array</span>
+<span class="sd">    nrows : int</span>
+<span class="sd">        The number of rows in the 2d array. Should be factor of len(arr)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    x : int</span>
+<span class="sd">        The x-coordinate from column-major representation. Note that x-coordinate (for an image)</span>
+<span class="sd">        corresponds to the column of the matrix</span>
+<span class="sd">    y : int</span>
+<span class="sd">        The y-coordinate from column-major representation. Note that y-coordinate (for an image)</span>
+<span class="sd">        corresponds to the row of the matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">),</span> <span class="s2">&quot;Array must be numpy ndarray&quot;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span> <span class="o">%</span> <span class="n">nrows</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">arr</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">nrows</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>
+        
+
+<div class="viewcode-block" id="std_video"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.std_video">[docs]</a><span class="k">def</span> <span class="nf">std_video</span><span class="p">(</span><span class="n">video</span><span class="p">,</span> <span class="n">flip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">v_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">video</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">v_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">video</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">v_means</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">v_mean</span><span class="p">,</span> <span class="p">(</span><span class="n">video</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">video</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">1</span><span class="p">)),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">v_stds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">v_std</span><span class="p">,</span> <span class="p">(</span><span class="n">video</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">video</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">1</span><span class="p">)),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">flip</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">video</span><span class="o">-</span><span class="n">v_means</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">v_stds</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="degp_totp"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.degp_totp">[docs]</a><span class="k">def</span> <span class="nf">degp_totp</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-	<span class="s2">&quot;Note that if inf==True, this overwrites the chosen value of p&quot;</span>
-	<span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-		<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;p must be &gt;= 1&quot;</span><span class="p">)</span>
-		
-	<span class="k">if</span> <span class="n">inf</span><span class="p">:</span>
-		<span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
-	<span class="k">else</span><span class="p">:</span> 
-		<span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span><span class="o">**</span><span class="n">p</span><span class="p">)</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arr: array_like</span>
+<span class="sd">        Should be an array of persistence lifetimes, with nonnegative entries</span>
+<span class="sd">    p : double, optional</span>
+<span class="sd">        Exponent for degree p total lifetime. The default is 1.</span>
+<span class="sd">    inf : bool, optional</span>
+<span class="sd">        Whether or not to calculate infinity norm. The default is False.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        Raises error if p less than 1</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    double</span>
+<span class="sd">        The degree-p total persistence. </span>
+<span class="sd">        </span>
+<span class="sd">    Notes</span>
+<span class="sd">    ------</span>
+<span class="sd">    The degree-p total (0-dimensional) persistence is specified as:</span>
+<span class="sd">        </span>
+<span class="sd">    .. math:: L_p(A(I)) := \sum_{(b,d) \in PD_0} (d-b)^p.</span>
+<span class="sd">    </span>
+<span class="sd">    If inf==True, this overwrites the chosen value of p.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;p must be &gt;= 1&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">inf</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span><span class="o">**</span><span class="n">p</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="get_be"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.get_be">[docs]</a><span class="k">def</span> <span class="nf">get_be</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets beginnings and ends of `True` sequences in Boolean arrays.</span>
+<span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    arr : array_like</span>
@@ -125,6 +199,10 @@
     
 <div class="viewcode-block" id="calc_reject"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.calc_reject">[docs]</a><span class="k">def</span> <span class="nf">calc_reject</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val_arr</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns dictionary of index array, boolean array, rejection threshold index</span>
+<span class="sd">        array of indices of hypotheses that are rejected via BH procedure, and </span>
+<span class="sd">        boolean array of whether or not hypothesis is rejected. </span>
+<span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    arr : array_like</span>
@@ -138,9 +216,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    out: dictionary of index array, boolean array, rejection threshold index</span>
-<span class="sd">        array of indices of hypotheses that are rejected via BH procedure, and </span>
-<span class="sd">        boolean array of whether or not hypothesis is rejected. R</span>
+<span class="sd">    out: dict</span>
+<span class="sd">        Dictionary containing information listed above. </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">alpha</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;alpha must be &gt; 0&quot;</span><span class="p">)</span>
@@ -195,30 +272,89 @@
 
 	<span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Lmod</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Lmod</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="persmoo"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.persmoo">[docs]</a><span class="k">def</span> <span class="nf">persmoo</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">polygon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="pd_thresh_calc"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pd_thresh_calc">[docs]</a><span class="k">def</span> <span class="nf">pd_thresh_calc</span><span class="p">(</span><span class="n">diag</span><span class="p">,</span> <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">otsu</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates best persistence preserving threshold as described in Chung and Day (2018).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    im : TYPE</span>
-<span class="sd">        DESCRIPTION.</span>
-<span class="sd">    polygon : TYPE, optional</span>
-<span class="sd">        DESCRIPTION. The default is None.</span>
-<span class="sd">    sigma : TYPE, optional</span>
-<span class="sd">        DESCRIPTION. The default is None.</span>
+<span class="sd">    diag : ndarray of shape (n_samples, 6)</span>
+<span class="sd">        Persistence diagram object a la the output of the persmoo function</span>
+<span class="sd">    minv : float</span>
+<span class="sd">        Minimum threshold to consider.</span>
+<span class="sd">    maxv : float</span>
+<span class="sd">        Maximum threshold to consider.</span>
+<span class="sd">    dim : str or int, optional</span>
+<span class="sd">        Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.</span>
+<span class="sd">        The default is &quot;both&quot;, corresponding to both dimensions 0 and 1. </span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    cu_tot : TYPE</span>
-<span class="sd">        DESCRIPTION.</span>
+<span class="sd">    float</span>
+<span class="sd">        The best topology- and geometry-preserving threshold</span>
 
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">dim</span><span class="o">==</span><span class="s2">&quot;both&quot;</span><span class="p">:</span>
+        <span class="n">sub_diag</span> <span class="o">=</span> <span class="n">diag</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">select</span> <span class="o">=</span> <span class="p">(</span><span class="n">diag</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="n">dim</span><span class="p">)</span>
+        <span class="n">sub_diag</span> <span class="o">=</span> <span class="n">diag</span><span class="p">[</span><span class="n">select</span><span class="p">,:]</span>
+
+    <span class="n">thrs_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sub_diag</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+    <span class="n">thrs</span> <span class="o">=</span> <span class="n">thrs_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">thrs_</span> <span class="o">&gt;</span> <span class="n">minv</span><span class="p">,</span> <span class="n">thrs_</span> <span class="o">&lt;</span> <span class="n">maxv</span><span class="p">)]</span>
+    
+    <span class="n">Phi_t</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">thr</span> <span class="ow">in</span> <span class="n">thrs</span><span class="p">:</span>
+        
+        <span class="n">orig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">sub_diag</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">thr</span><span class="p">,</span> <span class="n">sub_diag</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thr</span><span class="p">)</span>
+        <span class="n">minus</span> <span class="o">=</span> <span class="p">(</span><span class="n">sub_diag</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">thr</span><span class="p">)</span>
+        <span class="n">plus</span> <span class="o">=</span> <span class="p">(</span><span class="n">sub_diag</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thr</span><span class="p">)</span>
+        
+        <span class="c1">#Augmenting the persistence diagram in the case of emptiness</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">orig</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">Phi_orig</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">orig</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">orig</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">-</span><span class="n">thr</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">thr</span><span class="o">-</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">orig</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Phi_orig</span> <span class="o">=</span> <span class="p">(</span><span class="n">maxv</span><span class="o">-</span><span class="n">minv</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">minus</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">Phi_minus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">thr</span><span class="o">-</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">minus</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">minus</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">-</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">minus</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Phi_minus</span> <span class="o">=</span> <span class="mi">1</span>
+            
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">plus</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">Phi_plus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">plus</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">thr</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">plus</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">-</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">plus</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Phi_plus</span> <span class="o">=</span> <span class="mi">1</span>
+            
+        <span class="n">Phi_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Phi_orig</span><span class="o">*</span><span class="n">Phi_minus</span><span class="o">*</span><span class="n">Phi_plus</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">thrs</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Phi_t</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="persmoo"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.persmoo">[docs]</a><span class="k">def</span> <span class="nf">persmoo</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">polygon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    im : individual image, i.e. two-dimensional array</span>
+<span class="sd">        Greyscale image on which sublevelset homology will be calculated.</span>
+<span class="sd">    polygon : Shapely.Polygon object, optional</span>
+<span class="sd">        Not necessary, only if one wants to restrict region to focus on. The default is None.</span>
+<span class="sd">    sigma : smoothing parameter sigma, optional</span>
+<span class="sd">        Smoothing parameter sigma for Gaussian filter. The default is None.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cu_tot : ndarray</span>
+<span class="sd">        Array with positional and homology information, as follows:</span>
+<span class="sd">        cu_pos:         #(x,y) coordinates of positive/negative cells (which create components/destroy loops)</span>
+<span class="sd">        cu_pers:        #(dimension, birth, death)...</span>
+<span class="sd">        cu_ex_inpoly:   #row indices of positive/negative cells located within specified polygon</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#throughout this, infinite death becomes max pixel value...</span>
     <span class="k">if</span> <span class="n">sigma</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
         <span class="k">pass</span>	
     <span class="k">else</span><span class="p">:</span>
         <span class="n">im</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">preserve_range</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        
+    
     <span class="n">cu_comp</span> <span class="o">=</span> <span class="n">CubicalComplex</span><span class="p">(</span><span class="n">top_dimensional_cells</span><span class="o">=</span><span class="n">im</span><span class="p">)</span> 
     <span class="n">cu_comp</span><span class="o">.</span><span class="n">compute_persistence</span><span class="p">(</span><span class="n">homology_coeff_field</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">cu_pers_</span> <span class="o">=</span> <span class="n">cu_comp</span><span class="o">.</span><span class="n">persistence</span><span class="p">()</span>
@@ -230,21 +366,28 @@
     
     <span class="c1">#get locations of cells...</span>
     <span class="n">cu_pers_pairs_</span> <span class="o">=</span> <span class="n">cu_comp</span><span class="o">.</span><span class="n">cofaces_of_persistence_pairs</span><span class="p">()</span>
-    <span class="n">cu_pers_pair0</span> <span class="o">=</span> <span class="n">cu_pers_pairs_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#regular persistence pairs of dim-0</span>
-    <span class="n">cu_pers_pair1</span> <span class="o">=</span> <span class="n">cu_pers_pairs_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1">##regular persistence pairs of dim-1</span>
-    <span class="n">ess_feat0</span> <span class="o">=</span> <span class="n">cu_pers_pairs_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#retrieves &#39;essential feature of dim-0&#39;, i.e. component of inf persistence</span>
     
+    <span class="c1">#retrieves &#39;essential feature of dim-0&#39;, i.e. component of inf persistence</span>
+    <span class="n">ess_feat0</span> <span class="o">=</span> <span class="n">cu_pers_pairs_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">ess_featx</span><span class="p">,</span> <span class="n">ess_featy</span> <span class="o">=</span> <span class="n">getxy_col</span><span class="p">(</span><span class="n">ess_feat0</span><span class="p">,</span> <span class="n">nr</span><span class="p">)</span>
-    <span class="n">x_coords0</span><span class="p">,</span> <span class="n">y_coords0</span> <span class="o">=</span> <span class="n">getxy_col</span><span class="p">(</span><span class="n">cu_pers_pair0</span><span class="p">,</span> <span class="n">nr</span><span class="p">)</span>
-    <span class="n">x_coords1</span><span class="p">,</span> <span class="n">y_coords1</span> <span class="o">=</span> <span class="n">getxy_col</span><span class="p">(</span><span class="n">cu_pers_pair1</span><span class="p">,</span> <span class="n">nr</span><span class="p">)</span>
-    
-    <span class="n">x_pos0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ess_featx</span><span class="p">,</span> <span class="n">x_coords0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#x coords of positive cells for dim-0, local minima</span>
-    <span class="n">y_pos0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ess_featy</span><span class="p">,</span> <span class="n">y_coords0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#y coords of positive cells for dim-0, local minima</span>
-    <span class="n">cu_pos0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x_pos0</span><span class="p">,</span> <span class="n">y_pos0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    
-    <span class="c1">#concatenate x,y coords of negative cells for dim-1, local maxima</span>
-    <span class="n">cu_pos1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x_coords1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_coords1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">cu_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">cu_pos1</span><span class="p">,</span> <span class="n">cu_pos0</span><span class="p">]</span>
+    <span class="c1">#this is to account for the specific cases when their is no 1st homology or no non-infinite generators of H_0</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cu_pers_pairs_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">cu_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ess_featx</span><span class="p">,</span> <span class="n">ess_featy</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cu_pers_pair0</span> <span class="o">=</span> <span class="n">cu_pers_pairs_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#regular persistence pairs of dim-0</span>
+        <span class="n">x_coords0</span><span class="p">,</span> <span class="n">y_coords0</span> <span class="o">=</span> <span class="n">getxy_col</span><span class="p">(</span><span class="n">cu_pers_pair0</span><span class="p">,</span> <span class="n">nr</span><span class="p">)</span>
+        <span class="n">x_pos0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ess_featx</span><span class="p">,</span> <span class="n">x_coords0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#x coords of positive cells for dim-0, local minima</span>
+        <span class="n">y_pos0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ess_featy</span><span class="p">,</span> <span class="n">y_coords0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#y coords of positive cells for dim-0, local minima</span>
+        <span class="n">cu_pos0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x_pos0</span><span class="p">,</span> <span class="n">y_pos0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cu_pers_pairs_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">cu_pers_pair1</span> <span class="o">=</span> <span class="n">cu_pers_pairs_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1">##regular persistence pairs of dim-1</span>
+            <span class="n">x_coords1</span><span class="p">,</span> <span class="n">y_coords1</span> <span class="o">=</span> <span class="n">getxy_col</span><span class="p">(</span><span class="n">cu_pers_pair1</span><span class="p">,</span> <span class="n">nr</span><span class="p">)</span>
+            <span class="c1">#concatenate x,y coords of negative cells for dim-1, local maxima</span>
+            <span class="n">cu_pos1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x_coords1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_coords1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">cu_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">cu_pos1</span><span class="p">,</span> <span class="n">cu_pos0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cu_pos</span> <span class="o">=</span> <span class="n">cu_pos0</span>
     
     <span class="k">if</span> <span class="n">polygon</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
     	<span class="n">cu_ex_inpoly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cu_pers</span><span class="p">))</span>
@@ -254,7 +397,6 @@
     
     <span class="n">cu_tot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">cu_pos</span><span class="p">,</span> <span class="n">cu_pers</span><span class="p">,</span> <span class="n">cu_ex_inpoly</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">cu_tot</span></div>
-
 
 <div class="viewcode-block" id="fitsmoo"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.fitsmoo">[docs]</a><span class="k">def</span> <span class="nf">fitsmoo</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">polygon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_death_pixel_int</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>        
 <span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
