@@ -1,2 +1,3 @@
 sphinx-prompt
 myst_nb
+autoapi
