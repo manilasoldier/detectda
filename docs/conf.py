@@ -15,7 +15,7 @@ release = '0.4.3'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    "myst_nb", 
+    "myst_parser", 
     "autoapi.extension",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",

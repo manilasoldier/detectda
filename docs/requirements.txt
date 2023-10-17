@@ -1,4 +1,4 @@
-myst-nb
+myst-parser
 sphinx-prompt
 sphinx-autoapi
 sphinx-rtd-theme
