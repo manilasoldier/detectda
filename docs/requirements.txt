@@ -1,6 +1,5 @@
 sphinx==7.1.2
 sphinx-prompt==1.7.0
-myst_nb
 autoapi
 sphinx-autoapi==3.0.0
 sphinx-rtd-theme
