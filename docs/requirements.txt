@@ -1,5 +1,6 @@
+sphinx=6.0.0
 sphinx-prompt
 myst_nb
 autoapi
-sphinx-autoapi
+sphinx-autoapi=3.0.0
 sphinx-rtd-theme
