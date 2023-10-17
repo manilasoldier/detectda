@@ -22,10 +22,12 @@ Classes
 
 .. py:class:: VidPol(video, polygon=None, div=1, n_jobs=None)
 
+
    Superclass for ImageSeries and ImageSeriesPlus classes
 
 
 .. py:class:: ImageSeries(video, polygon=None, div=1, n_jobs=None)
+
 
    Bases: :py:obj:`VidPol`
 
@@ -82,12 +84,14 @@ Classes
 
 .. py:exception:: HomologyError
 
+
    Bases: :py:obj:`Exception`
 
    Raised when homology for a given dimension is insufficient for calculating some quantity
 
 
 .. py:class:: ImageSeriesPlus(video, polygon=None, div=1, n_jobs=None, im_list=False)
+
 
    Bases: :py:obj:`VidPol`
 
@@ -156,6 +160,7 @@ Classes
 
 
 .. py:class:: ImageSeriesPickle(file_path, div=1, n_jobs=None)
+
 
    Bases: :py:obj:`ImageSeries`
 

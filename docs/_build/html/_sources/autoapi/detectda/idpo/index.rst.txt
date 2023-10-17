@@ -27,6 +27,7 @@ Functions
 
 .. py:class:: _click_event(img)
 
+
    .. py:method:: upon_click(event, x, y, flags, params)
 
 
