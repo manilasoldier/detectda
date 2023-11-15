@@ -37,10 +37,6 @@ To use the identify_polygon script, run the script in the command line (after ru
 
 You will then be able to use this data to process your video with the persistent entropy or ALPS statistic---see "detectda demo.ipynb".
 
-## Documentation
-
-Additional documentation and usage examples can see at [detectda.readthedocs.io](https://detectda.readthedocs.io/). 
-
 ## Test video
 
 I would like to thank the Crozier Research Group for providing 'test_video.tif'. Please see the accompanying paper: ["Feature detection and hypothesis testing for extremely noisy nanoparticle images using topological data analysis" (2023) by Thomas, Crozier, Xu, and Matteson](https://www.tandfonline.com/doi/epdf/10.1080/00401706.2023.2203744) for information on how the video was collected.

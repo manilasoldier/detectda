@@ -20,10 +20,10 @@ setup(
 		'scikit-learn >= 0.23.1',
 		'numpy',
 		'tqdm',
-        'pandas',
+                'pandas',
 		'matplotlib',
 		'opencv-contrib-python',
-        'scipy'
+                'scipy'
 	],
 	keywords = ['tda', 'cubical', 'image processing'],
 	classifiers = [
@@ -32,7 +32,7 @@ setup(
 		'Programming Language :: Python'
 	],
 	entry_points={
-		'gui_scripts': [
+		'console_scripts': [
 			'identify_polygon = detectda.idpo:identify_polygon'	
 		]	
 	}
