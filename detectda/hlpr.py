@@ -89,6 +89,26 @@ def degp_totp(arr, p=1, inf=False):
         return np.max(arr)
     else: 
         return np.sum(arr**p)
+    
+def weight_func(arr):
+    try:
+        return np.arctan(0.5*(arr[:,1]))
+    except IndexError:
+        return np.arctan(0.5*(arr[1]))
+    
+def calc_close(pd, diffs, prox_arr, val=1):
+    proxs = []
+    #Takes a pd with 
+    for gen in pd:
+        prox = 0
+        for loc in prox_arr:
+            #calculate whether or not a given point belongs to the voronoi cell 
+            nv = max(abs(gen[3]-gen[2]-loc[0])/diffs[0], abs(gen[2]-loc[1])/diffs[1])
+            #print(nv)
+            if nv <= 1/2: 
+                prox = val
+        proxs += [prox]
+    return proxs
 
 def get_be(arr):
     """

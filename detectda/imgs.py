@@ -1,5 +1,6 @@
 from joblib import Parallel, delayed
 from sklearn.utils.validation import check_is_fitted
+from gudhi.representations.vector_methods import PersistenceImage
 from skimage import filters
 from . import hlpr as _dh
 from tqdm import tqdm
@@ -9,8 +10,6 @@ from scipy import stats
 import numpy as np
 import pickle
 import time
-
-#See the following link for information on how to process series of persistence diagrams using GUDHI: https://giotto-ai.github.io/gtda-docs/0.5.1/_modules/gtda/homology/cubical.html#CubicalPersistence.transform
 
 class VidPol:
     """
@@ -257,7 +256,21 @@ class ImageSeriesPlus(VidPol):
         """
         check_is_fitted(self)
         self.midlife_coords = [(x[:,4]+x[:,3])/2 for x in self.diags_]
-        
+    
+    def get_pers_im(self, bts, lts, bandwidth, dim):
+        # Calculate persistence images...
+        # Need to move this functionality into a new class...
+        diags = [d[np.logical_and(d[:,2]==dim, d[:,5]==1),:][:, [3,4]] for d in self.diags_]
+        PI_obj = PersistenceImage(bandwidth=bandwidth, weight=_dh.weight_func,
+                           resolution = [bts,lts])
+
+        PI_obj.fit(diags)
+        self.bts, self.lts = bts, lts
+        self.pis = PI_obj.transform(diags)
+        self.birtt_bd = np.linspace(PI_obj.im_range_fixed_[0], PI_obj.im_range_fixed_[1], bts)
+        self.lifet_bd = np.linspace(PI_obj.im_range_fixed_[2], PI_obj.im_range_fixed_[3], lts)
+        self.diags_alt_ = [d[np.logical_and(d[:,2]==dim, d[:,5]==1),:][:, [0,1,3,4]] for d in self.diags_]
+    
     def get_pers_mag(self):
         """
         Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.
@@ -312,7 +325,56 @@ class ImageSeriesPlus(VidPol):
         stats_df = np.reshape(stats_vals, (len(self.diags_), len(names)))
         return pd.DataFrame(stats_df, columns=names)
         
-    
+    def proc_pers_im(self, betas, quantiles):
+        # For calculating regions of persistance image series with signficance...
+        high_pi = np.where(np.quantile(betas, quantiles[0], axis=0) > 0)[0]
+        low_pi = np.where(np.quantile(betas, quantiles[1], axis=0) < 0)[0]
+        
+        try:
+            ijs_hi = [(k // self.bts, k % self.bts) for k in high_pi]
+            ijs_low = [(k // self.bts, k % self.bts) for k in low_pi]
+
+            lb_hi = [(self.lifet_bd[ij[0]], self.birtt_bd[ij[1]]) for ij in ijs_hi]
+            lb_low = [(self.lifet_bd[ij[0]], self.birtt_bd[ij[1]]) for ij in ijs_low]
+
+            lt_diff = self.lifet_bd[1]-self.lifet_bd[0]; bt_diff = self.birtt_bd[1]-self.birtt_bd[0]
+            self.alts = [np.maximum(_dh.calc_close(d, [lt_diff, bt_diff], lb_hi, 1), _dh.calc_close(d, [lt_diff, bt_diff], lb_low, 0.5)) 
+                         for d in self.diags_alt_]
+        except NameError:
+            print("Make sure to run get_pers_im method first!")
+        
+    def plot_pi_sig(self, frame, betas_feat='pos', smooth=True, **kwargs):
+        if smooth:
+            plt.imshow(filters.gaussian(self.video[frame], sigma=self.sigma_, preserve_range=True), cmap='gray')
+        else:
+            plt.imshow(self.video[frame], cmap='gray')
+        nr, nc = self.video[frame].shape
+        
+        try:
+            xy_hi = self.diags_alt_[frame][:, [0,1]][self.alts[frame] == 1]
+            xy_lo = self.diags_alt_[frame][:, [0,1]][self.alts[frame] == 0.5]
+        except NameError:
+            print("Make sure to run get_pers_im and proc_pers_im first!")
+        
+        if betas_feat == 'pos':
+            plt.scatter(xy_hi[:,0], xy_hi[:,1], color='yellow', **kwargs)
+        elif betas_feat == 'neg':
+            plt.scatter(xy_lo[:,0], xy_lo[:,1], color='red', **kwargs)
+        elif betas_feat == 'both':
+            plt.scatter(xy_hi[:,0], xy_hi[:,1], color='yellow', **kwargs)
+            plt.scatter(xy_lo[:,0], xy_lo[:,1], color='red', **kwargs)
+        
+        if frame < 9:
+            plt.annotate(str(frame+1), (0.90*nr, 0.95*nc), color='white', size=20, family="Nunito", weight="heavy")
+        elif frame < 99:
+            plt.annotate(str(frame+1), (0.86*nr, 0.95*nc), color='white', size=20, family="Nunito", weight="heavy")
+        elif frame < 999:
+            plt.annotate(str(frame+1), (0.82*nr, 0.95*nc), color='white', size=20, family="Nunito", weight="heavy")
+        else:
+            pass
+        
+        plt.axis("off")
+
 class ImageSeriesPickle(ImageSeries):
     """
     Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.
