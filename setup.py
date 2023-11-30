@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.4.3'
+VERSION = '0.4.5'
 DESCRIPTION = "detectda - detecting features in videos using TDA"
 LONG_DESCRIPTION = "detectda - a cubical persistent homology package for the detection and hypothesis testing of features in greyscale videos"
 
@@ -11,7 +11,7 @@ setup(
 	author_email = "<me@andrewmthomas.com>",
 	description = DESCRIPTION,
 	long_description = LONG_DESCRIPTION,
-	package=find_packages(),
+	packages=find_packages(),
 	install_requires=[
 		'gudhi',
 		'shapely >= 2.0.1',
