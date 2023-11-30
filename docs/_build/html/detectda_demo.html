@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples &mdash; detectda 0.4.3 documentation</title>
+  <title>detectda demo &mdash; detectda 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -42,15 +42,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#calculate-persistent-homology">Calculate persistent homology</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#visualize-the-results-of-the-fit">Visualize the results of the fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#calculate-summaries">Calculate summaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#plot-the-summaries">Plot the summaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hypothesis-testing">Hypothesis testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#plot-the-test-results">Plot the test results</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">detectda</span></code> demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#calculate-persistent-homology">Calculate persistent homology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#visualize-the-results-of-the-fit">Visualize the results of the fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#calculate-summaries">Calculate summaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#plot-the-summaries">Plot the summaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#hypothesis-testing">Hypothesis testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#plot-the-test-results">Plot the test results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
 </ul>
 
@@ -68,7 +66,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Examples</li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">detectda</span></code> demo</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/detectda_demo.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,8 +76,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h1>
+  <section id="detectda-demo">
+<h1><code class="docutils literal notranslate"><span class="pre">detectda</span></code> demo<a class="headerlink" href="#detectda-demo" title="Permalink to this heading"></a></h1>
 <p>In the below, <code>test_video.pkl</code> is the output of the “identify_polygon” python script, <br>
 which allows choose your desired polygonal subregion.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span><span class="p">,</span> <span class="n">filters</span>
@@ -98,23 +96,24 @@ which allows choose your desired polygonal subregion.</p>
 <span class="n">impol</span> <span class="o">=</span> <span class="n">dtda</span><span class="o">.</span><span class="n">ImageSeriesPickle</span><span class="p">(</span><span class="s1">&#39;detectda/tests/test_video.pkl&#39;</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
 <section id="calculate-persistent-homology">
-<h2>Calculate persistent homology<a class="headerlink" href="#calculate-persistent-homology" title="Permalink to this heading"></a></h2>
+<h1>Calculate persistent homology<a class="headerlink" href="#calculate-persistent-homology" title="Permalink to this heading"></a></h1>
 <p>Fit the persistence diagrams for every image in the polygonal region of the test video. We found smoothing parameter of 2 worked well for these nanoparticle videos.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="visualize-the-results-of-the-fit">
-<h2>Visualize the results of the fit<a class="headerlink" href="#visualize-the-results-of-the-fit" title="Permalink to this heading"></a></h2>
+<h1>Visualize the results of the fit<a class="headerlink" href="#visualize-the-results-of-the-fit" title="Permalink to this heading"></a></h1>
 <p>See where the homology generators appears and how long they live. Below, we see the raw image with the points of the 0<sup>th</sup> persistence diagram overlaid, after removing points with lifetimes less than <code>thr</code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">plot_im</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">thr</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">plot_im</span><span class="p">(</span><span class="mi">73</span><span class="p">,</span> <span class="n">thr</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><img alt="png" src="_images/output_6_0.png" /></p>
 </section>
 <section id="calculate-summaries">
-<h2>Calculate summaries<a class="headerlink" href="#calculate-summaries" title="Permalink to this heading"></a></h2>
+<h1>Calculate summaries<a class="headerlink" href="#calculate-summaries" title="Permalink to this heading"></a></h1>
 <p>Run these routines to get persistent entropy and the ALPS statistic</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">get_pers_entr</span><span class="p">(</span><span class="n">neg</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">impol</span><span class="o">.</span><span class="n">get_alps</span><span class="p">()</span>
@@ -122,17 +121,17 @@ which allows choose your desired polygonal subregion.</p>
 </div>
 </section>
 <section id="plot-the-summaries">
-<h2>Plot the summaries<a class="headerlink" href="#plot-the-summaries" title="Permalink to this heading"></a></h2>
+<h1>Plot the summaries<a class="headerlink" href="#plot-the-summaries" title="Permalink to this heading"></a></h1>
 <p>Plot the ALPS statistic across all the frames</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">impol</span><span class="o">.</span><span class="n">alps</span><span class="p">)</span> <span class="c1">#or impol.pers_entr</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Persistent entropy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ALPS statistic&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><img alt="png" src="_images/output_10_1.png" /></p>
 </section>
 <section id="hypothesis-testing">
-<h2>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this heading"></a></h2>
+<h1>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this heading"></a></h1>
 <p>Run hypothesis testing using the observed image series above, by generating 500 Monte Carlo noise images</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;detectda/tests/test_video_vacuum.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="n">tv_vacuum</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">G</span><span class="p">)[</span><span class="s1">&#39;video&#39;</span><span class="p">]</span>
@@ -143,13 +142,12 @@ which allows choose your desired polygonal subregion.</p>
 </div>
 </section>
 <section id="plot-the-test-results">
-<h2>Plot the test results<a class="headerlink" href="#plot-the-test-results" title="Permalink to this heading"></a></h2>
+<h1>Plot the test results<a class="headerlink" href="#plot-the-test-results" title="Permalink to this heading"></a></h1>
 <p>Plot the results of the hypothesis testing</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol_vac</span><span class="o">.</span><span class="n">plot_hypo</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><img alt="png" src="_images/output_14_0.png" /></p>
-</section>
 </section>
 
 

@@ -4,7 +4,13 @@ Detect topological features and perform hypothesis testing on sequences of noisy
 
 ## Installation
 
-If you have pip installed the recommended option is
+If you have pip installed you may simply run
+
+```
+$ pip install detectda
+```
+
+Or, you may clone the git repository and then in said directory run:
 
 ```
 $ pip install .
