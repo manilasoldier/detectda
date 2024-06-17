@@ -1,12 +1,15 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.4.5'
 DESCRIPTION = "detectda - detecting features in videos using TDA"
 LONG_DESCRIPTION = "detectda - a cubical persistent homology package for the detection and hypothesis testing of features in greyscale videos"
 
+VERSION = {}
+with open("detectda/_version.py") as fp:
+    exec(fp.read(), VERSION)
+
 setup(
 	name="detectda",
-	version = VERSION,
+	version = VERSION['__version__'],
 	author = "Andrew M. Thomas",
 	author_email = "<me@andrewmthomas.com>",
 	description = DESCRIPTION,
@@ -20,10 +23,11 @@ setup(
 		'scikit-learn >= 0.23.1',
 		'numpy >= 1.24',
 		'tqdm',
-                'pandas',
+        'pandas',
 		'matplotlib',
-		'opencv-contrib-python',
-                'scipy'
+		'opencv-python',
+        'scipy',
+		'imagecodecs'
 	],
 	keywords = ['tda', 'cubical', 'image processing'],
 	classifiers = [
