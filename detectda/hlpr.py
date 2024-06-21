@@ -17,7 +17,11 @@ def pg0(arr):
     prop : double
         The aforementioned proportion. 
     """
-    prop = np.mean(arr >= arr[0])
+    try:
+        prop = np.mean(arr >= arr[0])
+    except TypeError:
+        prop = np.mean(np.array(arr) >= arr[0])
+        
     return prop
 
 def getxy_col(arr, nrows):

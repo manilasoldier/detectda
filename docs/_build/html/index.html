@@ -4,22 +4,21 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda &mdash; detectda 0.4.3 documentation</title>
+  <title>detectda &mdash; detectda 0.4.5 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=79807b79"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=16716fad"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Examples" href="detectda_demo.html" /> 
+    <link rel="next" title="detectda demo" href="detectda_demo.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,7 +41,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="detectda_demo.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detectda_demo.html"><code class="docutils literal notranslate"><span class="pre">detectda</span></code> demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detectda_demo.html#calculate-persistent-homology">Calculate persistent homology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detectda_demo.html#visualize-the-results-of-the-fit">Visualize the results of the fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detectda_demo.html#calculate-summaries">Calculate summaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detectda_demo.html#plot-the-summaries">Plot the summaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detectda_demo.html#hypothesis-testing">Hypothesis testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detectda_demo.html#plot-the-test-results">Plot the test results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
 </ul>
 
@@ -75,6 +80,15 @@
 <p>Detect topological features and perform hypothesis testing on sequences of noisy images.</p>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>If you have pip installed you may simply run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install detectda
+</pre></div>
+</div>
+<p>Or, you may clone the git repository and then in said directory run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install .
+</pre></div>
+</div>
+<p>Alternatively, the following still supported:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 setup.py install
 </pre></div>
 </div>
@@ -89,11 +103,20 @@ of which can be seen below.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">detectda</span></code> is a Python package for detection and hypothesis testing of noisy greyscale images and videos using TDA.</p>
-<p>To use the identify_polygon script, run the script in the command line (after running python setup.py install, or similar).
-1. Enter the name of your .tif video (such as test_video.tif).
-2. Then right-click to select the boundaries of your polygon. Double-click to connect the polygon together and press any key (such as “space” or “enter”) to exit and save.
-3. Then you will name a .pkl file (you do not need to add the .pkl at the end) corresponding to your video (such as test_video.pkl).
-4. Finally, the file test_video.pkl (or whatever you have called it) contains the cropped video (according to the boundaries of your polygon) as well as the polygonal region of interest.</p>
+<p>To use the identify_polygon script, run the script in the command line (after having installed the package). Then follow these steps:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    1. Enter the name of your .tif video (such as test_video.tif).
+
+    2. Then right-click to select the boundaries of your polygon.
+       Double-click to connect the polygon together and press any key
+       (such as &quot;space&quot; or &quot;enter&quot;) to exit and save.
+
+    3. Then you will name a .pkl file (you do not need to add the .pkl at the end)
+       corresponding to your video (such as test_video.pkl).
+
+    4. Finally, the file test_video.pkl (or whatever you have called it) contains the cropped video
+       (according to the boundaries of your polygon) as well as the polygonal region of interest.
+</pre></div>
+</div>
 <p>You will then be able to use this data to process your video with the persistent entropy or ALPS statistic—see “detectda demo.ipynb”.</p>
 </section>
 <section id="test-video">
@@ -112,7 +135,7 @@ of which can be seen below.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="detectda_demo.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="detectda_demo.html" class="btn btn-neutral float-right" title="detectda demo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -4,3 +4,18 @@
 .. py:module:: detectda.tests.test_imgs
 
 
+Module Contents
+---------------
+
+.. py:data:: impol
+
+   
+
+.. py:data:: pe
+
+   
+
+.. py:data:: alps
+
+   
+

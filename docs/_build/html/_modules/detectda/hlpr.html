@@ -6,7 +6,6 @@
   <title>detectda.hlpr &mdash; detectda 0.4.3 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
@@ -88,7 +87,11 @@
 <span class="sd">    prop : double</span>
 <span class="sd">        The aforementioned proportion. </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">arr</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">arr</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        
     <span class="k">return</span> <span class="n">prop</span></div>
 
 <div class="viewcode-block" id="getxy_col"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.getxy_col">[docs]</a><span class="k">def</span> <span class="nf">getxy_col</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">nrows</span><span class="p">):</span>

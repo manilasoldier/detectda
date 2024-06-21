@@ -9,7 +9,7 @@
 project = 'detectda'
 copyright = '2023, Andrew Michael Thomas'
 author = 'Andrew Michael Thomas'
-release = '0.4.3' 
+release = '0.4.5' 
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

@@ -13,8 +13,6 @@ Submodules
    :maxdepth: 1
 
    test_hlpr/index.rst
-   test_hypo/index.rst
-   test_idpo/index.rst
    test_imgs/index.rst
 
 
