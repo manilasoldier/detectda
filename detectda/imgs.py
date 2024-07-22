@@ -243,7 +243,10 @@ class ImageSeriesPlus(VidPol):
 
         """
         check_is_fitted(self)
-        self.lifetimes = [x[:,4]-x[:,3] for x in self.diags_]
+        lt = lambda pd: pd[:,4] - pd[:,3]
+        lt0 = [lt(x[x[:,2]==0,:]) for x in self.diags_]
+        lt1 = [lt(x[x[:,2]==1,:]) for x in self.diags_]
+        self.lifetimes = [lt0, lt1]
     
     def get_midlife_coords(self):
         """
@@ -255,11 +258,30 @@ class ImageSeriesPlus(VidPol):
 
         """
         check_is_fitted(self)
-        self.midlife_coords = [(x[:,4]+x[:,3])/2 for x in self.diags_]
+        ml = lambda pd: (pd[:,4]+pd[:,3])/2
+        ml0 = [ml(x[x[:,2]==0,:]) for x in self.diags_]
+        ml1 = [ml(x[x[:,2]==1,:]) for x in self.diags_]
+        self.midlife_coords = [ml0, ml1]
     
     def get_pers_im(self, bts, lts, bandwidth, dim):
-        # Calculate persistence images...
-        # Need to move this functionality into a new class...
+        """
+
+        Parameters
+        ----------
+        bts : TYPE
+            DESCRIPTION.
+        lts : TYPE
+            DESCRIPTION.
+        bandwidth : TYPE
+            DESCRIPTION.
+        dim : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        None.
+
+        """
         diags = [d[np.logical_and(d[:,2]==dim, d[:,5]==1),:][:, [3,4]] for d in self.diags_]
         PI_obj = PersistenceImage(bandwidth=bandwidth, weight=_dh.weight_func,
                            resolution = [bts,lts])
@@ -324,56 +346,55 @@ class ImageSeriesPlus(VidPol):
         
         stats_df = np.reshape(stats_vals, (len(self.diags_), len(names)))
         return pd.DataFrame(stats_df, columns=names)
+    
+    def plot_im(self, frame, dim=0, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs):
+        """
+        Plot an individual frame in the video, with or without the polygonal region superimposed
+        """
         
-    def proc_pers_im(self, betas, quantiles):
-        # For calculating regions of persistance image series with signficance...
-        high_pi = np.where(np.quantile(betas, quantiles[0], axis=0) > 0)[0]
-        low_pi = np.where(np.quantile(betas, quantiles[1], axis=0) < 0)[0]
+        try: 
+            self.lifetimes[dim]
+        except AttributeError:
+            self.get_lifetimes()
         
-        try:
-            ijs_hi = [(k // self.bts, k % self.bts) for k in high_pi]
-            ijs_low = [(k // self.bts, k % self.bts) for k in low_pi]
-
-            lb_hi = [(self.lifet_bd[ij[0]], self.birtt_bd[ij[1]]) for ij in ijs_hi]
-            lb_low = [(self.lifet_bd[ij[0]], self.birtt_bd[ij[1]]) for ij in ijs_low]
-
-            lt_diff = self.lifet_bd[1]-self.lifet_bd[0]; bt_diff = self.birtt_bd[1]-self.birtt_bd[0]
-            self.alts = [np.maximum(_dh.calc_close(d, [lt_diff, bt_diff], lb_hi, 1), _dh.calc_close(d, [lt_diff, bt_diff], lb_low, 0.5)) 
-                         for d in self.diags_alt_]
-        except NameError:
-            print("Make sure to run get_pers_im method first!")
-        
-    def plot_pi_sig(self, frame, betas_feat='pos', smooth=True, **kwargs):
+        imd_ = self.diags_[frame]
+        imd = imd_[imd_[:,2]==dim, :]
+            
         if smooth:
-            plt.imshow(filters.gaussian(self.video[frame], sigma=self.sigma_, preserve_range=True), cmap='gray')
+            plim = filters.gaussian(self.video[frame], sigma=self.sigma_, preserve_range=True)
         else:
-            plt.imshow(self.video[frame], cmap='gray')
-        nr, nc = self.video[frame].shape
+            plim = self.video[frame]
         
-        try:
-            xy_hi = self.diags_alt_[frame][:, [0,1]][self.alts[frame] == 1]
-            xy_lo = self.diags_alt_[frame][:, [0,1]][self.alts[frame] == 0.5]
-        except NameError:
-            print("Make sure to run get_pers_im and proc_pers_im first!")
-        
-        if betas_feat == 'pos':
-            plt.scatter(xy_hi[:,0], xy_hi[:,1], color='yellow', **kwargs)
-        elif betas_feat == 'neg':
-            plt.scatter(xy_lo[:,0], xy_lo[:,1], color='red', **kwargs)
-        elif betas_feat == 'both':
-            plt.scatter(xy_hi[:,0], xy_hi[:,1], color='yellow', **kwargs)
-            plt.scatter(xy_lo[:,0], xy_lo[:,1], color='red', **kwargs)
-        
-        if frame < 9:
-            plt.annotate(str(frame+1), (0.90*nr, 0.95*nc), color='white', size=20, family="Nunito", weight="heavy")
-        elif frame < 99:
-            plt.annotate(str(frame+1), (0.86*nr, 0.95*nc), color='white', size=20, family="Nunito", weight="heavy")
-        elif frame < 999:
-            plt.annotate(str(frame+1), (0.82*nr, 0.95*nc), color='white', size=20, family="Nunito", weight="heavy")
-        else:
+        which_plt = imd[:, 5].astype(bool)
+        if thr==None:
             pass
-        
-        plt.axis("off")
+        else:
+            over_thr = (self.lifetimes[dim] > thr) #just right over the threshold, not as a proportion...
+            which_plt = np.logical_and(over_thr, which_plt)
+            
+        if plot_pts:
+            if dim==0:
+                cm = "autumn"
+            else:
+                cm = "Wistia"
+            plt0 = plt.scatter(
+                x = imd[which_plt, 0],
+                y = imd[which_plt, 1],
+				c = self.lifetimes[dim],
+				cmap = cm,
+                **kwargs
+			)
+            plt.imshow(plim, cmap="gray")
+            plt.colorbar(plt0)	
+        else:
+            plt.imshow(plim, cmap="gray")
+			 
+        try:
+            if plot_poly:
+                xs, ys = list(zip(*self.polygon.exterior.coords)) #'unzip' exterior coordinates of a polygon for plotting
+                plt.plot(xs,ys, color="cyan")
+        except AttributeError:
+            print("Must set plot_poly to False if polygon not specified")  
 
 class ImageSeriesPickle(ImageSeries):
     """

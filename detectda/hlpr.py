@@ -114,6 +114,46 @@ def calc_close(pd, diffs, prox_arr, val=1):
         proxs += [prox]
     return proxs
 
+def get_cc(point, bin_im):
+    """
+    Gets the connected component in the image bin_im containing the element "point".
+    
+    Parameters
+    ----------
+    point : list/tuple of 2 elements
+        (x,y) coordinate point for image matrix
+    bin_im : array_like
+        Boolean array.
+
+    Returns
+    -------
+    cc : list of lists
+        list of elements in connected component containing point.
+
+    """
+
+    af = 1
+    cc = [point]
+    check_cc = [point]
+    while af > 0:
+        a = 0
+        check_cc2 = []
+        for pt in check_cc:
+            for i in [-1, 1]:
+                pt1 = [pt[0]+i, pt[1]]
+                pt2 = [pt[0], pt[1]+i]
+                if bin_im[pt[1], pt[0]+i] and pt1 not in cc:
+                    cc = cc+[pt1]
+                    check_cc2 = check_cc2+[pt1]
+                    a += 1
+                elif bin_im[pt[1]+i, pt[0]] and pt2 not in cc:
+                    cc = cc+[pt2]
+                    check_cc2 = check_cc2+[pt2]
+                    a += 1
+        af = a
+        check_cc = check_cc2
+    return cc
+
 def get_be(arr):
     """
     Gets beginnings and ends of `True` sequences in Boolean arrays.
@@ -307,8 +347,15 @@ def persmoo(im, polygon=None, sigma=None):
     
     cu_comp = CubicalComplex(top_dimensional_cells=im) 
     cu_comp.compute_persistence(homology_coeff_field=2)
-    cu_pers_ = cu_comp.persistence()
-    cu_pers = np.array([(d, pers[0], pers[1]) for d, pers in cu_pers_])
+    cu_comp.persistence()
+    
+    #this step is necessary to get the ordering of the negative/positive cells correct
+    cu_pers0 = cu_comp.persistence_intervals_in_dimension(0)
+    cu_pers1 = cu_comp.persistence_intervals_in_dimension(1)
+    
+    dims = np.concatenate((np.repeat(1, cu_pers1.shape[0]), np.repeat(0, cu_pers0.shape[0])))
+    cu_pers_ = np.r_[cu_pers1, cu_pers0]
+    cu_pers = np.c_[dims, cu_pers_]
     nr, nc = im.shape
     
     #reassign infinite death pixels
@@ -326,8 +373,8 @@ def persmoo(im, polygon=None, sigma=None):
     else:
         cu_pers_pair0 = cu_pers_pairs_[0][0] #regular persistence pairs of dim-0
         x_coords0, y_coords0 = getxy_col(cu_pers_pair0, nr)
-        x_pos0 = np.append(ess_featx, x_coords0[:,0]) #x coords of positive cells for dim-0, local minima
-        y_pos0 = np.append(ess_featy, y_coords0[:,0]) #y coords of positive cells for dim-0, local minima
+        x_pos0 = np.append(x_coords0[:,0], ess_featx) #x coords of positive cells for dim-0, local minima
+        y_pos0 = np.append(y_coords0[:,0], ess_featy) #y coords of positive cells for dim-0, local minima
         cu_pos0 = np.stack([x_pos0, y_pos0], axis=1)
         
         if len(cu_pers_pairs_[0]) == 2:
@@ -340,10 +387,10 @@ def persmoo(im, polygon=None, sigma=None):
             cu_pos = cu_pos0
     
     if polygon==None:
-    	cu_ex_inpoly=np.repeat(True, len(cu_pers))
+    	    cu_ex_inpoly=np.repeat(True, len(cu_pers))
     else:
-    	pers_pts = (Point(x,y) for x,y in zip(cu_pos[:,0], cu_pos[:,1]))
-    	cu_ex_inpoly = [polygon.contains(pt) for pt in pers_pts]
+    	    pers_pts = (Point(x,y) for x,y in zip(cu_pos[:,0], cu_pos[:,1]))
+    	    cu_ex_inpoly = [polygon.contains(pt) for pt in pers_pts]
     
     cu_tot = np.c_[cu_pos, cu_pers, cu_ex_inpoly]
     return cu_tot
