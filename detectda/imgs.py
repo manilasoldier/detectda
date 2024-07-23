@@ -11,6 +11,9 @@ import numpy as np
 import pickle
 import time
 
+class TrivialImageError(Exception):
+    pass
+
 class VidPol:
     """
     Superclass for ImageSeries and ImageSeriesPlus classes
@@ -27,6 +30,10 @@ class VidPol:
             raise ValueError("div argument cannot be 0 or less")
         else: 
             self.video = np.rint(video/div)
+            
+        if np.any([np.all(np.isclose(im, im[0, 0])) for im in self.video]):
+            raise TrivialImageError("""There is an image in the video containing pixels which are all the same intensity. 
+                                    If div is not set to 1, try setting div equal to 1.""")
         
         self.polygon = polygon
         self.div = div

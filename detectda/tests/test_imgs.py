@@ -59,6 +59,4 @@ alps = np.array([1.9615879 , 2.6640929 , 2.64014499, 2.62315035, 2.75734034,
        2.51680415, 2.74526832, 2.7820793 , 2.7689674 , 2.41534495])
 
 np.testing.assert_almost_equal(impol.alps, alps, 7)
-np.testing.assert_almost_equal(impol.pers_entr, pe, 7)
-
-#from matplotlib.testing.decorators import image_comparison? 
+np.testing.assert_almost_equal(impol.pers_entr, pe, 7) 
