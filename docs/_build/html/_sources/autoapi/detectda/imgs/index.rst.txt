@@ -111,6 +111,21 @@ Classes
    in which to select specific generators in persistent homology. Similar to ImageSeries,
    but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
 
+   :param video: Image series. Index on axis=0 represents the frame index, unless a single image (2d array) is provided.
+   :type video: array_like
+   :param polygon: Polygonal region outside of which positive cells of 0th persistent homology will be excluded.
+   :type polygon: shapely.Polygon, optional, default is ``None``
+   :param div: In nanoparticle imaging process, pixel intensities are often registered as something close to a(div),
+               so dividing by div and rounding to nearest integer will give pixel intensities that conform more strongly
+               to common parametric assumptions.
+   :type div: positive int/float, optional, default is ``1``.
+   :param n_jobs: The number of jobs to use for the computation. ``None`` means 1 unless
+                  in a :obj:`joblib.parallel_backend` context. ``-1`` means using all
+                  processors.
+   :type n_jobs: int or None, optional, default is ``None``
+   :param im_list: Bool indicating whether or not a list of numpy arrays is given (True) rather than a 3d numpy array.
+   :type im_list: bool, defautl is ``False``
+
    .. py:method:: convert_to_df()
 
       Creates pandas DataFrames (self.dfs\_) from persistence information calculated from detectda algorithm.

@@ -199,6 +199,21 @@ purposes, the default is negative of the entropy</p>
 <p>May optionally specify polygonal region, held constant across frames,
 in which to select specific generators in persistent homology. Similar to ImageSeries,
 but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video</strong> (<em>array_like</em>) – Image series. Index on axis=0 represents the frame index, unless a single image (2d array) is provided.</p></li>
+<li><p><strong>polygon</strong> (shapely.Polygon, optional, default is <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Polygonal region outside of which positive cells of 0th persistent homology will be excluded.</p></li>
+<li><p><strong>div</strong> (positive int/float, optional, default is <code class="docutils literal notranslate"><span class="pre">1</span></code>.) – In nanoparticle imaging process, pixel intensities are often registered as something close to a(div),
+so dividing by div and rounding to nearest integer will give pixel intensities that conform more strongly
+to common parametric assumptions.</p></li>
+<li><p><strong>n_jobs</strong> (int or None, optional, default is <code class="docutils literal notranslate"><span class="pre">None</span></code>) – The number of jobs to use for the computation. <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless
+in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> context. <code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all
+processors.</p></li>
+<li><p><strong>im_list</strong> (bool, defautl is <code class="docutils literal notranslate"><span class="pre">False</span></code>) – Bool indicating whether or not a list of numpy arrays is given (True) rather than a 3d numpy array.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.convert_to_df">
 <span class="sig-name descname"><span class="pre">convert_to_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.convert_to_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.convert_to_df" title="Permalink to this definition"></a></dt>

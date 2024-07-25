@@ -27,6 +27,8 @@ def skip_click_version(app, what, name, obj, skip, options):
        skip = True
     elif "version" in name:
        skip = True
+    elif what == "attribute":
+       skip = True
     elif what == "package" and "test" in name:
        skip = True
     return skip

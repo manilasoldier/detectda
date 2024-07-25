@@ -161,6 +161,23 @@ class ImageSeriesPlus(VidPol):
     May optionally specify polygonal region, held constant across frames,
     in which to select specific generators in persistent homology. Similar to ImageSeries,
     but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
+    
+    Parameters
+    ----------
+    video : array_like
+            Image series. Index on axis=0 represents the frame index, unless a single image (2d array) is provided. 
+    polygon : shapely.Polygon, optional, default is ``None``
+            Polygonal region outside of which positive cells of 0th persistent homology will be excluded. 
+    div : positive int/float, optional, default is ``1``.
+            In nanoparticle imaging process, pixel intensities are often registered as something close to a(div), 
+            so dividing by div and rounding to nearest integer will give pixel intensities that conform more strongly 
+            to common parametric assumptions.
+    n_jobs : int or None, optional, default is ``None``
+            The number of jobs to use for the computation. ``None`` means 1 unless
+            in a :obj:`joblib.parallel_backend` context. ``-1`` means using all
+            processors.
+    im_list: bool, defautl is ``False``
+            Bool indicating whether or not a list of numpy arrays is given (True) rather than a 3d numpy array.
     """
     def __init__(self, video, polygon=None, div=1, n_jobs=None, im_list=False):
         if im_list:
