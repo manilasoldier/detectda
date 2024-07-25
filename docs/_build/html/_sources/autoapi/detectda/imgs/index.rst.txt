@@ -12,18 +12,28 @@ Classes
 
 .. autoapisummary::
 
-   detectda.imgs.VidPol
    detectda.imgs.ImageSeries
-   detectda.imgs.ImageSeriesPlus
    detectda.imgs.ImageSeriesPickle
+   detectda.imgs.ImageSeriesPlus
+   detectda.imgs.VidPol
 
 
 
 
-.. py:class:: VidPol(video, polygon=None, div=1, n_jobs=None)
+.. py:exception:: HomologyError
 
 
-   Superclass for ImageSeries and ImageSeriesPlus classes
+   Bases: :py:obj:`Exception`
+
+   Raised when homology for a given dimension is insufficient for calculating some quantity
+
+
+.. py:exception:: TrivialImageError
+
+
+   Bases: :py:obj:`Exception`
+
+   Common base class for all non-exit exceptions.
 
 
 .. py:class:: ImageSeries(video, polygon=None, div=1, n_jobs=None)
@@ -60,6 +70,11 @@ Classes
       or the largest finite death time (within an image).
 
 
+   .. py:method:: get_alps()
+
+      Get ALPS statistic of each image frame from fitted object.
+
+
    .. py:method:: get_degp_totp(p=1, inf=False)
 
       Get degree-p total persistence of each image frame from fitted object.
@@ -71,23 +86,18 @@ Classes
       purposes, the default is negative of the entropy
 
 
-   .. py:method:: get_alps()
-
-      Get ALPS statistic of each image frame from fitted object.
-
-
    .. py:method:: plot_im(frame, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs)
 
       Plot an individual frame in the video, with or without the polygonal region superimposed
 
 
 
-.. py:exception:: HomologyError
+.. py:class:: ImageSeriesPickle(file_path, div=1, n_jobs=None)
 
 
-   Bases: :py:obj:`Exception`
+   Bases: :py:obj:`ImageSeries`
 
-   Raised when homology for a given dimension is insufficient for calculating some quantity
+   Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.
 
 
 .. py:class:: ImageSeriesPlus(video, polygon=None, div=1, n_jobs=None, im_list=False)
@@ -101,11 +111,63 @@ Classes
    in which to select specific generators in persistent homology. Similar to ImageSeries,
    but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
 
+   .. py:method:: convert_to_df()
+
+      Creates pandas DataFrames (self.dfs\_) from persistence information calculated from detectda algorithm.
+
+      :rtype: None.
+
+
    .. py:method:: fit(sigma=None, print_time=True, verbose=0)
 
       Fit method for ImageSeriesPlus object.
 
       Optional Gaussian smoothing with sigma parameter.
+
+
+   .. py:method:: get_lifetimes()
+
+      Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.
+
+      :rtype: None.
+
+
+   .. py:method:: get_midlife_coords()
+
+      Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.
+
+      :rtype: None.
+
+
+   .. py:method:: get_pers_im(bts, lts, dim, bandwidth=1)
+
+      Create persistence images from cubical persistent homology for each image in the detectda object,
+      for homology dimension dim. The resulting dimension of the persistence image vectorizations is bts x lts.
+
+
+      :param bts: birth-time resolution (higher = finer)
+      :type bts: int
+      :param lts: lifetime resolution (higher = finer).
+      :type lts: int
+      :param bandwidth: Positive number corresponding to Gaussian kernel bandwidth (i.e. variance)
+      :type bandwidth: float
+      :param dim: Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
+      :type dim: int
+
+      :rtype: None.
+
+
+   .. py:method:: get_pers_mag()
+
+      Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.
+
+      :rtype: None.
+
+
+   .. py:method:: get_pers_stats()
+
+      Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with
+          persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.
 
 
    .. py:method:: pd_threshold(minv, maxv, dim='both')
@@ -124,46 +186,15 @@ Classes
       :rtype: list of ndarray.
 
 
-   .. py:method:: convert_to_df()
+   .. py:method:: plot_im(frame, dim=0, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs)
 
-      Creates pandas DataFrames (self.dfs_) from persistence information calculated from detectda algorithm.
-
-      :rtype: None.
-
-
-   .. py:method:: get_lifetimes()
-
-      Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.
-
-      :rtype: None.
-
-
-   .. py:method:: get_midlife_coords()
-
-      Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.
-
-      :rtype: None.
-
-
-   .. py:method:: get_pers_mag()
-
-      Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.
-
-      :rtype: None.
-
-
-   .. py:method:: get_pers_stats()
-
-      Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with
-          persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.
+      Plot an individual frame in the video, with or without the polygonal region superimposed
 
 
 
-.. py:class:: ImageSeriesPickle(file_path, div=1, n_jobs=None)
+.. py:class:: VidPol(video, polygon=None, div=1, n_jobs=None)
 
 
-   Bases: :py:obj:`ImageSeries`
-
-   Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.
+   Superclass for ImageSeries and ImageSeriesPlus classes
 
 

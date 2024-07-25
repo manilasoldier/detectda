@@ -1,6 +1,8 @@
-# detectda
+# detecTDA
 
-Detect topological features and perform hypothesis testing on sequences of noisy images. 
+**A package for detecting topological features in images**. 
+
+Tailor-made to perform hypothesis testing on sequences of noisy images in catalysis. 
 
 ## Installation
 
@@ -24,8 +26,7 @@ $ python3 setup.py install
 
 ## Summarizing an image series
 
-With a video (and optional polygonal region---see below), extracting statistics related to structure and shape of your noisy image could not be easier. Detectda leverages TDA (topological data analysis) to derive such quantities, an illustration
-of which can be seen below. 
+With a video (and optional polygonal region---see below), extracting statistics related to structure and shape of your noisy image could not be easier. detecTDA leverages TDA (topological data analysis) to derive such quantities, an illustration of which can be seen below. 
 
 ![Illustration of the detectda algorithm](detectdaALGORITHM.png)
 

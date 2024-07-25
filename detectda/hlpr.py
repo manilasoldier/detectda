@@ -51,6 +51,23 @@ def getxy_col(arr, nrows):
         
 
 def std_video(video, flip=False):
+    """
+    Returns a video where each frame is standardized to have mean 0 pixel intensity with 
+    standard deviation 1.
+
+    Parameters
+    ----------
+    video : ndarray
+        An array of shape (frames, rows, columns).
+    flip : bool.
+        Whether or not to invert the pixels of the video. The default is False.
+
+    Returns
+    -------
+    ndarray
+        The frame-standardized video of shape (frames, rows, columns).
+
+    """
     v_mean = np.mean(video, axis=(1,2))
     v_std = np.std(video, axis=(1,2))
     v_means=np.transpose(np.tile(v_mean, (video.shape[1], video.shape[2],1)), (2,0,1))
@@ -59,6 +76,8 @@ def std_video(video, flip=False):
 
 def degp_totp(arr, p=1, inf=False):
     """
+    Calculate degree-p total persistence from array of lifetimes.
+    
     Parameters
     ----------
     arr: array_like
@@ -95,19 +114,56 @@ def degp_totp(arr, p=1, inf=False):
         return np.sum(arr**p)
     
 def weight_func(arr):
+    """
+    Weight function for persistence image using defaults from Obayashi, Hiraoka, and Kimura (2018).
+
+    Parameters
+    ----------
+    arr : array_like
+        Should be an array of persistence lifetimes, with nonnegative entries
+
+    Returns
+    -------
+    ndarray
+        Array of weights corresponding to the given persistence lifetimes.
+
+    """
     try:
         return np.arctan(0.5*(arr[:,1]))
     except IndexError:
         return np.arctan(0.5*(arr[1]))
     
 def calc_close(pd, diffs, prox_arr, val=1):
+    """
+    Calculates the nearest point in the persistence diagram 
+
+    Parameters
+    ----------
+    pd : ndarray of shape (n_barcodes, 2)
+        A persistence diagram in (birth, death) coordinates. 
+        Note that n_barcodes is the number of barcodes
+    diffs : list/tuple of two elements
+        Corresponds to the distance between elements of grid discretization, such as in 
+        birtt_bd and lifet_bd in the gen_pers_im method of the ImageSeriesPlus class.
+    prox_arr : ndarray of shape (m, 2)
+        M observations in (birth, lifetime) coordinates corresponding to elements
+        of the grid discretization used in calculation of the persistence image.
+    val : float, optional
+         The default is 1.
+
+    Returns
+    -------
+    proxs : list
+        List of all generators in the persistence diagram pd that lie in the Voronoi cell of 
+        one of the elements of prox_arr. This is indicated with a non-zero entry in proxs.
+    """
     proxs = []
     #Takes a pd with 
     for gen in pd:
         prox = 0
         for loc in prox_arr:
             #calculate whether or not a given point belongs to the voronoi cell 
-            nv = max(abs(gen[3]-gen[2]-loc[0])/diffs[0], abs(gen[2]-loc[1])/diffs[1])
+            nv = max(abs(gen[1]-gen[0]-loc[1])/diffs[0], abs(gen[0]-loc[0])/diffs[1])
             #print(nv)
             if nv <= 1/2: 
                 prox = val
@@ -131,7 +187,6 @@ def get_cc(point, bin_im):
         list of elements in connected component containing point.
 
     """
-
     af = 1
     cc = [point]
     check_cc = [point]
@@ -189,9 +244,9 @@ def get_be(arr):
     
 def calc_reject(arr, val_arr, alpha=0.05, conservative=True):
     """
-    Returns dictionary of index array, boolean array, rejection threshold index
-        array of indices of hypotheses that are rejected via BH procedure, and 
-        boolean array of whether or not hypothesis is rejected. 
+    Returns dictionary of index array, boolean array, rejection threshold index 
+    array of indices of hypotheses that are rejected via BH procedure, and 
+    boolean array of whether or not hypothesis is rejected. 
     
     Parameters
     ----------
@@ -235,13 +290,19 @@ def calc_reject(arr, val_arr, alpha=0.05, conservative=True):
         
     
 def block_sum(arr, m, div=1):
-    "Sums adjacent blocks of m frames"
+    """
+    Sums adjacent blocks of m frames.
+    """
+    
     ran = int(np.floor(len(arr)/m-1)+1)
     block_arr = np.stack([np.sum(np.rint(arr[i*m:(i*m+m)]/div), axis=0) for i in range(ran)])
     return block_arr
 
 def alps(arr):
-	"Get the ALPS statistic of an array of values, not all zero"
+	"""
+    Get the ALPS statistic of an array of values, not all zero.
+    """
+    
 	arr = np.sort(arr)
 	sums = np.array([np.sum(arr <= y) for y in np.unique(arr)][::-1])
 	arr = np.append([0], arr)
@@ -252,7 +313,10 @@ def alps(arr):
 	return integral
 
 def pers_entr(arr, neg=True):
-	"Gets persistence (shannon) entropy of an array of values, not all zero"
+	"""
+    Gets persistence (shannon) entropy of an array of values, not all zero.
+    """
+    
 	L_sum = np.sum(arr)
 	Lmod = arr/L_sum
 	if neg:
@@ -322,6 +386,8 @@ def pd_thresh_calc(diag, minv, maxv, dim="both", otsu=True):
 
 def persmoo(im, polygon=None, sigma=None):
     """
+    Smooths, then fits 0 and 1-dimensional cubical persistence on an image. Returns other important information as well.
+    
     Parameters
     ----------
     im : individual image, i.e. two-dimensional array
@@ -403,6 +469,7 @@ def fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True):
 		2) Lifetime information (cu_totpers, or index-2 column)
 		3) Whether or not a positive cell lies within the polygon (cu_ex_inpoly, or index-3 column)
 	"""
+    
 	if sigma==None:
 		pass	
 	else:
@@ -438,8 +505,3 @@ def fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True):
 
 	cu_totpers = cu_pers[:,1]-cu_pers[:,0]
 	return np.c_[cu_pos, cu_totpers, cu_ex_inpoly]
-	"""
-	cu_pos:         #(x,y) coordinates of positive cells (which create components)
-	cu_totpers:     #persistence d-b of each row in cu_pers. Infinite barcode set to max of all barcodes
-	cu_ex_inpoly:   #row indices of positive cells located within specified polygon
-	"""

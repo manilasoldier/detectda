@@ -7,14 +7,6 @@
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   detectda.idpo._click_event
-
-
 
 Functions
 ~~~~~~~~~
@@ -22,23 +14,6 @@ Functions
 .. autoapisummary::
 
    detectda.idpo.identify_polygon
-
-
-
-.. py:class:: _click_event(img)
-
-
-   .. py:method:: upon_click(event, x, y, flags, params)
-
-
-   .. py:method:: crop_poly(buff=10)
-
-      Crops the video to the x and y coordinates of the polygon, with buffer.
-
-          Note that this buffer is present when choosing a vacuum region as well.
-
-
-   .. py:method:: get_poly()
 
 
 

@@ -229,7 +229,7 @@ class ImageSeriesPlus(VidPol):
         
     def convert_to_df(self):
         """
-        Creates pandas DataFrames (self.dfs_) from persistence information calculated from detectda algorithm.
+        Creates pandas DataFrames (self.dfs\_) from persistence information calculated from detectda algorithm.
 
         Returns
         -------

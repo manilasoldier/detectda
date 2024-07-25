@@ -13,16 +13,16 @@ Functions
 
 .. autoapisummary::
 
-   detectda.tests.test_hlpr.test_pg0
    detectda.tests.test_hlpr.test_getxy_col
+   detectda.tests.test_hlpr.test_pg0
    detectda.tests.test_hlpr.test_std_video
 
 
 
-.. py:function:: test_pg0()
-
-
 .. py:function:: test_getxy_col()
+
+
+.. py:function:: test_pg0()
 
 
 .. py:function:: test_std_video()

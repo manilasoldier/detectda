@@ -24,56 +24,20 @@ Classes
 
 .. autoapisummary::
 
-   detectda.VacuumSeries
    detectda.ImageSeries
-   detectda.ImageSeriesPlus
    detectda.ImageSeriesPickle
+   detectda.ImageSeriesPlus
+   detectda.VacuumSeries
 
 
 
 
-.. py:class:: VacuumSeries(vacuum_video, observed_ImageSeries, parametric=True, div=1, n_jobs=None)
+Attributes
+~~~~~~~~~~
 
+.. autoapisummary::
 
-   Bases: :py:obj:`detectda.imgs.ImageSeries`
-
-   Functionality to generate vacuum region videos for multiple hypothesis testing.
-
-   .. py:method:: fit(convert_to_int=False)
-
-      Fits the Poisson mle for the vacuum region if parametric==True
-
-      Else, it fits the empirical probability mass function.
-
-
-   .. py:method:: kolm_dist()
-
-      Check how far the empirical distribution of vacuum values is from Poisson
-      with parameter equal to mle, in terms of the Kolmogorov distance
-
-      Uses the DKW inequality with the tight constant = 2 for Poisson testing.
-
-
-   .. py:method:: gen_images(n)
-
-      Generate and return a random image according to estimated null distribution
-
-
-   .. py:method:: transform(n, func='pers_entr', seed=0, alpha=0.05, conservative=True)
-
-      Collects p-values and rejections for based off n Monte Carlo simulations...
-
-
-   .. py:method:: adjust_alpha(alpha, conservative=True)
-
-      Adjust p-values based on a different alpha value.
-
-
-
-   .. py:method:: plot_hypo()
-
-      Plots hypothesis testing sequence.
-
+   detectda.__version__
 
 
 .. py:class:: ImageSeries(video, polygon=None, div=1, n_jobs=None)
@@ -110,6 +74,11 @@ Classes
       or the largest finite death time (within an image).
 
 
+   .. py:method:: get_alps()
+
+      Get ALPS statistic of each image frame from fitted object.
+
+
    .. py:method:: get_degp_totp(p=1, inf=False)
 
       Get degree-p total persistence of each image frame from fitted object.
@@ -121,15 +90,18 @@ Classes
       purposes, the default is negative of the entropy
 
 
-   .. py:method:: get_alps()
-
-      Get ALPS statistic of each image frame from fitted object.
-
-
    .. py:method:: plot_im(frame, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs)
 
       Plot an individual frame in the video, with or without the polygonal region superimposed
 
+
+
+.. py:class:: ImageSeriesPickle(file_path, div=1, n_jobs=None)
+
+
+   Bases: :py:obj:`ImageSeries`
+
+   Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.
 
 
 .. py:class:: ImageSeriesPlus(video, polygon=None, div=1, n_jobs=None, im_list=False)
@@ -143,11 +115,63 @@ Classes
    in which to select specific generators in persistent homology. Similar to ImageSeries,
    but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.
 
+   .. py:method:: convert_to_df()
+
+      Creates pandas DataFrames (self.dfs\_) from persistence information calculated from detectda algorithm.
+
+      :rtype: None.
+
+
    .. py:method:: fit(sigma=None, print_time=True, verbose=0)
 
       Fit method for ImageSeriesPlus object.
 
       Optional Gaussian smoothing with sigma parameter.
+
+
+   .. py:method:: get_lifetimes()
+
+      Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.
+
+      :rtype: None.
+
+
+   .. py:method:: get_midlife_coords()
+
+      Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.
+
+      :rtype: None.
+
+
+   .. py:method:: get_pers_im(bts, lts, dim, bandwidth=1)
+
+      Create persistence images from cubical persistent homology for each image in the detectda object,
+      for homology dimension dim. The resulting dimension of the persistence image vectorizations is bts x lts.
+
+
+      :param bts: birth-time resolution (higher = finer)
+      :type bts: int
+      :param lts: lifetime resolution (higher = finer).
+      :type lts: int
+      :param bandwidth: Positive number corresponding to Gaussian kernel bandwidth (i.e. variance)
+      :type bandwidth: float
+      :param dim: Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
+      :type dim: int
+
+      :rtype: None.
+
+
+   .. py:method:: get_pers_mag()
+
+      Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.
+
+      :rtype: None.
+
+
+   .. py:method:: get_pers_stats()
+
+      Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with
+          persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.
 
 
    .. py:method:: pd_threshold(minv, maxv, dim='both')
@@ -166,46 +190,54 @@ Classes
       :rtype: list of ndarray.
 
 
-   .. py:method:: convert_to_df()
+   .. py:method:: plot_im(frame, dim=0, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs)
 
-      Creates pandas DataFrames (self.dfs_) from persistence information calculated from detectda algorithm.
-
-      :rtype: None.
-
-
-   .. py:method:: get_lifetimes()
-
-      Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.
-
-      :rtype: None.
-
-
-   .. py:method:: get_midlife_coords()
-
-      Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.
-
-      :rtype: None.
-
-
-   .. py:method:: get_pers_mag()
-
-      Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.
-
-      :rtype: None.
-
-
-   .. py:method:: get_pers_stats()
-
-      Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with
-          persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.
+      Plot an individual frame in the video, with or without the polygonal region superimposed
 
 
 
-.. py:class:: ImageSeriesPickle(file_path, div=1, n_jobs=None)
+.. py:class:: VacuumSeries(vacuum_video, observed_ImageSeries, parametric=True, div=1, n_jobs=None)
 
 
-   Bases: :py:obj:`ImageSeries`
+   Bases: :py:obj:`detectda.imgs.ImageSeries`
 
-   Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.
+   Functionality to generate vacuum region videos for multiple hypothesis testing.
+
+   .. py:method:: adjust_alpha(alpha, conservative=True)
+
+      Adjust p-values based on a different alpha value.
+
+
+
+   .. py:method:: fit(convert_to_int=False)
+
+      Fits the Poisson mle for the vacuum region if parametric==True
+
+      Else, it fits the empirical probability mass function.
+
+
+   .. py:method:: gen_images(n)
+
+      Generate and return a random image according to estimated null distribution
+
+
+   .. py:method:: kolm_dist()
+
+      Check how far the empirical distribution of vacuum values is from Poisson
+      with parameter equal to mle, in terms of the Kolmogorov distance
+
+      Uses the DKW inequality with the tight constant = 2 for Poisson testing.
+
+
+   .. py:method:: plot_hypo()
+
+      Plots hypothesis testing sequence.
+
+
+   .. py:method:: transform(n, func='pers_entr', seed=0, alpha=0.05, conservative=True)
+
+      Collects p-values and rejections for based off n Monte Carlo simulations...
+
+
 
 

@@ -3,7 +3,8 @@
 
 ```{toctree}
 :maxdepth: 2
-:hidden:
+:hidden: 
 
 detectda_demo.md
 autoapi/index
+```

@@ -7,15 +7,15 @@
 Module Contents
 ---------------
 
+.. py:data:: alps
+
+   
+
 .. py:data:: impol
 
    
 
 .. py:data:: pe
-
-   
-
-.. py:data:: alps
 
    
 

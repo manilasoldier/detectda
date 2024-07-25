@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.imgs &mdash; detectda 0.4.5 documentation</title>
+  <title>detectda.imgs &mdash; detecTDA 0.5.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -12,7 +12,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=16716fad"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=3fadbb4a"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -30,7 +30,7 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            detectda
+            detecTDA
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -70,7 +70,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">detectda</a>
+          <a href="../../../index.html">detecTDA</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -98,24 +98,32 @@
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#detectda.imgs.VidPol" title="detectda.imgs.VidPol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VidPol</span></code></a></p></td>
-<td><p>Superclass for ImageSeries and ImageSeriesPlus classes</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#detectda.imgs.ImageSeries" title="detectda.imgs.ImageSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSeries</span></code></a></p></td>
-<td><p>Reads in an image series (video), either a single or multiple frames.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#detectda.imgs.ImageSeriesPlus" title="detectda.imgs.ImageSeriesPlus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSeriesPlus</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#detectda.imgs.ImageSeries" title="detectda.imgs.ImageSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSeries</span></code></a></p></td>
 <td><p>Reads in an image series (video), either a single or multiple frames.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#detectda.imgs.ImageSeriesPickle" title="detectda.imgs.ImageSeriesPickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSeriesPickle</span></code></a></p></td>
 <td><p>Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#detectda.imgs.ImageSeriesPlus" title="detectda.imgs.ImageSeriesPlus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSeriesPlus</span></code></a></p></td>
+<td><p>Reads in an image series (video), either a single or multiple frames.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#detectda.imgs.VidPol" title="detectda.imgs.VidPol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VidPol</span></code></a></p></td>
+<td><p>Superclass for ImageSeries and ImageSeriesPlus classes</p></td>
+</tr>
 </tbody>
 </table>
-<dl class="py class">
-<dt class="sig sig-object py" id="detectda.imgs.VidPol">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.imgs.</span></span><span class="sig-name descname"><span class="pre">VidPol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#VidPol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.VidPol" title="Permalink to this definition"></a></dt>
-<dd><p>Superclass for ImageSeries and ImageSeriesPlus classes</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="detectda.imgs.HomologyError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.imgs.</span></span><span class="sig-name descname"><span class="pre">HomologyError</span></span><a class="reference internal" href="../../../_modules/detectda/imgs.html#HomologyError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.HomologyError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when homology for a given dimension is insufficient for calculating some quantity</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="detectda.imgs.TrivialImageError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.imgs.</span></span><span class="sig-name descname"><span class="pre">TrivialImageError</span></span><a class="headerlink" href="#detectda.imgs.TrivialImageError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Common base class for all non-exit exceptions.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -150,6 +158,12 @@ or the largest finite death time (within an image).</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="detectda.imgs.ImageSeries.get_alps">
+<span class="sig-name descname"><span class="pre">get_alps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeries.get_alps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeries.get_alps" title="Permalink to this definition"></a></dt>
+<dd><p>Get ALPS statistic of each image frame from fitted object.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="detectda.imgs.ImageSeries.get_degp_totp">
 <span class="sig-name descname"><span class="pre">get_degp_totp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeries.get_degp_totp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeries.get_degp_totp" title="Permalink to this definition"></a></dt>
 <dd><p>Get degree-p total persistence of each image frame from fitted object.</p>
@@ -163,12 +177,6 @@ purposes, the default is negative of the entropy</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="detectda.imgs.ImageSeries.get_alps">
-<span class="sig-name descname"><span class="pre">get_alps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeries.get_alps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeries.get_alps" title="Permalink to this definition"></a></dt>
-<dd><p>Get ALPS statistic of each image frame from fitted object.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="detectda.imgs.ImageSeries.plot_im">
 <span class="sig-name descname"><span class="pre">plot_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeries.plot_im"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeries.plot_im" title="Permalink to this definition"></a></dt>
 <dd><p>Plot an individual frame in the video, with or without the polygonal region superimposed</p>
@@ -176,11 +184,11 @@ purposes, the default is negative of the entropy</p>
 
 </dd></dl>
 
-<dl class="py exception">
-<dt class="sig sig-object py" id="detectda.imgs.HomologyError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.imgs.</span></span><span class="sig-name descname"><span class="pre">HomologyError</span></span><a class="reference internal" href="../../../_modules/detectda/imgs.html#HomologyError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.HomologyError" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>Raised when homology for a given dimension is insufficient for calculating some quantity</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPickle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.imgs.</span></span><span class="sig-name descname"><span class="pre">ImageSeriesPickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPickle" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#detectda.imgs.ImageSeries" title="detectda.imgs.ImageSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSeries</span></code></a></p>
+<p>Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -192,10 +200,83 @@ purposes, the default is negative of the entropy</p>
 in which to select specific generators in persistent homology. Similar to ImageSeries,
 but with enhanced functionality for utilizing BOTH 0- and 1-dimensional persistent homology.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.convert_to_df">
+<span class="sig-name descname"><span class="pre">convert_to_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.convert_to_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.convert_to_df" title="Permalink to this definition"></a></dt>
+<dd><p>Creates pandas DataFrames (self.dfs_) from persistence information calculated from detectda algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.fit" title="Permalink to this definition"></a></dt>
 <dd><p>Fit method for ImageSeriesPlus object.</p>
 <p>Optional Gaussian smoothing with sigma parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.get_lifetimes">
+<span class="sig-name descname"><span class="pre">get_lifetimes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.get_lifetimes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.get_lifetimes" title="Permalink to this definition"></a></dt>
+<dd><p>Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.get_midlife_coords">
+<span class="sig-name descname"><span class="pre">get_midlife_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.get_midlife_coords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.get_midlife_coords" title="Permalink to this definition"></a></dt>
+<dd><p>Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.get_pers_im">
+<span class="sig-name descname"><span class="pre">get_pers_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.get_pers_im" title="Permalink to this definition"></a></dt>
+<dd><p>Create persistence images from cubical persistent homology for each image in the detectda object,
+for homology dimension dim. The resulting dimension of the persistence image vectorizations is bts x lts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bts</strong> (<em>int</em>) – birth-time resolution (higher = finer)</p></li>
+<li><p><strong>lts</strong> (<em>int</em>) – lifetime resolution (higher = finer).</p></li>
+<li><p><strong>bandwidth</strong> (<em>float</em>) – Positive number corresponding to Gaussian kernel bandwidth (i.e. variance)</p></li>
+<li><p><strong>dim</strong> (<em>int</em>) – Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.get_pers_mag">
+<span class="sig-name descname"><span class="pre">get_pers_mag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_mag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.get_pers_mag" title="Permalink to this definition"></a></dt>
+<dd><p>Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.get_pers_stats">
+<span class="sig-name descname"><span class="pre">get_pers_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.get_pers_stats" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Get persistence statistics for each image, according to <cite>Topological approaches to skin disease analysis</cite>, along with</dt><dd><p>persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -223,65 +304,17 @@ The default is “both”, corresponding to both dimensions 0 and 1.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.convert_to_df">
-<span class="sig-name descname"><span class="pre">convert_to_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.convert_to_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.convert_to_df" title="Permalink to this definition"></a></dt>
-<dd><p>Creates pandas DataFrames (<a href="#id1"><span class="problematic" id="id2">self.dfs_</span></a>) from persistence information calculated from detectda algorithm.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.get_lifetimes">
-<span class="sig-name descname"><span class="pre">get_lifetimes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.get_lifetimes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.get_lifetimes" title="Permalink to this definition"></a></dt>
-<dd><p>Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.get_midlife_coords">
-<span class="sig-name descname"><span class="pre">get_midlife_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.get_midlife_coords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.get_midlife_coords" title="Permalink to this definition"></a></dt>
-<dd><p>Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.get_pers_mag">
-<span class="sig-name descname"><span class="pre">get_pers_mag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_mag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.get_pers_mag" title="Permalink to this definition"></a></dt>
-<dd><p>Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.get_pers_stats">
-<span class="sig-name descname"><span class="pre">get_pers_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.get_pers_stats" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>Get persistence statistics for each image, according to <cite>Topological approaches to skin disease analysis</cite>, along with</dt><dd><p>persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.plot_im">
+<span class="sig-name descname"><span class="pre">plot_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.plot_im" title="Permalink to this definition"></a></dt>
+<dd><p>Plot an individual frame in the video, with or without the polygonal region superimposed</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPickle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.imgs.</span></span><span class="sig-name descname"><span class="pre">ImageSeriesPickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPickle" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#detectda.imgs.ImageSeries" title="detectda.imgs.ImageSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSeries</span></code></a></p>
-<p>Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.</p>
+<dt class="sig sig-object py" id="detectda.imgs.VidPol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.imgs.</span></span><span class="sig-name descname"><span class="pre">VidPol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#VidPol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.VidPol" title="Permalink to this definition"></a></dt>
+<dd><p>Superclass for ImageSeries and ImageSeriesPlus classes</p>
 </dd></dl>
 
 </section>

@@ -13,51 +13,77 @@ Functions
 
 .. autoapisummary::
 
-   detectda.hlpr.pg0
-   detectda.hlpr.getxy_col
-   detectda.hlpr.std_video
-   detectda.hlpr.degp_totp
-   detectda.hlpr.get_be
-   detectda.hlpr.calc_reject
-   detectda.hlpr.block_sum
    detectda.hlpr.alps
-   detectda.hlpr.pers_entr
-   detectda.hlpr.pd_thresh_calc
-   detectda.hlpr.persmoo
+   detectda.hlpr.block_sum
+   detectda.hlpr.calc_close
+   detectda.hlpr.calc_reject
+   detectda.hlpr.degp_totp
    detectda.hlpr.fitsmoo
+   detectda.hlpr.get_be
+   detectda.hlpr.get_cc
+   detectda.hlpr.getxy_col
+   detectda.hlpr.pd_thresh_calc
+   detectda.hlpr.pers_entr
+   detectda.hlpr.persmoo
+   detectda.hlpr.pg0
+   detectda.hlpr.std_video
+   detectda.hlpr.weight_func
 
 
 
-.. py:function:: pg0(arr)
+.. py:function:: alps(arr)
 
-   Calculate the proportion of the entire array which is at least as much as the first element.
+   Get the ALPS statistic of an array of values, not all zero.
 
-   :param arr: Input array consists of numerical values.
+
+.. py:function:: block_sum(arr, m, div=1)
+
+   Sums adjacent blocks of m frames.
+
+
+.. py:function:: calc_close(pd, diffs, prox_arr, val=1)
+
+   Calculates the nearest point in the persistence diagram
+
+   :param pd: A persistence diagram in (birth, death) coordinates.
+              Note that n_barcodes is the number of barcodes
+   :type pd: ndarray of shape (n_barcodes, 2)
+   :param diffs: Corresponds to the distance between elements of grid discretization, such as in
+                 birtt_bd and lifet_bd in the gen_pers_im method of the ImageSeriesPlus class.
+   :type diffs: list/tuple of two elements
+   :param prox_arr: M observations in (birth, lifetime) coordinates corresponding to elements
+                    of the grid discretization used in calculation of the persistence image.
+   :type prox_arr: ndarray of shape (m, 2)
+   :param val: The default is 1.
+   :type val: float, optional
+
+   :returns: **proxs** -- List of all generators in the persistence diagram pd that lie in the Voronoi cell of
+             one of the elements of prox_arr. This is indicated with a non-zero entry in proxs.
+   :rtype: list
+
+
+.. py:function:: calc_reject(arr, val_arr, alpha=0.05, conservative=True)
+
+   Returns dictionary of index array, boolean array, rejection threshold index
+   array of indices of hypotheses that are rejected via BH procedure, and
+   boolean array of whether or not hypothesis is rejected.
+
+   :param arr: Array of probabilities (p-values) between 0 and 1.
    :type arr: array_like
+   :param val_arr: Array of values to break ties in p-values.
+   :type val_arr: array_like
+   :param alpha: Signficance level for BH procedure. The default is 0.05.
+   :type alpha: value between 0 and 1, optional
+   :param conservative: Dictates whether or not conservative BH procedure is used.
+   :type conservative: default = True
 
-   :returns: **prop** -- The aforementioned proportion.
-   :rtype: double
-
-
-.. py:function:: getxy_col(arr, nrows)
-
-   Returns (x,y) image coordinates from column-major representation
-
-   :param arr: Should be a 1d numpy array
-   :type arr: ndarray of shape (dim,)
-   :param nrows: The number of rows in the 2d array. Should be factor of len(arr)
-   :type nrows: int
-
-   :returns: * **x** (*int*) -- The x-coordinate from column-major representation. Note that x-coordinate (for an image)
-               corresponds to the column of the matrix
-             * **y** (*int*) -- The y-coordinate from column-major representation. Note that y-coordinate (for an image)
-               corresponds to the row of the matrix
-
-
-.. py:function:: std_video(video, flip=False)
+   :returns: **out** -- Dictionary containing information listed above.
+   :rtype: dict
 
 
 .. py:function:: degp_totp(arr, p=1, inf=False)
+
+   Calculate degree-p total persistence from array of lifetimes.
 
    :param arr: Should be an array of persistence lifetimes, with nonnegative entries
    :type arr: array_like
@@ -80,6 +106,15 @@ Functions
    If inf==True, this overwrites the chosen value of p.
 
 
+.. py:function:: fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True)
+
+   Smooths, then fits 0-dimensional cubical persistence on an image.
+   Returns information on:
+           1) Location of positive cells, i.e. local minima (cu_pos, or index-0 and index-1 columns)
+           2) Lifetime information (cu_totpers, or index-2 column)
+           3) Whether or not a positive cell lies within the polygon (cu_ex_inpoly, or index-3 column)
+
+
 .. py:function:: get_be(arr)
 
    Gets beginnings and ends of `True` sequences in Boolean arrays.
@@ -92,38 +127,32 @@ Functions
    :rtype: 2-tuple
 
 
-.. py:function:: calc_reject(arr, val_arr, alpha=0.05, conservative=True)
+.. py:function:: get_cc(point, bin_im)
 
-   Returns dictionary of index array, boolean array, rejection threshold index
-       array of indices of hypotheses that are rejected via BH procedure, and
-       boolean array of whether or not hypothesis is rejected.
+   Gets the connected component in the image bin_im containing the element "point".
 
-   :param arr: Array of probabilities (p-values) between 0 and 1.
-   :type arr: array_like
-   :param val_arr: Array of values to break ties in p-values.
-   :type val_arr: array_like
-   :param alpha: Signficance level for BH procedure. The default is 0.05.
-   :type alpha: value between 0 and 1, optional
-   :param conservative: Dictates whether or not conservative BH procedure is used.
-   :type conservative: default = True
+   :param point: (x,y) coordinate point for image matrix
+   :type point: list/tuple of 2 elements
+   :param bin_im: Boolean array.
+   :type bin_im: array_like
 
-   :returns: **out** -- Dictionary containing information listed above.
-   :rtype: dict
+   :returns: **cc** -- list of elements in connected component containing point.
+   :rtype: list of lists
 
 
-.. py:function:: block_sum(arr, m, div=1)
+.. py:function:: getxy_col(arr, nrows)
 
-   Sums adjacent blocks of m frames
+   Returns (x,y) image coordinates from column-major representation
 
+   :param arr: Should be a 1d numpy array
+   :type arr: ndarray of shape (dim,)
+   :param nrows: The number of rows in the 2d array. Should be factor of len(arr)
+   :type nrows: int
 
-.. py:function:: alps(arr)
-
-   Get the ALPS statistic of an array of values, not all zero
-
-
-.. py:function:: pers_entr(arr, neg=True)
-
-   Gets persistence (shannon) entropy of an array of values, not all zero
+   :returns: * **x** (*int*) -- The x-coordinate from column-major representation. Note that x-coordinate (for an image)
+               corresponds to the column of the matrix
+             * **y** (*int*) -- The y-coordinate from column-major representation. Note that y-coordinate (for an image)
+               corresponds to the row of the matrix
 
 
 .. py:function:: pd_thresh_calc(diag, minv, maxv, dim='both', otsu=True)
@@ -144,7 +173,14 @@ Functions
    :rtype: float
 
 
+.. py:function:: pers_entr(arr, neg=True)
+
+   Gets persistence (shannon) entropy of an array of values, not all zero.
+
+
 .. py:function:: persmoo(im, polygon=None, sigma=None)
+
+   Smooths, then fits 0 and 1-dimensional cubical persistence on an image. Returns other important information as well.
 
    :param im: Greyscale image on which sublevelset homology will be calculated.
    :type im: individual image, i.e. two-dimensional array
@@ -160,12 +196,39 @@ Functions
    :rtype: ndarray
 
 
-.. py:function:: fitsmoo(im, polygon=None, sigma=None, max_death_pixel_int=True)
+.. py:function:: pg0(arr)
 
-   Smooths, then fits 0-dimensional cubical persistence on an image.
-   Returns information on:
-           1) Location of positive cells, i.e. local minima (cu_pos, or index-0 and index-1 columns)
-           2) Lifetime information (cu_totpers, or index-2 column)
-           3) Whether or not a positive cell lies within the polygon (cu_ex_inpoly, or index-3 column)
+   Calculate the proportion of the entire array which is at least as much as the first element.
+
+   :param arr: Input array consists of numerical values.
+   :type arr: array_like
+
+   :returns: **prop** -- The aforementioned proportion.
+   :rtype: double
+
+
+.. py:function:: std_video(video, flip=False)
+
+   Returns a video where each frame is standardized to have mean 0 pixel intensity with
+   standard deviation 1.
+
+   :param video: An array of shape (frames, rows, columns).
+   :type video: ndarray
+   :param flip: Whether or not to invert the pixels of the video. The default is False.
+   :type flip: bool.
+
+   :returns: The frame-standardized video of shape (frames, rows, columns).
+   :rtype: ndarray
+
+
+.. py:function:: weight_func(arr)
+
+   Weight function for persistence image using defaults from Obayashi, Hiraoka, and Kimura (2018).
+
+   :param arr: Should be an array of persistence lifetimes, with nonnegative entries
+   :type arr: array_like
+
+   :returns: Array of weights corresponding to the given persistence lifetimes.
+   :rtype: ndarray
 
 
