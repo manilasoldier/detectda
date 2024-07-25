@@ -14,6 +14,10 @@ import time
 class TrivialImageError(Exception):
     pass
 
+class HomologyError(Exception):
+    "Raised when homology for a given dimension is insufficient for calculating some quantity"
+    pass
+
 class VidPol:
     """
     Superclass for ImageSeries and ImageSeriesPlus classes
@@ -150,10 +154,6 @@ class ImageSeries(VidPol):
             print("Must set plot_poly to False if polygon not specified")    
 
 
-class HomologyError(Exception):
-    "Raised when homology for a given dimension is insufficient for calculating some quantity"
-    pass
-
 class ImageSeriesPlus(VidPol):
     """
     Reads in an image series (video), either a single or multiple frames. 
@@ -270,25 +270,34 @@ class ImageSeriesPlus(VidPol):
         ml1 = [ml(x[x[:,2]==1,:]) for x in self.diags_]
         self.midlife_coords = [ml0, ml1]
     
-    def get_pers_im(self, bts, lts, bandwidth, dim):
+    def get_pers_im(self, bts, lts, dim, bandwidth=1):
         """
+        Create persistence images from cubical persistent homology for each image in the detectda object,
+        for homology dimension dim. The resulting dimension of the persistence image vectorizations is bts x lts.
+        
 
         Parameters
         ----------
-        bts : TYPE
-            DESCRIPTION.
-        lts : TYPE
-            DESCRIPTION.
-        bandwidth : TYPE
-            DESCRIPTION.
-        dim : TYPE
-            DESCRIPTION.
+        bts : int
+            birth-time resolution (higher = finer)
+        lts : int
+            lifetime resolution (higher = finer).
+        bandwidth : float
+            Positive number corresponding to Gaussian kernel bandwidth (i.e. variance)
+        dim : int
+            Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
 
         Returns
         -------
         None.
 
         """
+        if bandwidth <= 0:
+            raise ValueError("bandwidth must be positive.")
+        
+        if dim != 0 and dim != 1:
+            raise ValueError("dim must equal 0 or 1")
+        
         diags = [d[np.logical_and(d[:,2]==dim, d[:,5]==1),:][:, [3,4]] for d in self.diags_]
         PI_obj = PersistenceImage(bandwidth=bandwidth, weight=_dh.weight_func,
                            resolution = [bts,lts])
@@ -296,7 +305,9 @@ class ImageSeriesPlus(VidPol):
         PI_obj.fit(diags)
         self.bts, self.lts = bts, lts
         self.pis = PI_obj.transform(diags)
+        #birtt_bd gives the boundaries of the birth times used in the persistence image
         self.birtt_bd = np.linspace(PI_obj.im_range_fixed_[0], PI_obj.im_range_fixed_[1], bts)
+        #lifet_bd gives the boundaries of the birth times used in the persistence image
         self.lifet_bd = np.linspace(PI_obj.im_range_fixed_[2], PI_obj.im_range_fixed_[3], lts)
         self.diags_alt_ = [d[np.logical_and(d[:,2]==dim, d[:,5]==1),:][:, [0,1,3,4]] for d in self.diags_]
     

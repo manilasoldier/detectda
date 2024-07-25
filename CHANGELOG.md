@@ -1,16 +1,18 @@
 # Changelog
 
-## v0.4.7 (7/22/2024)
+## v0.5.0 (7/25/2024)
 
 ### Added
 
 - Plotting functionality for ImageSeriesPlus class
 - Easy dimension information for get_lifetimes and get_midlife_coords
 - A method for deriving persistence images from the images themselves
+- Helper function for getting the connected component of a point
 
 ### Fixed
 
 - Fixed issue that was occurring with ImageSeriesPlus class and the locations of the persistence pairs
+- Error is raised if a video with a trivial image is given.
 
 ## v0.4.6 (6/17/2024)
 
