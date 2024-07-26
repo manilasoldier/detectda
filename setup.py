@@ -1,8 +1,11 @@
 from setuptools import setup, find_packages
+import codecs
 
 DESCRIPTION = "detectda - detecting features in videos using TDA"
-LONG_DESCRIPTION = "detectda - a cubical persistent homology package for the detection and hypothesis testing of features in greyscale videos"
-
+with codecs.open("README.md", encoding="utf-8-sig") as f:
+    LONG_DESCRIPTION = f.read()
+LONG_DESCRIPTION_TYPE = "text/markdown"
+URL = "https://detectda.readthedocs.io/en/latest/"
 VERSION = {}
 with open("detectda/_version.py") as fp:
     exec(fp.read(), VERSION)
@@ -14,7 +17,11 @@ setup(
 	author_email = "<me@andrewmthomas.com>",
 	description = DESCRIPTION,
 	long_description = LONG_DESCRIPTION,
-	packages=find_packages(),
+        long_description_content_type = LONG_DESCRIPTION_TYPE,
+        url = URL,
+	packages=find_packages(where='detectda'),
+        package_dir={"": "detectda"},
+        package_data={"tests": ["test_imgs_plus.npy", "test_video.pkl",  "test_video_vacuum.pkl", "test_video.tif"]},
 	install_requires=[
 		'gudhi >= 3.6.0',
 		'shapely >= 2.0.1',

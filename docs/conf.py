@@ -6,10 +6,14 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import sys
+sys.path.insert(0, '../')
+from detectda import __version__
+
 project = 'detecTDA'
 copyright = '2023, Andrew Michael Thomas'
 author = 'Andrew Michael Thomas'
-release = '0.5.0' 
+release = __version__ 
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
