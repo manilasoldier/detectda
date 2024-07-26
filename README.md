@@ -1,3 +1,5 @@
+![detecTDA logo](detectda_logo.png)
+
 # detecTDA
 
 **A package for detecting topological features in images**. 
