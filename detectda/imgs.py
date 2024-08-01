@@ -153,6 +153,55 @@ class ImageSeries(VidPol):
         except AttributeError:
             print("Must set plot_poly to False if polygon not specified")    
 
+    def alps_plot(self, frames):
+        """
+        Returns the ALPS plots of up to 4 images in the video taken by ImageSeries.
+
+        Parameters
+        ----------
+        frames : int or list
+            Indices for frames in image series. 
+
+        Raises
+        ------
+        TypeError
+            If type is not int nor list.
+        ValueError
+            If more than 4 frames are given.
+
+        Returns
+        -------
+        None.
+
+        """
+        
+        if type(frames)!=int and type(frames)!=list:
+            raise TypeError("Argument `frames` must be of type int or list")
+        
+        if type(frames)==int:
+            frames = [frames]
+        elif len(frames) > 4:
+            raise ValueError("Can only plot up to 4 frames")
+            
+        for frame in frames:
+            if frame < 0 or frame > self.video.shape[0]:
+                raise IndexError("Frame "+str(frame)+" is not in the video")
+                
+            imd = self.diags_[frame]
+            which_plt = imd[:, 3].astype(bool)
+            lts = np.array([0]+list(np.sort(imd[which_plt, 2])))
+            yax = [np.log(np.sum(lts > l))for l in lts[:-1]]
+            plt.step(lts[:-1], yax, where='post', label='Frame '+str(frame+1))
+        
+        plt.xlabel(r'$\eta =$'+"Persistence lifetime", labelpad=15)
+        plt.ylabel(r'$\ln \sum_{(b,d) \in PD} 1\{ d-b > \eta\}$', labelpad=15)
+        if len(frames)==1:
+            frame_name = str(frames[0]+1)
+            plt.title("ALPS plot: frame "+frame_name, pad=15)
+        else:
+            frame_name = ", ".join(str(frame+1) for frame in frames[:-1])+" and "+str(frames[-1]+1)
+            plt.title("ALPS plots: frames "+frame_name, pad=15)
+        plt.legend()
 
 class ImageSeriesPlus(VidPol):
     """

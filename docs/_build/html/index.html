@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detecTDA &mdash; detecTDA 0.5.1 documentation</title>
+  <title>Installation &mdash; detecTDA 0.5.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -12,7 +12,7 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=9bd53f53"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=ac2db539"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
@@ -65,7 +65,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">detecTDA</li>
+      <li class="breadcrumb-item active">Installation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,12 +75,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="detectda">
-<h1>detecTDA<a class="headerlink" href="#detectda" title="Permalink to this heading"></a></h1>
+  <p><img alt="detecTDA logo" src="https://andrewmthomas.com/wp-content/uploads/2024/07/detectda_logo-e1722264304588.png" /></p>
+<hr class="docutils" />
 <p><strong>A package for detecting topological features in images</strong>.</p>
 <p>Tailor-made to perform hypothesis testing on sequences of noisy images in catalysis.</p>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
 <p>If you have pip installed you may simply run</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install detectda
 </pre></div>
@@ -89,21 +89,21 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install .
 </pre></div>
 </div>
-<p>Alternatively, the following still supported:</p>
+<p>Alternatively, the following is still supported:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 setup.py install
 </pre></div>
 </div>
 </section>
 <section id="summarizing-an-image-series">
-<h2>Summarizing an image series<a class="headerlink" href="#summarizing-an-image-series" title="Permalink to this heading"></a></h2>
+<h1>Summarizing an image series<a class="headerlink" href="#summarizing-an-image-series" title="Permalink to this heading"></a></h1>
 <p>With a video (and optional polygonal region—see below), extracting statistics related to structure and shape of your noisy image could not be easier. detecTDA leverages TDA (topological data analysis) to derive such quantities, an illustration of which can be seen below.</p>
-<p><img alt="Illustration of the detectda algorithm" src="_images/detectdaALGORITHM.png" /></p>
+<p><img alt="Illustration of the detectda algorithm" src="https://andrewmthomas.com/wp-content/uploads/2024/07/detectdaALGORITHM.png" /></p>
 <p>Such processing is accomplished by fitting the class ImageSeries (or ImageSeriesPlus) to your data. Hypothesis testing whether or not images are generated from a vacuum region within the images is accomplished by fitting and transforming VacuumSeries objects. Note that hypothesis testing is only currently supported for the ImageSeries class.</p>
 </section>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">detectda</span></code> is a Python package for detection and hypothesis testing of noisy greyscale images and videos using TDA.</p>
-<p>To use the identify_polygon script, run the script in the command line (after having installed the package). Then follow these steps:</p>
+<p>To use the <code class="docutils literal notranslate"><span class="pre">identify_polygon</span></code> script, run the script in the command line (after having installed the package). Then follow these steps:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. Enter the name of your .tif video (such as test_video.tif). 
 
 2. Then right-click to select the boundaries of your polygon. 
@@ -120,15 +120,14 @@
 <p>You will then be able to use this data to process your video with the persistent entropy or ALPS statistic—see “detectda demo.ipynb”.</p>
 </section>
 <section id="test-video">
-<h2>Test video<a class="headerlink" href="#test-video" title="Permalink to this heading"></a></h2>
-<p>I would like to thank the Crozier Research Group for providing ‘test_video.tif’. Please see the accompanying paper: <a class="reference external" href="https://www.tandfonline.com/doi/epdf/10.1080/00401706.2023.2203744">“Feature detection and hypothesis testing for extremely noisy nanoparticle images using topological data analysis” (2023) by Thomas, Crozier, Xu, and Matteson</a> for information on how the video was collected.</p>
+<h1>Test video<a class="headerlink" href="#test-video" title="Permalink to this heading"></a></h1>
+<p>I would like to thank the Crozier Research Group for providing “test_video.tif”. Please see the accompanying paper: <a class="reference external" href="https://www.tandfonline.com/doi/epdf/10.1080/00401706.2023.2203744">“Feature detection and hypothesis testing for extremely noisy nanoparticle images using topological data analysis” (2023) by Thomas, Crozier, Xu, and Matteson</a> for information on how the video was collected.</p>
 </section>
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
+<h1>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">detectda</span></code> was created by Andrew M. Thomas. It is licensed under the terms of the MIT license.</p>
 <div class="toctree-wrapper compound">
 </div>
-</section>
 </section>
 
 

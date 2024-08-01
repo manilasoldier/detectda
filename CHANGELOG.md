@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.5.2 (8/1/2024)
+
+### Added
+
+- ALPS plots (cf. Crozier et. al, 2024)
+- Modified README.md
+
+### Fixed
+
+- Versioning issue
+
 ## v0.5.0 (7/25/2024)
 
 ### Added

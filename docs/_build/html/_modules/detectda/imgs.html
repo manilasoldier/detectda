@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.imgs &mdash; detecTDA 0.5.1 documentation</title>
+  <title>detectda.imgs &mdash; detecTDA 0.5.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -11,7 +11,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=9bd53f53"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=ac2db539"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -227,8 +227,57 @@
                 <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">polygon</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">))</span> <span class="c1">#&#39;unzip&#39; exterior coordinates of a polygon for plotting</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Must set plot_poly to False if polygon not specified&quot;</span><span class="p">)</span>    </div></div>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Must set plot_poly to False if polygon not specified&quot;</span><span class="p">)</span>    </div>
 
+<div class="viewcode-block" id="ImageSeries.alps_plot"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.alps_plot">[docs]</a>    <span class="k">def</span> <span class="nf">alps_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the ALPS plots of up to 4 images in the video taken by ImageSeries</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frames : int or list</span>
+<span class="sd">            Indices for frames in image series. </span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If type is not int nor list.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If more than 4 frames are given.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span><span class="o">!=</span><span class="nb">int</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span><span class="o">!=</span><span class="nb">list</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Argument `frames` must be of type int or list&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span><span class="o">==</span><span class="nb">int</span><span class="p">:</span>
+            <span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">frames</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can only plot up to 4 frames&quot;</span><span class="p">)</span>
+            
+        <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">frame</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">frame</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Frame &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; is not in the video&quot;</span><span class="p">)</span>
+                
+            <span class="n">imd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span>
+            <span class="n">which_plt</span> <span class="o">=</span> <span class="n">imd</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+            <span class="n">lts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">imd</span><span class="p">[</span><span class="n">which_plt</span><span class="p">,</span> <span class="mi">2</span><span class="p">])))</span>
+            <span class="n">yax</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">lts</span> <span class="o">&gt;</span> <span class="n">l</span><span class="p">))</span><span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">lts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yax</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Frame &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\eta =$&#39;</span><span class="o">+</span><span class="s2">&quot;Persistence lifetime&quot;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\ln \sum_{(b,d) \in PD} 1\{ d-b &gt; \eta\}$&#39;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">frame_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ALPS plot: frame &quot;</span><span class="o">+</span><span class="n">frame_name</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">frame_name</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot; and &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ALPS plots: frames &quot;</span><span class="o">+</span><span class="n">frame_name</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div></div>
 
 <div class="viewcode-block" id="ImageSeriesPlus"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus">[docs]</a><span class="k">class</span> <span class="nc">ImageSeriesPlus</span><span class="p">(</span><span class="n">VidPol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>

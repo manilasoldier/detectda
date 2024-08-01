@@ -59,6 +59,19 @@ Classes
                   processors.
    :type n_jobs: int or None, optional, default is ``None``
 
+   .. py:method:: alps_plot(frames)
+
+      Returns the ALPS plots of up to 4 images in the video taken by ImageSeries
+
+      :param frames: Indices for frames in image series.
+      :type frames: int or list
+
+      :raises TypeError: If type is not int nor list.
+      :raises ValueError: If more than 4 frames are given.
+
+      :rtype: None.
+
+
    .. py:method:: fit(sigma=None, max_death_pixel_int=True, print_time=True)
 
       Fit method for ImageSeries object.
