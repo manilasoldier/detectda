@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import codecs
 
 DESCRIPTION = "detectda - detecting features in videos using TDA"
@@ -19,22 +19,21 @@ setup(
 	long_description = LONG_DESCRIPTION,
         long_description_content_type = LONG_DESCRIPTION_TYPE,
         url = URL,
-	packages=find_packages(where='detectda'),
-        package_dir={"": "detectda"},
-        package_data={"tests": ["test_imgs_plus.npy", "test_video.pkl",  "test_video_vacuum.pkl", "test_video.tif"]},
+	packages=['detectda', 'detectda.tests'],
+    package_data={"detectda.tests": ["test_imgs_plus.npy", "test_video.pkl",  "test_video_vacuum.pkl", "test_video.tif"]},
 	install_requires=[
-		'gudhi >= 3.6.0',
+		'gudhi >= 3.8.0',
 		'shapely >= 2.0.1',
-		'joblib',
+		'joblib >= 1.3.2',
 		'scikit-image >= 0.21.0',
 		'scikit-learn >= 0.23.1',
 		'numpy >= 1.24',
-		'tqdm',
-        'pandas',
-		'matplotlib',
-		'opencv-python',
-        'scipy',
-		'imagecodecs'
+		'tqdm >= 4.64.0',
+        'pandas >= 1.3.0',
+		'matplotlib >= 3.7.2',
+		'opencv-python >= 4.10.0',
+        'scipy >= 1.10.1',
+		'imagecodecs >= 2021.8.26'
 	],
 	keywords = ['tda', 'cubical', 'image processing'],
 	classifiers = [
