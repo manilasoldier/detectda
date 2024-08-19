@@ -257,8 +257,10 @@ class ImageSeriesPlus(VidPol):
             self.sigma_=sigma
             return self
         
-    def pd_threshold(self, minv, maxv, dim="both"):
+    def pd_threshold(self, minv, maxv, dim="both", num=50):
         """
+        #8/20/24 add in ability to only accept certain frames...
+        
         Parameters
         ----------
         minv : float
@@ -285,7 +287,7 @@ class ImageSeriesPlus(VidPol):
         for index, im in enumerate(self.video):
             smim = filters.gaussian(im, sigma=self.sigma_, preserve_range=True)
             try:
-                thresh = _dh.pd_thresh_calc(self.diags_[index], minv, maxv, dim)
+                thresh = _dh.pd_thresh_calc(self.diags_[index], np.unique(smim), minv, maxv, dim, num)
             except ValueError:
                 raise HomologyError("Not enough homology information to calculate threshold for image index "+str(index)) from None
                     
@@ -436,11 +438,6 @@ class ImageSeriesPlus(VidPol):
         Plot an individual frame in the video, with or without the polygonal region superimposed
         """
         
-        try: 
-            self.lifetimes[dim]
-        except AttributeError:
-            self.get_lifetimes()
-        
         imd_ = self.diags_[frame]
         imd = imd_[imd_[:,2]==dim, :]
             
@@ -456,6 +453,7 @@ class ImageSeriesPlus(VidPol):
             over_thr = (self.lifetimes[dim] > thr) #just right over the threshold, not as a proportion...
             which_plt = np.logical_and(over_thr, which_plt)
             
+        lt = imd[which_plt, 4]-imd[which_plt, 3]
         if plot_pts:
             if dim==0:
                 cm = "autumn"
@@ -464,7 +462,7 @@ class ImageSeriesPlus(VidPol):
             plt0 = plt.scatter(
                 x = imd[which_plt, 0],
                 y = imd[which_plt, 1],
-				c = self.lifetimes[dim],
+				c = lt,
 				cmap = cm,
                 **kwargs
 			)

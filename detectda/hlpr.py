@@ -201,7 +201,7 @@ def get_cc(point, bin_im):
                     cc = cc+[pt1]
                     check_cc2 = check_cc2+[pt1]
                     a += 1
-                elif bin_im[pt[1]+i, pt[0]] and pt2 not in cc:
+                if bin_im[pt[1]+i, pt[0]] and pt2 not in cc:
                     cc = cc+[pt2]
                     check_cc2 = check_cc2+[pt2]
                     a += 1
@@ -326,7 +326,7 @@ def pers_entr(arr, neg=True):
 
 	return a*np.sum(Lmod*np.log(Lmod))
 
-def pd_thresh_calc(diag, minv, maxv, dim="both", otsu=True):
+def pd_thresh_calc(diag, pixels, minv, maxv, dim="both", num=50):
     """
     Calculates best persistence preserving threshold as described in Chung and Day (2018).
 
@@ -353,8 +353,9 @@ def pd_thresh_calc(diag, minv, maxv, dim="both", otsu=True):
     elif isinstance(dim, int):
         select = (diag[:, 2]==dim)
         sub_diag = diag[select,:]
-
-    thrs_ = np.unique(sub_diag[:, [3,4]])
+        
+    #pixels gets the empirical pixel distribution and chooses quantiles from this for thresholding.
+    thrs_ = np.quantile(pixels, q=np.linspace(0,1, num))
     thrs = thrs_[np.logical_and(thrs_ > minv, thrs_ < maxv)]
     
     Phi_t = []
@@ -365,17 +366,17 @@ def pd_thresh_calc(diag, minv, maxv, dim="both", otsu=True):
         plus = (sub_diag[:, 3] > thr)
         
         #Augmenting the persistence diagram in the case of emptiness
-        if len(orig) >= 1:
+        if sum(orig) >= 1:
             Phi_orig = (1/(np.sum(orig)+1))*np.sum((sub_diag[orig, 4]-thr)*(thr-sub_diag[orig, 3]))
         else:
-            Phi_orig = (maxv-minv)
+            Phi_orig = 0 #Why would we have (maxv-minv)? 1 does not decrease the last threshold enough...
         
-        if len(minus) >= 1:
+        if sum(minus) >= 1:
             Phi_minus = np.sum((thr-sub_diag[minus, 4])/(sub_diag[minus, 4]-sub_diag[minus, 3]))
         else:
             Phi_minus = 1
             
-        if len(plus) >= 1:
+        if sum(plus) >= 1:
             Phi_plus = np.sum((sub_diag[plus, 3]-thr)/(sub_diag[plus, 4]-sub_diag[plus, 3]))
         else:
             Phi_plus = 1
