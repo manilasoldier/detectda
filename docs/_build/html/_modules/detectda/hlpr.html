@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.hlpr &mdash; detecTDA 0.5.1 documentation</title>
+  <title>detectda.hlpr &mdash; detecTDA 0.5.3 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -11,7 +11,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=9bd53f53"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=08553120"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -277,7 +277,7 @@
                     <span class="n">cc</span> <span class="o">=</span> <span class="n">cc</span><span class="o">+</span><span class="p">[</span><span class="n">pt1</span><span class="p">]</span>
                     <span class="n">check_cc2</span> <span class="o">=</span> <span class="n">check_cc2</span><span class="o">+</span><span class="p">[</span><span class="n">pt1</span><span class="p">]</span>
                     <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">elif</span> <span class="n">bin_im</span><span class="p">[</span><span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">i</span><span class="p">,</span> <span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="ow">and</span> <span class="n">pt2</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cc</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">bin_im</span><span class="p">[</span><span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">i</span><span class="p">,</span> <span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="ow">and</span> <span class="n">pt2</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cc</span><span class="p">:</span>
                     <span class="n">cc</span> <span class="o">=</span> <span class="n">cc</span><span class="o">+</span><span class="p">[</span><span class="n">pt2</span><span class="p">]</span>
                     <span class="n">check_cc2</span> <span class="o">=</span> <span class="n">check_cc2</span><span class="o">+</span><span class="p">[</span><span class="n">pt2</span><span class="p">]</span>
                     <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -402,14 +402,16 @@
 
 	<span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Lmod</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Lmod</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="pd_thresh_calc"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pd_thresh_calc">[docs]</a><span class="k">def</span> <span class="nf">pd_thresh_calc</span><span class="p">(</span><span class="n">diag</span><span class="p">,</span> <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">otsu</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="pd_thresh_calc"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pd_thresh_calc">[docs]</a><span class="k">def</span> <span class="nf">pd_thresh_calc</span><span class="p">(</span><span class="n">diag</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculates best persistence preserving threshold as described in Chung and Day (2018).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    diag : ndarray of shape (n_samples, 6)</span>
-<span class="sd">        Persistence diagram object a la the output of the persmoo function</span>
+<span class="sd">        Persistence diagram object a la the output of the persmoo function.</span>
+<span class="sd">    pixels: array-like</span>
+<span class="sd">        Vector containing the pixels of the image on which to perform PD thresholding.</span>
 <span class="sd">    minv : float</span>
 <span class="sd">        Minimum threshold to consider.</span>
 <span class="sd">    maxv : float</span>
@@ -417,6 +419,9 @@
 <span class="sd">    dim : str or int, optional</span>
 <span class="sd">        Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.</span>
 <span class="sd">        The default is &quot;both&quot;, corresponding to both dimensions 0 and 1. </span>
+<span class="sd">    num : int, optional</span>
+<span class="sd">        Positive integer indicating how many evenly spaced pixel distribution quantiles should be</span>
+<span class="sd">        considered in PD thresholding (prior to restricting to the range [minv, maxv]).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -429,8 +434,9 @@
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
         <span class="n">select</span> <span class="o">=</span> <span class="p">(</span><span class="n">diag</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="n">dim</span><span class="p">)</span>
         <span class="n">sub_diag</span> <span class="o">=</span> <span class="n">diag</span><span class="p">[</span><span class="n">select</span><span class="p">,:]</span>
-
-    <span class="n">thrs_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sub_diag</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+        
+    <span class="c1">#pixels gets the empirical pixel distribution and chooses quantiles from this for thresholding.</span>
+    <span class="n">thrs_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">pixels</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="p">))</span>
     <span class="n">thrs</span> <span class="o">=</span> <span class="n">thrs_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">thrs_</span> <span class="o">&gt;</span> <span class="n">minv</span><span class="p">,</span> <span class="n">thrs_</span> <span class="o">&lt;</span> <span class="n">maxv</span><span class="p">)]</span>
     
     <span class="n">Phi_t</span> <span class="o">=</span> <span class="p">[]</span>
@@ -441,17 +447,17 @@
         <span class="n">plus</span> <span class="o">=</span> <span class="p">(</span><span class="n">sub_diag</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thr</span><span class="p">)</span>
         
         <span class="c1">#Augmenting the persistence diagram in the case of emptiness</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">orig</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">orig</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">Phi_orig</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">orig</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">orig</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">-</span><span class="n">thr</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">thr</span><span class="o">-</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">orig</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">Phi_orig</span> <span class="o">=</span> <span class="p">(</span><span class="n">maxv</span><span class="o">-</span><span class="n">minv</span><span class="p">)</span>
+            <span class="n">Phi_orig</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#Why would we have (maxv-minv)? 1 does not decrease the last threshold enough...</span>
         
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">minus</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">minus</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">Phi_minus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">thr</span><span class="o">-</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">minus</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">minus</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">-</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">minus</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">Phi_minus</span> <span class="o">=</span> <span class="mi">1</span>
             
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">plus</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">plus</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">Phi_plus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">plus</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">thr</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">plus</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">-</span><span class="n">sub_diag</span><span class="p">[</span><span class="n">plus</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">Phi_plus</span> <span class="o">=</span> <span class="mi">1</span>

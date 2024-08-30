@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda &mdash; detecTDA 0.5.2 documentation</title>
+  <title>detectda &mdash; detecTDA 0.5.3 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -12,7 +12,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=ac2db539"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=08553120"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -154,7 +154,7 @@ processors.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeries.alps_plot">
 <span class="sig-name descname"><span class="pre">alps_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.alps_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.alps_plot" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the ALPS plots of up to 4 images in the video taken by ImageSeries</p>
+<dd><p>Returns the ALPS plots of up to 4 images in the video taken by ImageSeries.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>frames</strong> (<em>int</em><em> or </em><em>list</em>) – Indices for frames in image series.</p>
@@ -320,8 +320,9 @@ for homology dimension dim. The resulting dimension of the persistence image vec
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.pd_threshold">
-<span class="sig-name descname"><span class="pre">pd_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.pd_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.pd_threshold" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<span class="sig-name descname"><span class="pre">pd_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.pd_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.pd_threshold" title="Permalink to this definition"></a></dt>
+<dd><p>#8/20/24 add in ability to only accept certain frames…</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>minv</strong> (<em>float</em>) – Minimum threshold to consider.</p></li>

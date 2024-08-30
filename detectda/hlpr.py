@@ -333,7 +333,9 @@ def pd_thresh_calc(diag, pixels, minv, maxv, dim="both", num=50):
     Parameters
     ----------
     diag : ndarray of shape (n_samples, 6)
-        Persistence diagram object a la the output of the persmoo function
+        Persistence diagram object a la the output of the persmoo function.
+    pixels: array-like
+        Vector containing the pixels of the image on which to perform PD thresholding.
     minv : float
         Minimum threshold to consider.
     maxv : float
@@ -341,6 +343,9 @@ def pd_thresh_calc(diag, pixels, minv, maxv, dim="both", num=50):
     dim : str or int, optional
         Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
         The default is "both", corresponding to both dimensions 0 and 1. 
+    num : int, optional
+        Positive integer indicating how many evenly spaced pixel distribution quantiles should be
+        considered in PD thresholding (prior to restricting to the range [minv, maxv]).
 
     Returns
     -------

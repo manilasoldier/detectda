@@ -155,12 +155,14 @@ Functions
                corresponds to the row of the matrix
 
 
-.. py:function:: pd_thresh_calc(diag, minv, maxv, dim='both', otsu=True)
+.. py:function:: pd_thresh_calc(diag, pixels, minv, maxv, dim='both', num=50)
 
    Calculates best persistence preserving threshold as described in Chung and Day (2018).
 
-   :param diag: Persistence diagram object a la the output of the persmoo function
+   :param diag: Persistence diagram object a la the output of the persmoo function.
    :type diag: ndarray of shape (n_samples, 6)
+   :param pixels: Vector containing the pixels of the image on which to perform PD thresholding.
+   :type pixels: array-like
    :param minv: Minimum threshold to consider.
    :type minv: float
    :param maxv: Maximum threshold to consider.
@@ -168,6 +170,9 @@ Functions
    :param dim: Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
                The default is "both", corresponding to both dimensions 0 and 1.
    :type dim: str or int, optional
+   :param num: Positive integer indicating how many evenly spaced pixel distribution quantiles should be
+               considered in PD thresholding (prior to restricting to the range [minv, maxv]).
+   :type num: int, optional
 
    :returns: The best topology- and geometry-preserving threshold
    :rtype: float

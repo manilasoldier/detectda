@@ -61,7 +61,7 @@ Classes
 
    .. py:method:: alps_plot(frames)
 
-      Returns the ALPS plots of up to 4 images in the video taken by ImageSeries
+      Returns the ALPS plots of up to 4 images in the video taken by ImageSeries.
 
       :param frames: Indices for frames in image series.
       :type frames: int or list
@@ -198,7 +198,9 @@ Classes
           persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.
 
 
-   .. py:method:: pd_threshold(minv, maxv, dim='both')
+   .. py:method:: pd_threshold(minv, maxv, dim='both', num=50)
+
+      #8/20/24 add in ability to only accept certain frames...
 
       :param minv: Minimum threshold to consider.
       :type minv: float
