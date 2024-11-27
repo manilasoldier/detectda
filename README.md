@@ -1,6 +1,6 @@
 ![detecTDA logo](https://andrewmthomas.com/wp-content/uploads/2024/11/detectda_logo.png)
 
-[![DOI](https://zenodo.org/badge/525078067.svg)](https://doi.org/10.5281/zenodo.14226964)
+![PyPI - Version](https://img.shields.io/pypi/v/detectda) [![DOI](https://zenodo.org/badge/525078067.svg)](https://doi.org/10.5281/zenodo.14226964)
 
 ***
 
