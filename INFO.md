@@ -1,4 +1,4 @@
-![detecTDA logo](https://andrewmthomas.com/wp-content/uploads/2024/07/detectda_logo-e1722264304588.png)
+![detecTDA logo](https://andrewmthomas.com/wp-content/uploads/2024/11/detectda_logo.png)
 
 ***
 

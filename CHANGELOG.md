@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.5.3 (8/30/2024)
+
+## Fixed 
+
+- Issue with incorrect calculation with PD thresholding
+- get_cc had a problem with conditional logic that has been fixed
+- Plot_im for ImageSeriesPlus now displays correct values
+
 ## v0.5.2 (8/1/2024)
 
 ### Added
