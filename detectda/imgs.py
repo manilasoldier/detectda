@@ -450,7 +450,7 @@ class ImageSeriesPlus(VidPol):
         if thr==None:
             pass
         else:
-            over_thr = (self.lifetimes[dim] > thr) #just right over the threshold, not as a proportion...
+            over_thr = (self.lifetimes[dim][frame] > thr) #just right over the threshold, not as a proportion...
             which_plt = np.logical_and(over_thr, which_plt)
             
         lt = imd[which_plt, 4]-imd[which_plt, 3]
@@ -476,7 +476,101 @@ class ImageSeriesPlus(VidPol):
                 xs, ys = list(zip(*self.polygon.exterior.coords)) #'unzip' exterior coordinates of a polygon for plotting
                 plt.plot(xs,ys, color="cyan")
         except AttributeError:
-            print("Must set plot_poly to False if polygon not specified")  
+            print("Must set plot_poly to False if polygon not specified")
+            
+    def proc_pers_im(self, betas, quantiles, indices):
+        """
+
+        Parameters
+        ----------
+        betas : TYPE
+            DESCRIPTION.
+        quantiles : TYPE
+            DESCRIPTION.
+        indices : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        None.
+
+        """
+        high_pi = np.where(np.quantile(betas, quantiles[0], axis=0) > 0)[0]
+        low_pi = np.where(np.quantile(betas, quantiles[1], axis=0) < 0)[0]
+        
+        try:
+            ijs_hi = [(k // self.bts, k % self.bts) for k in high_pi]
+            ijs_low = [(k // self.bts, k % self.bts) for k in low_pi]
+
+            lb_hi = [(self.lifet_bd[ij[0]], self.birtt_bd[ij[1]]) for ij in ijs_hi]
+            lb_low = [(self.lifet_bd[ij[0]], self.birtt_bd[ij[1]]) for ij in ijs_low]
+
+            lt_diff = self.lifet_bd[1]-self.lifet_bd[0]; bt_diff = self.birtt_bd[1]-self.birtt_bd[0]
+            self.alts = [np.maximum(_dh.calc_close(d, [lt_diff, bt_diff], lb_hi, 1), _dh.calc_close(d, [lt_diff, bt_diff], lb_low, 0.5)) 
+                         for d in self.diags_alt_[indices]]
+            self.indices = indices
+            
+        except NameError:
+            print("Make sure to run get_pers_im method first!")
+            
+    def plot_pi_sig(self, frame, betas_feat='pos', smooth=True, **kwargs):
+        """
+
+        Parameters
+        ----------
+        frame : TYPE
+            DESCRIPTION.
+        betas_feat : TYPE, optional
+            DESCRIPTION. The default is 'pos'.
+        smooth : TYPE, optional
+            DESCRIPTION. The default is True.
+        **kwargs : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        None.
+
+        """
+        
+        #check that frame lies within indices...
+        
+        #check that indices is well defined...
+        
+        
+        if smooth:
+            plt.imshow(filters.gaussian(self.video[frame], sigma=self.sigma_, preserve_range=True), cmap='gray')
+        else:
+            plt.imshow(self.video[frame], cmap='gray')
+        nr, nc = self.video[frame].shape
+        
+        try:
+            xy_hi = self.diags_alt_[frame][:, [0,1]][self.alts[frame-self.indices.start] == 1]
+            xy_lo = self.diags_alt_[frame][:, [0,1]][self.alts[frame-self.indices.start] == 0.5]
+        except NameError:
+            print("Make sure to run get_pers_im and proc_pers_im first!")
+        
+        if betas_feat == 'pos':
+            plt.scatter(xy_hi[:,0], xy_hi[:,1], color='yellow', **kwargs)
+        elif betas_feat == 'neg':
+            plt.scatter(xy_lo[:,0], xy_lo[:,1], color='red', **kwargs)
+        elif betas_feat == 'both':
+            plt.scatter(xy_hi[:,0], xy_hi[:,1], color='yellow', **kwargs)
+            plt.scatter(xy_lo[:,0], xy_lo[:,1], color='red', **kwargs)
+        
+        # What does this do???
+        if frame <= 9:
+            plt.annotate(str(frame+1), (0.90*nc, 0.95*nr), color='white', size=20, family="Nunito", weight="heavy")
+        elif frame <= 99:
+            plt.annotate(str(frame+1), (0.85*nc, 0.95*nr), color='white', size=20, family="Nunito", weight="heavy")
+        elif frame <= 999:
+            plt.annotate(str(frame+1), (0.80*nc, 0.95*nr), color='white', size=20, family="Nunito", weight="heavy")
+        elif frame <= 9999:
+            plt.annotate(str(frame+1), (0.75*nc, 0.95*nr), color='white', size=20, family="Nunito", weight="heavy")
+        else:
+            pass
+        
+        plt.axis("off")
 
 class ImageSeriesPickle(ImageSeries):
     """

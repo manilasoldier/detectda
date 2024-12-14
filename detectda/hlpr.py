@@ -157,17 +157,19 @@ def calc_close(pd, diffs, prox_arr, val=1):
         List of all generators in the persistence diagram pd that lie in the Voronoi cell of 
         one of the elements of prox_arr. This is indicated with a non-zero entry in proxs.
     """
-    proxs = []
-    #Takes a pd with 
-    for gen in pd:
-        prox = 0
-        for loc in prox_arr:
-            #calculate whether or not a given point belongs to the voronoi cell 
-            nv = max(abs(gen[1]-gen[0]-loc[1])/diffs[0], abs(gen[0]-loc[0])/diffs[1])
-            #print(nv)
-            if nv <= 1/2: 
-                prox = val
-        proxs += [prox]
+    if len(prox_arr) == 0:
+        proxs = list(np.zeros(len(pd), dtype=np.int16))
+    else:
+        proxs = []
+        for gen in pd:
+            prox = 0
+            for loc in prox_arr:
+                #calculate whether or not a given point belongs to the voronoi cell 
+                nv = max(abs(gen[3]-gen[2]-loc[1])/diffs[0], abs(gen[2]-loc[0])/diffs[1])
+                #print(nv)
+                if nv <= 1/2: 
+                    prox = val
+            proxs += [prox]
     return proxs
 
 def get_cc(point, bin_im):
