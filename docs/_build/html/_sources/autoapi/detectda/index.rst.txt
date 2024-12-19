@@ -1,26 +1,23 @@
-:py:mod:`detectda`
-==================
+detectda
+========
 
 .. py:module:: detectda
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   hlpr/index.rst
-   hypo/index.rst
-   idpo/index.rst
-   imgs/index.rst
+   /autoapi/detectda/hlpr/index
+   /autoapi/detectda/hypo/index
+   /autoapi/detectda/idpo/index
+   /autoapi/detectda/imgs/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -30,20 +27,13 @@ Classes
    detectda.VacuumSeries
 
 
-
-
-Attributes
-~~~~~~~~~~
-
-.. autoapisummary::
-
-   detectda.__version__
-
+Package Contents
+----------------
 
 .. py:class:: ImageSeries(video, polygon=None, div=1, n_jobs=None)
 
-
    Bases: :py:obj:`VidPol`
+
 
    Reads in an image series (video), either a single or multiple frames.
 
@@ -63,6 +53,7 @@ Attributes
                   processors.
    :type n_jobs: int or None, optional, default is ``None``
 
+
    .. py:method:: alps_plot(frames)
 
       Returns the ALPS plots of up to 4 images in the video taken by ImageSeries.
@@ -76,6 +67,7 @@ Attributes
       :rtype: None.
 
 
+
    .. py:method:: fit(sigma=None, max_death_pixel_int=True, print_time=True)
 
       Fit method for ImageSeries object.
@@ -87,9 +79,11 @@ Attributes
       or the largest finite death time (within an image).
 
 
+
    .. py:method:: get_alps()
 
       Get ALPS statistic of each image frame from fitted object.
+
 
 
    .. py:method:: get_degp_totp(p=1, inf=False)
@@ -97,10 +91,12 @@ Attributes
       Get degree-p total persistence of each image frame from fitted object.
 
 
+
    .. py:method:: get_pers_entr(neg=True)
 
       Get persistent entropy of each image frame from fitted object. For hypothesis testing
       purposes, the default is negative of the entropy
+
 
 
    .. py:method:: plot_im(frame, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs)
@@ -111,16 +107,16 @@ Attributes
 
 .. py:class:: ImageSeriesPickle(file_path, div=1, n_jobs=None)
 
-
    Bases: :py:obj:`ImageSeries`
+
 
    Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.
 
 
 .. py:class:: ImageSeriesPlus(video, polygon=None, div=1, n_jobs=None, im_list=False)
 
-
    Bases: :py:obj:`VidPol`
+
 
    Reads in an image series (video), either a single or multiple frames.
 
@@ -143,11 +139,13 @@ Attributes
    :param im_list: Bool indicating whether or not a list of numpy arrays is given (True) rather than a 3d numpy array.
    :type im_list: bool, defautl is ``False``
 
+
    .. py:method:: convert_to_df()
 
-      Creates pandas DataFrames (self.dfs\_) from persistence information calculated from detectda algorithm.
+      Creates pandas DataFrames (self.dfs) from persistence information calculated from detectda algorithm.
 
       :rtype: None.
+
 
 
    .. py:method:: fit(sigma=None, print_time=True, verbose=0)
@@ -157,6 +155,7 @@ Attributes
       Optional Gaussian smoothing with sigma parameter.
 
 
+
    .. py:method:: get_lifetimes()
 
       Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.
@@ -164,11 +163,13 @@ Attributes
       :rtype: None.
 
 
+
    .. py:method:: get_midlife_coords()
 
       Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.
 
       :rtype: None.
+
 
 
    .. py:method:: get_pers_im(bts, lts, dim, bandwidth=1)
@@ -189,11 +190,13 @@ Attributes
       :rtype: None.
 
 
+
    .. py:method:: get_pers_mag()
 
       Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.
 
       :rtype: None.
+
 
 
    .. py:method:: get_pers_stats()
@@ -202,9 +205,8 @@ Attributes
           persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.
 
 
-   .. py:method:: pd_threshold(minv, maxv, dim='both', num=50)
 
-      #8/20/24 add in ability to only accept certain frames...
+   .. py:method:: pd_threshold(minv, maxv, dim='both', num=50)
 
       :param minv: Minimum threshold to consider.
       :type minv: float
@@ -220,22 +222,56 @@ Attributes
       :rtype: list of ndarray.
 
 
+
    .. py:method:: plot_im(frame, dim=0, plot_poly=True, plot_pts=True, smooth=True, thr=None, **kwargs)
 
       Plot an individual frame in the video, with or without the polygonal region superimposed
 
 
 
-.. py:class:: VacuumSeries(vacuum_video, observed_ImageSeries, parametric=True, div=1, n_jobs=None)
+   .. py:method:: plot_pi_sig(frame, betas_feat='pos', smooth=True, **kwargs)
 
+      :param frame: Frame which you would like to plot. Should lie in self.indices.
+      :type frame: int
+      :param betas_feat: Whether to plot positive, negative betas, or both.
+                         The default is 'pos'.
+      :type betas_feat: str, optional
+      :param smooth: Whether or not to smooth the image. The default is True.
+      :type smooth: bool, optional
+      :param \*\*kwargs: Additional parameters for plotting.
+      :type \*\*kwargs: dict
+
+      :rtype: None.
+
+
+
+   .. py:method:: proc_pers_im(betas, quantiles, indices)
+
+      :param betas: Simulated values of beta, such as those contained in self.post_beta
+                    after running fit and transform methods in bclr class.
+      :type betas: array-like of shape (n_samples, n_features)
+      :param quantiles: Quantiles which must be greater (resp. less) than 0
+                        for positive and negative coefficients.
+      :type quantiles: array-like of shape (2,)
+      :param indices: Which frames to consider for processing.
+      :type indices: array-like of shape (n_indices,)
+
+      :rtype: None.
+
+
+
+.. py:class:: VacuumSeries(vacuum_video, observed_ImageSeries, parametric=True, div=1, n_jobs=None)
 
    Bases: :py:obj:`detectda.imgs.ImageSeries`
 
+
    Functionality to generate vacuum region videos for multiple hypothesis testing.
+
 
    .. py:method:: adjust_alpha(alpha, conservative=True)
 
       Adjust p-values based on a different alpha value.
+
 
 
 
@@ -246,9 +282,11 @@ Attributes
       Else, it fits the empirical probability mass function.
 
 
+
    .. py:method:: gen_images(n)
 
       Generate and return a random image according to estimated null distribution
+
 
 
    .. py:method:: kolm_dist()
@@ -259,15 +297,16 @@ Attributes
       Uses the DKW inequality with the tight constant = 2 for Poisson testing.
 
 
+
    .. py:method:: plot_hypo()
 
       Plots hypothesis testing sequence.
 
 
+
    .. py:method:: transform(n, func='pers_entr', seed=0, alpha=0.05, conservative=True)
 
       Collects p-values and rejections for based off n Monte Carlo simulations...
-
 
 
 

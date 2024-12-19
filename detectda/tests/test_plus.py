@@ -2,13 +2,16 @@ from ..imgs import ImageSeriesPlus
 import numpy as np
 import pytest
 from math import e, atan, pi
+from shapely import Polygon
+from skimage import filters
+
 
 sim_im = np.load("test_imgs_plus.npy")
 
 dtda_sim = ImageSeriesPlus(sim_im)
 dtda_sim.fit(sigma=2)
 dtda_sim.convert_to_df()
-dtda_df = dtda_sim.dfs_[0]
+dtda_df = dtda_sim.dfs[0]
 
 ll1 = dtda_df[dtda_df['hom_dim']==1].iloc[-1]
 assert ll1['x_coord'] == 70 and ll1['y_coord'] == 40
@@ -49,3 +52,16 @@ for y in dtda_test.lifet_bd:
         true_pi = np.append(true_pi, px(arr, x, y))
 
 np.testing.assert_almost_equal(dtda_test.pis[0], true_pi, 12)
+
+test_poly2 = Polygon([[1, 20], [10, 20], [10, 30], [1, 30]])
+test_im2 = np.full((51, 51), 1)
+test_im2[25,5] = 0 
+test_im2[25,6] = 0
+test_im2[25,45] = 0.5
+test_im2 = np.round(filters.gaussian(test_im2,1, preserve_range=True),1)
+test_im2[25,6] = 0.8
+
+test_dtda2 = ImageSeriesPlus(test_im2, test_poly2)
+test_dtda2.fit(sigma=0)
+test_dtda2.plot_im(0)
+

@@ -1,21 +1,19 @@
-:py:mod:`detectda.idpo`
-=======================
+detectda.idpo
+=============
 
 .. py:module:: detectda.idpo
 
 
-Module Contents
----------------
-
-
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
    detectda.idpo.identify_polygon
 
 
+Module Contents
+---------------
 
 .. py:function:: identify_polygon()
 

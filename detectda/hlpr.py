@@ -75,7 +75,7 @@ def std_video(video, flip=False):
     return (-1)**(flip)*(video-v_means)/(v_stds)
 
 def degp_totp(arr, p=1, inf=False):
-    """
+    r"""
     Calculate degree-p total persistence from array of lifetimes.
     
     Parameters
@@ -83,7 +83,7 @@ def degp_totp(arr, p=1, inf=False):
     arr: array_like
         Should be an array of persistence lifetimes, with nonnegative entries
     p : double, optional
-        Exponent for degree p total lifetime. The default is 1.
+        Exponent for degree-p total lifetime. The default is 1.
     inf : bool, optional
         Whether or not to calculate infinity norm. The default is False.
 

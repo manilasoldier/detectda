@@ -259,7 +259,6 @@ class ImageSeriesPlus(VidPol):
         
     def pd_threshold(self, minv, maxv, dim="both", num=50):
         """
-        #8/20/24 add in ability to only accept certain frames...
         
         Parameters
         ----------
@@ -297,7 +296,7 @@ class ImageSeriesPlus(VidPol):
         
     def convert_to_df(self):
         """
-        Creates pandas DataFrames (self.dfs\_) from persistence information calculated from detectda algorithm.
+        Creates pandas DataFrames (self.dfs) from persistence information calculated from detectda algorithm.
 
         Returns
         -------
@@ -306,7 +305,7 @@ class ImageSeriesPlus(VidPol):
         """
         check_is_fitted(self)
         col_names = ["x_coord", "y_coord", "hom_dim", "birth", "death", "in_poly"]
-        self.dfs_ = [pd.DataFrame(x, columns=col_names) for x in self.diags_]
+        self.dfs = [pd.DataFrame(x, columns=col_names) for x in self.diags_]
     
     def get_lifetimes(self):
         """
@@ -450,6 +449,9 @@ class ImageSeriesPlus(VidPol):
         if thr==None:
             pass
         else:
+            if not hasattr(self, 'lifetimes'):
+                self.get_lifetimes()
+            
             over_thr = (self.lifetimes[dim][frame] > thr) #just right over the threshold, not as a proportion...
             which_plt = np.logical_and(over_thr, which_plt)
             
@@ -483,13 +485,14 @@ class ImageSeriesPlus(VidPol):
 
         Parameters
         ----------
-        betas : TYPE
-            DESCRIPTION.
-        quantiles : TYPE
-            DESCRIPTION.
-        indices : TYPE
-            DESCRIPTION.
-
+        betas : array-like of shape (n_samples, n_features)
+            Simulated values of beta, such as those contained in self.post_beta 
+            after running fit and transform methods in bclr class. 
+        quantiles : array-like of shape (2,)
+            Quantiles which must be greater (resp. less) than 0
+            for positive and negative coefficients.
+        indices : array-like of shape (n_indices,)
+            Which frames to consider for processing. 
         Returns
         -------
         None.
@@ -518,14 +521,15 @@ class ImageSeriesPlus(VidPol):
 
         Parameters
         ----------
-        frame : TYPE
-            DESCRIPTION.
-        betas_feat : TYPE, optional
-            DESCRIPTION. The default is 'pos'.
-        smooth : TYPE, optional
-            DESCRIPTION. The default is True.
-        **kwargs : TYPE
-            DESCRIPTION.
+        frame : int
+            Frame which you would like to plot. Should lie in self.indices.
+        betas_feat : str, optional
+            Whether to plot positive, negative betas, or both. 
+            The default is 'pos'.
+        smooth : bool, optional
+            Whether or not to smooth the image. The default is True.
+        **kwargs : dict
+            Additional parameters for plotting.
 
         Returns
         -------
@@ -533,11 +537,11 @@ class ImageSeriesPlus(VidPol):
 
         """
         
-        #check that frame lies within indices...
-        
-        #check that indices is well defined...
-        
-        
+        if not hasattr(self, 'indices'):
+            raise AttributeError("Run proc_pers_im first.")
+        elif frame not in self.indices:
+            raise ValueError("Frame does not lie within set of indices for which persistence images have been processed.")
+
         if smooth:
             plt.imshow(filters.gaussian(self.video[frame], sigma=self.sigma_, preserve_range=True), cmap='gray')
         else:
@@ -558,7 +562,7 @@ class ImageSeriesPlus(VidPol):
             plt.scatter(xy_hi[:,0], xy_hi[:,1], color='yellow', **kwargs)
             plt.scatter(xy_lo[:,0], xy_lo[:,1], color='red', **kwargs)
         
-        # What does this do???
+        # Plots frame number on the image appropriately.
         if frame <= 9:
             plt.annotate(str(frame+1), (0.90*nc, 0.95*nr), color='white', size=20, family="Nunito", weight="heavy")
         elif frame <= 99:

@@ -1,19 +1,21 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.hlpr &mdash; detecTDA 0.5.3 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>detectda.hlpr &mdash; detecTDA 0.5.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=08553120"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e1a677a5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -79,7 +81,9 @@
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">filters</span>
 
-<div class="viewcode-block" id="pg0"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pg0">[docs]</a><span class="k">def</span> <span class="nf">pg0</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<div class="viewcode-block" id="pg0">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pg0">[docs]</a>
+<span class="k">def</span> <span class="nf">pg0</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the proportion of the entire array which is at least as much as the first element.</span>
 <span class="sd">    </span>
@@ -100,7 +104,10 @@
         
     <span class="k">return</span> <span class="n">prop</span></div>
 
-<div class="viewcode-block" id="getxy_col"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.getxy_col">[docs]</a><span class="k">def</span> <span class="nf">getxy_col</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">nrows</span><span class="p">):</span>
+
+<div class="viewcode-block" id="getxy_col">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.getxy_col">[docs]</a>
+<span class="k">def</span> <span class="nf">getxy_col</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">nrows</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns (x,y) image coordinates from column-major representation</span>
 
@@ -124,9 +131,12 @@
     <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span> <span class="o">%</span> <span class="n">nrows</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">arr</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">nrows</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>
+
         
 
-<div class="viewcode-block" id="std_video"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.std_video">[docs]</a><span class="k">def</span> <span class="nf">std_video</span><span class="p">(</span><span class="n">video</span><span class="p">,</span> <span class="n">flip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="std_video">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.std_video">[docs]</a>
+<span class="k">def</span> <span class="nf">std_video</span><span class="p">(</span><span class="n">video</span><span class="p">,</span> <span class="n">flip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a video where each frame is standardized to have mean 0 pixel intensity with </span>
 <span class="sd">    standard deviation 1.</span>
@@ -150,8 +160,11 @@
     <span class="n">v_stds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">v_std</span><span class="p">,</span> <span class="p">(</span><span class="n">video</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">video</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">1</span><span class="p">)),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
     <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">flip</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">video</span><span class="o">-</span><span class="n">v_means</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">v_stds</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="degp_totp"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.degp_totp">[docs]</a><span class="k">def</span> <span class="nf">degp_totp</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="degp_totp">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.degp_totp">[docs]</a>
+<span class="k">def</span> <span class="nf">degp_totp</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate degree-p total persistence from array of lifetimes.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -159,7 +172,7 @@
 <span class="sd">    arr: array_like</span>
 <span class="sd">        Should be an array of persistence lifetimes, with nonnegative entries</span>
 <span class="sd">    p : double, optional</span>
-<span class="sd">        Exponent for degree p total lifetime. The default is 1.</span>
+<span class="sd">        Exponent for degree-p total lifetime. The default is 1.</span>
 <span class="sd">    inf : bool, optional</span>
 <span class="sd">        Whether or not to calculate infinity norm. The default is False.</span>
 
@@ -188,8 +201,11 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span> 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span><span class="o">**</span><span class="n">p</span><span class="p">)</span></div>
+
     
-<div class="viewcode-block" id="weight_func"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.weight_func">[docs]</a><span class="k">def</span> <span class="nf">weight_func</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<div class="viewcode-block" id="weight_func">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.weight_func">[docs]</a>
+<span class="k">def</span> <span class="nf">weight_func</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Weight function for persistence image using defaults from Obayashi, Hiraoka, and Kimura (2018).</span>
 
@@ -208,8 +224,11 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]))</span>
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span></div>
+
     
-<div class="viewcode-block" id="calc_close"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.calc_close">[docs]</a><span class="k">def</span> <span class="nf">calc_close</span><span class="p">(</span><span class="n">pd</span><span class="p">,</span> <span class="n">diffs</span><span class="p">,</span> <span class="n">prox_arr</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="calc_close">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.calc_close">[docs]</a>
+<span class="k">def</span> <span class="nf">calc_close</span><span class="p">(</span><span class="n">pd</span><span class="p">,</span> <span class="n">diffs</span><span class="p">,</span> <span class="n">prox_arr</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculates the nearest point in the persistence diagram </span>
 
@@ -233,20 +252,25 @@
 <span class="sd">        List of all generators in the persistence diagram pd that lie in the Voronoi cell of </span>
 <span class="sd">        one of the elements of prox_arr. This is indicated with a non-zero entry in proxs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">proxs</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c1">#Takes a pd with </span>
-    <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="n">pd</span><span class="p">:</span>
-        <span class="n">prox</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">prox_arr</span><span class="p">:</span>
-            <span class="c1">#calculate whether or not a given point belongs to the voronoi cell </span>
-            <span class="n">nv</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">gen</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">gen</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">diffs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">gen</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">diffs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="c1">#print(nv)</span>
-            <span class="k">if</span> <span class="n">nv</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span> 
-                <span class="n">prox</span> <span class="o">=</span> <span class="n">val</span>
-        <span class="n">proxs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">prox</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prox_arr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">proxs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pd</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">proxs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="n">pd</span><span class="p">:</span>
+            <span class="n">prox</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">prox_arr</span><span class="p">:</span>
+                <span class="c1">#calculate whether or not a given point belongs to the voronoi cell </span>
+                <span class="n">nv</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">gen</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">gen</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">diffs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">gen</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">diffs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="c1">#print(nv)</span>
+                <span class="k">if</span> <span class="n">nv</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span> 
+                    <span class="n">prox</span> <span class="o">=</span> <span class="n">val</span>
+            <span class="n">proxs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">prox</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">proxs</span></div>
 
-<div class="viewcode-block" id="get_cc"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.get_cc">[docs]</a><span class="k">def</span> <span class="nf">get_cc</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">bin_im</span><span class="p">):</span>
+
+<div class="viewcode-block" id="get_cc">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.get_cc">[docs]</a>
+<span class="k">def</span> <span class="nf">get_cc</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">bin_im</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets the connected component in the image bin_im containing the element &quot;point&quot;.</span>
 <span class="sd">    </span>
@@ -285,7 +309,10 @@
         <span class="n">check_cc</span> <span class="o">=</span> <span class="n">check_cc2</span>
     <span class="k">return</span> <span class="n">cc</span></div>
 
-<div class="viewcode-block" id="get_be"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.get_be">[docs]</a><span class="k">def</span> <span class="nf">get_be</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+
+<div class="viewcode-block" id="get_be">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.get_be">[docs]</a>
+<span class="k">def</span> <span class="nf">get_be</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets beginnings and ends of `True` sequences in Boolean arrays.</span>
 <span class="sd">    </span>
@@ -317,8 +344,11 @@
             <span class="n">ends</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">begins</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ends</span><span class="p">))</span></div>
+
     
-<div class="viewcode-block" id="calc_reject"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.calc_reject">[docs]</a><span class="k">def</span> <span class="nf">calc_reject</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val_arr</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="calc_reject">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.calc_reject">[docs]</a>
+<span class="k">def</span> <span class="nf">calc_reject</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val_arr</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns dictionary of index array, boolean array, rejection threshold index </span>
 <span class="sd">    array of indices of hypotheses that are rejected via BH procedure, and </span>
@@ -363,9 +393,12 @@
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">:</span> <span class="p">[],</span> 
                 <span class="s2">&quot;reject_bool&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)),</span>
                 <span class="s2">&quot;reject_thr_ind&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span></div>
+
         
     
-<div class="viewcode-block" id="block_sum"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.block_sum">[docs]</a><span class="k">def</span> <span class="nf">block_sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="block_sum">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.block_sum">[docs]</a>
+<span class="k">def</span> <span class="nf">block_sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sums adjacent blocks of m frames.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -374,7 +407,10 @@
     <span class="n">block_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">m</span><span class="p">:(</span><span class="n">i</span><span class="o">*</span><span class="n">m</span><span class="o">+</span><span class="n">m</span><span class="p">)]</span><span class="o">/</span><span class="n">div</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ran</span><span class="p">)])</span>
     <span class="k">return</span> <span class="n">block_arr</span></div>
 
-<div class="viewcode-block" id="alps"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.alps">[docs]</a><span class="k">def</span> <span class="nf">alps</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+
+<div class="viewcode-block" id="alps">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.alps">[docs]</a>
+<span class="k">def</span> <span class="nf">alps</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
 <span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the ALPS statistic of an array of values, not all zero.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -388,7 +424,10 @@
 
 	<span class="k">return</span> <span class="n">integral</span></div>
 
-<div class="viewcode-block" id="pers_entr"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pers_entr">[docs]</a><span class="k">def</span> <span class="nf">pers_entr</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">neg</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<div class="viewcode-block" id="pers_entr">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pers_entr">[docs]</a>
+<span class="k">def</span> <span class="nf">pers_entr</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">neg</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets persistence (shannon) entropy of an array of values, not all zero.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -402,7 +441,10 @@
 
 	<span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Lmod</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Lmod</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="pd_thresh_calc"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pd_thresh_calc">[docs]</a><span class="k">def</span> <span class="nf">pd_thresh_calc</span><span class="p">(</span><span class="n">diag</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+
+<div class="viewcode-block" id="pd_thresh_calc">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.pd_thresh_calc">[docs]</a>
+<span class="k">def</span> <span class="nf">pd_thresh_calc</span><span class="p">(</span><span class="n">diag</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculates best persistence preserving threshold as described in Chung and Day (2018).</span>
 
@@ -466,7 +508,10 @@
     
     <span class="k">return</span> <span class="n">thrs</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Phi_t</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="persmoo"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.persmoo">[docs]</a><span class="k">def</span> <span class="nf">persmoo</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">polygon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="persmoo">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.persmoo">[docs]</a>
+<span class="k">def</span> <span class="nf">persmoo</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">polygon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Smooths, then fits 0 and 1-dimensional cubical persistence on an image. Returns other important information as well.</span>
 <span class="sd">    </span>
@@ -543,7 +588,10 @@
     <span class="n">cu_tot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">cu_pos</span><span class="p">,</span> <span class="n">cu_pers</span><span class="p">,</span> <span class="n">cu_ex_inpoly</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">cu_tot</span></div>
 
-<div class="viewcode-block" id="fitsmoo"><a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.fitsmoo">[docs]</a><span class="k">def</span> <span class="nf">fitsmoo</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">polygon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_death_pixel_int</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>        
+
+<div class="viewcode-block" id="fitsmoo">
+<a class="viewcode-back" href="../../autoapi/detectda/hlpr/index.html#detectda.hlpr.fitsmoo">[docs]</a>
+<span class="k">def</span> <span class="nf">fitsmoo</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">polygon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_death_pixel_int</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>        
 <span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">	Smooths, then fits 0-dimensional cubical persistence on an image. </span>
 <span class="sd">	Returns information on:</span>
@@ -587,6 +635,7 @@
 
 	<span class="n">cu_totpers</span> <span class="o">=</span> <span class="n">cu_pers</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">cu_pers</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
 	<span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">cu_pos</span><span class="p">,</span> <span class="n">cu_totpers</span><span class="p">,</span> <span class="n">cu_ex_inpoly</span><span class="p">]</span></div>
+
 </pre></div>
 
            </div>

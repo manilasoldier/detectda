@@ -1,20 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda &mdash; detecTDA 0.5.3 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>detectda &mdash; detecTDA 0.5.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=08553120"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e1a677a5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -50,17 +53,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../../detectda_demo.html#hypothesis-testing">Hypothesis testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../detectda_demo.html#plot-the-test-results">Plot the test results</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda</span></code></a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">detectda</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="hlpr/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.hlpr</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="hypo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.hypo</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="idpo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.idpo</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="imgs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.imgs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hlpr/index.html">detectda.hlpr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hypo/index.html">detectda.hypo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="idpo/index.html">detectda.idpo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imgs/index.html">detectda.imgs</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detectda.ImageSeries"><code class="docutils literal notranslate"><span class="pre">ImageSeries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detectda.ImageSeriesPickle"><code class="docutils literal notranslate"><span class="pre">ImageSeriesPickle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detectda.ImageSeriesPlus"><code class="docutils literal notranslate"><span class="pre">ImageSeriesPlus</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detectda.VacuumSeries"><code class="docutils literal notranslate"><span class="pre">VacuumSeries</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -84,7 +90,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">API Reference</a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda</span></code></li>
+      <li class="breadcrumb-item active">detectda</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/autoapi/detectda/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -95,22 +101,20 @@
            <div itemprop="articleBody">
              
   <section id="module-detectda">
-<span id="detectda"></span><h1><a class="reference internal" href="#module-detectda" title="detectda"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda</span></code></a><a class="headerlink" href="#module-detectda" title="Permalink to this heading"></a></h1>
+<span id="detectda"></span><h1>detectda<a class="headerlink" href="#module-detectda" title="Link to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="hlpr/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.hlpr</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="hypo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.hypo</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="idpo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.idpo</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="imgs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.imgs</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="hlpr/index.html">detectda.hlpr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypo/index.html">detectda.hypo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="idpo/index.html">detectda.idpo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imgs/index.html">detectda.imgs</a></li>
 </ul>
 </div>
 </section>
-<section id="package-contents">
-<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
 <section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#detectda.ImageSeries" title="detectda.ImageSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSeries</span></code></a></p></td>
@@ -128,18 +132,11 @@
 </tbody>
 </table>
 </section>
-<section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__version__</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="detectda.ImageSeries">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.</span></span><span class="sig-name descname"><span class="pre">ImageSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.</span></span><span class="sig-name descname"><span class="pre">ImageSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">VidPol</span></code></p>
 <p>Reads in an image series (video), either a single or multiple frames.</p>
 <p>May optionally specify polygonally region, held constant across frames,
@@ -160,7 +157,7 @@ processors.</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeries.alps_plot">
-<span class="sig-name descname"><span class="pre">alps_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.alps_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.alps_plot" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">alps_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.alps_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.alps_plot" title="Link to this definition"></a></dt>
 <dd><p>Returns the ALPS plots of up to 4 images in the video taken by ImageSeries.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -180,7 +177,7 @@ processors.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeries.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_death_pixel_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.fit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_death_pixel_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.fit" title="Link to this definition"></a></dt>
 <dd><p>Fit method for ImageSeries object.</p>
 <p>Optional Gaussian smoothing with sigma parameter.</p>
 <p>The argument max_death_pixel_int controls whether or not
@@ -190,26 +187,26 @@ or the largest finite death time (within an image).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeries.get_alps">
-<span class="sig-name descname"><span class="pre">get_alps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.get_alps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.get_alps" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_alps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.get_alps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.get_alps" title="Link to this definition"></a></dt>
 <dd><p>Get ALPS statistic of each image frame from fitted object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeries.get_degp_totp">
-<span class="sig-name descname"><span class="pre">get_degp_totp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.get_degp_totp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.get_degp_totp" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_degp_totp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.get_degp_totp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.get_degp_totp" title="Link to this definition"></a></dt>
 <dd><p>Get degree-p total persistence of each image frame from fitted object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeries.get_pers_entr">
-<span class="sig-name descname"><span class="pre">get_pers_entr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.get_pers_entr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.get_pers_entr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_pers_entr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.get_pers_entr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.get_pers_entr" title="Link to this definition"></a></dt>
 <dd><p>Get persistent entropy of each image frame from fitted object. For hypothesis testing
 purposes, the default is negative of the entropy</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeries.plot_im">
-<span class="sig-name descname"><span class="pre">plot_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.plot_im"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.plot_im" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeries.plot_im"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeries.plot_im" title="Link to this definition"></a></dt>
 <dd><p>Plot an individual frame in the video, with or without the polygonal region superimposed</p>
 </dd></dl>
 
@@ -217,14 +214,14 @@ purposes, the default is negative of the entropy</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPickle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.</span></span><span class="sig-name descname"><span class="pre">ImageSeriesPickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPickle" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.</span></span><span class="sig-name descname"><span class="pre">ImageSeriesPickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPickle" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#detectda.ImageSeries" title="detectda.ImageSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageSeries</span></code></a></p>
 <p>Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.</span></span><span class="sig-name descname"><span class="pre">ImageSeriesPlus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.</span></span><span class="sig-name descname"><span class="pre">ImageSeriesPlus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">VidPol</span></code></p>
 <p>Reads in an image series (video), either a single or multiple frames.</p>
 <p>May optionally specify polygonal region, held constant across frames,
@@ -247,8 +244,8 @@ processors.</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.convert_to_df">
-<span class="sig-name descname"><span class="pre">convert_to_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.convert_to_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.convert_to_df" title="Permalink to this definition"></a></dt>
-<dd><p>Creates pandas DataFrames (self.dfs_) from persistence information calculated from detectda algorithm.</p>
+<span class="sig-name descname"><span class="pre">convert_to_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.convert_to_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.convert_to_df" title="Link to this definition"></a></dt>
+<dd><p>Creates pandas DataFrames (self.dfs) from persistence information calculated from detectda algorithm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None.</p>
@@ -258,14 +255,14 @@ processors.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.fit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.fit" title="Link to this definition"></a></dt>
 <dd><p>Fit method for ImageSeriesPlus object.</p>
 <p>Optional Gaussian smoothing with sigma parameter.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.get_lifetimes">
-<span class="sig-name descname"><span class="pre">get_lifetimes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_lifetimes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_lifetimes" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_lifetimes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_lifetimes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_lifetimes" title="Link to this definition"></a></dt>
 <dd><p>Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -276,7 +273,7 @@ processors.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.get_midlife_coords">
-<span class="sig-name descname"><span class="pre">get_midlife_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_midlife_coords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_midlife_coords" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_midlife_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_midlife_coords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_midlife_coords" title="Link to this definition"></a></dt>
 <dd><p>Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -287,7 +284,7 @@ processors.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.get_pers_im">
-<span class="sig-name descname"><span class="pre">get_pers_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_im"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_pers_im" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_pers_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_im"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_pers_im" title="Link to this definition"></a></dt>
 <dd><p>Create persistence images from cubical persistent homology for each image in the detectda object,
 for homology dimension dim. The resulting dimension of the persistence image vectorizations is bts x lts.</p>
 <dl class="field-list simple">
@@ -307,7 +304,7 @@ for homology dimension dim. The resulting dimension of the persistence image vec
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.get_pers_mag">
-<span class="sig-name descname"><span class="pre">get_pers_mag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_mag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_pers_mag" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_pers_mag</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_mag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_pers_mag" title="Link to this definition"></a></dt>
 <dd><p>Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -318,7 +315,7 @@ for homology dimension dim. The resulting dimension of the persistence image vec
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.get_pers_stats">
-<span class="sig-name descname"><span class="pre">get_pers_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_pers_stats" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_pers_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.get_pers_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.get_pers_stats" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>Get persistence statistics for each image, according to <cite>Topological approaches to skin disease analysis</cite>, along with</dt><dd><p>persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.</p>
 </dd>
@@ -327,9 +324,8 @@ for homology dimension dim. The resulting dimension of the persistence image vec
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.pd_threshold">
-<span class="sig-name descname"><span class="pre">pd_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.pd_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.pd_threshold" title="Permalink to this definition"></a></dt>
-<dd><p>#8/20/24 add in ability to only accept certain frames…</p>
-<dl class="field-list simple">
+<span class="sig-name descname"><span class="pre">pd_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.pd_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.pd_threshold" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>minv</strong> (<em>float</em>) – Minimum threshold to consider.</p></li>
@@ -352,39 +348,77 @@ The default is “both”, corresponding to both dimensions 0 and 1.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.ImageSeriesPlus.plot_im">
-<span class="sig-name descname"><span class="pre">plot_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.plot_im"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.plot_im" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.plot_im"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.plot_im" title="Link to this definition"></a></dt>
 <dd><p>Plot an individual frame in the video, with or without the polygonal region superimposed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="detectda.ImageSeriesPlus.plot_pi_sig">
+<span class="sig-name descname"><span class="pre">plot_pi_sig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">betas_feat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pos'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.plot_pi_sig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.plot_pi_sig" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame</strong> (<em>int</em>) – Frame which you would like to plot. Should lie in self.indices.</p></li>
+<li><p><strong>betas_feat</strong> (<em>str</em><em>, </em><em>optional</em>) – Whether to plot positive, negative betas, or both.
+The default is ‘pos’.</p></li>
+<li><p><strong>smooth</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether or not to smooth the image. The default is True.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional parameters for plotting.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="detectda.ImageSeriesPlus.proc_pers_im">
+<span class="sig-name descname"><span class="pre">proc_pers_im</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">betas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/imgs.html#ImageSeriesPlus.proc_pers_im"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.ImageSeriesPlus.proc_pers_im" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>betas</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Simulated values of beta, such as those contained in self.post_beta
+after running fit and transform methods in bclr class.</p></li>
+<li><p><strong>quantiles</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>2</em><em>,</em><em>)</em>) – Quantiles which must be greater (resp. less) than 0
+for positive and negative coefficients.</p></li>
+<li><p><strong>indices</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_indices</em><em>,</em><em>)</em>) – Which frames to consider for processing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="detectda.VacuumSeries">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.</span></span><span class="sig-name descname"><span class="pre">VacuumSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vacuum_video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observed_ImageSeries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.</span></span><span class="sig-name descname"><span class="pre">VacuumSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vacuum_video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observed_ImageSeries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="imgs/index.html#detectda.imgs.ImageSeries" title="detectda.imgs.ImageSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detectda.imgs.ImageSeries</span></code></a></p>
 <p>Functionality to generate vacuum region videos for multiple hypothesis testing.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.VacuumSeries.adjust_alpha">
-<span class="sig-name descname"><span class="pre">adjust_alpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.adjust_alpha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.adjust_alpha" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">adjust_alpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.adjust_alpha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.adjust_alpha" title="Link to this definition"></a></dt>
 <dd><p>Adjust p-values based on a different alpha value.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.VacuumSeries.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">convert_to_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.fit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">convert_to_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.fit" title="Link to this definition"></a></dt>
 <dd><p>Fits the Poisson mle for the vacuum region if parametric==True</p>
 <p>Else, it fits the empirical probability mass function.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.VacuumSeries.gen_images">
-<span class="sig-name descname"><span class="pre">gen_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.gen_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.gen_images" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">gen_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.gen_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.gen_images" title="Link to this definition"></a></dt>
 <dd><p>Generate and return a random image according to estimated null distribution</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.VacuumSeries.kolm_dist">
-<span class="sig-name descname"><span class="pre">kolm_dist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.kolm_dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.kolm_dist" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kolm_dist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.kolm_dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.kolm_dist" title="Link to this definition"></a></dt>
 <dd><p>Check how far the empirical distribution of vacuum values is from Poisson
 with parameter equal to mle, in terms of the Kolmogorov distance</p>
 <p>Uses the DKW inequality with the tight constant = 2 for Poisson testing.</p>
@@ -392,19 +426,18 @@ with parameter equal to mle, in terms of the Kolmogorov distance</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.VacuumSeries.plot_hypo">
-<span class="sig-name descname"><span class="pre">plot_hypo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.plot_hypo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.plot_hypo" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_hypo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.plot_hypo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.plot_hypo" title="Link to this definition"></a></dt>
 <dd><p>Plots hypothesis testing sequence.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.VacuumSeries.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pers_entr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.transform" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pers_entr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/detectda/hypo.html#VacuumSeries.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.VacuumSeries.transform" title="Link to this definition"></a></dt>
 <dd><p>Collects p-values and rejections for based off n Monte Carlo simulations…</p>
 </dd></dl>
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

@@ -1,19 +1,21 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.imgs &mdash; detecTDA 0.5.3 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>detectda.imgs &mdash; detecTDA 0.5.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=08553120"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e1a677a5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -87,14 +89,22 @@
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
-<div class="viewcode-block" id="TrivialImageError"><a class="viewcode-back" href="../../autoapi/detectda/imgs/index.html#detectda.imgs.TrivialImageError">[docs]</a><span class="k">class</span> <span class="nc">TrivialImageError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="TrivialImageError">
+<a class="viewcode-back" href="../../autoapi/detectda/imgs/index.html#detectda.imgs.TrivialImageError">[docs]</a>
+<span class="k">class</span> <span class="nc">TrivialImageError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="HomologyError"><a class="viewcode-back" href="../../autoapi/detectda/imgs/index.html#detectda.imgs.HomologyError">[docs]</a><span class="k">class</span> <span class="nc">HomologyError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+
+<div class="viewcode-block" id="HomologyError">
+<a class="viewcode-back" href="../../autoapi/detectda/imgs/index.html#detectda.imgs.HomologyError">[docs]</a>
+<span class="k">class</span> <span class="nc">HomologyError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="s2">&quot;Raised when homology for a given dimension is insufficient for calculating some quantity&quot;</span>
     <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="VidPol"><a class="viewcode-back" href="../../autoapi/detectda/imgs/index.html#detectda.imgs.VidPol">[docs]</a><span class="k">class</span> <span class="nc">VidPol</span><span class="p">:</span>
+
+<div class="viewcode-block" id="VidPol">
+<a class="viewcode-back" href="../../autoapi/detectda/imgs/index.html#detectda.imgs.VidPol">[docs]</a>
+<span class="k">class</span> <span class="nc">VidPol</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Superclass for ImageSeries and ImageSeriesPlus classes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -118,9 +128,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">polygon</span> <span class="o">=</span> <span class="n">polygon</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">div</span> <span class="o">=</span> <span class="n">div</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span></div>
+
            
 
-<div class="viewcode-block" id="ImageSeries"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries">[docs]</a><span class="k">class</span> <span class="nc">ImageSeries</span><span class="p">(</span><span class="n">VidPol</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeries">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries">[docs]</a>
+<span class="k">class</span> <span class="nc">ImageSeries</span><span class="p">(</span><span class="n">VidPol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reads in an image series (video), either a single or multiple frames. </span>
 
@@ -146,7 +159,9 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">video</span><span class="p">,</span> <span class="n">polygon</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="n">div</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">degp_totp</span> <span class="o">=</span> <span class="p">{}</span>
     
-<div class="viewcode-block" id="ImageSeries.fit"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_death_pixel_int</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">print_time</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeries.fit">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.fit">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_death_pixel_int</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">print_time</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fit method for ImageSeries object.</span>
 
@@ -167,8 +182,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma_</span><span class="o">=</span><span class="n">sigma</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_death_pixel_int_</span><span class="o">=</span><span class="n">max_death_pixel_int</span>
         <span class="k">return</span> <span class="bp">self</span></div>
+
     
-<div class="viewcode-block" id="ImageSeries.get_degp_totp"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.get_degp_totp">[docs]</a>    <span class="k">def</span> <span class="nf">get_degp_totp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeries.get_degp_totp">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.get_degp_totp">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_degp_totp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="s2">&quot;Get degree-p total persistence of each image frame from fitted object.&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">dgtp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">((</span><span class="n">_dh</span><span class="o">.</span><span class="n">degp_totp</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">),</span><span class="mi">2</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">inf</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">),</span> <span class="nb">float</span><span class="p">)</span>
@@ -177,21 +195,30 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">degp_totp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dgtp</span></div>
 
-<div class="viewcode-block" id="ImageSeries.get_pers_entr"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.get_pers_entr">[docs]</a>    <span class="k">def</span> <span class="nf">get_pers_entr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neg</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>    
+
+<div class="viewcode-block" id="ImageSeries.get_pers_entr">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.get_pers_entr">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pers_entr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neg</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>    
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get persistent entropy of each image frame from fitted object. For hypothesis testing</span>
 <span class="sd">        purposes, the default is negative of the entropy</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pers_entr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">((</span><span class="n">_dh</span><span class="o">.</span><span class="n">pers_entr</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">),</span><span class="mi">2</span><span class="p">],</span> <span class="n">neg</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">),</span> <span class="nb">float</span><span class="p">)</span></div>
+
     
-<div class="viewcode-block" id="ImageSeries.get_alps"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.get_alps">[docs]</a>    <span class="k">def</span> <span class="nf">get_alps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeries.get_alps">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.get_alps">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_alps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s2">&quot;Get ALPS statistic of each image frame from fitted object.&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">((</span><span class="n">_dh</span><span class="o">.</span><span class="n">alps</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">),</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">),</span> <span class="nb">float</span><span class="p">)</span>  </div>
+
         
         
-<div class="viewcode-block" id="ImageSeries.plot_im"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.plot_im">[docs]</a>    <span class="k">def</span> <span class="nf">plot_im</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">plot_poly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_pts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">thr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeries.plot_im">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.plot_im">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_im</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">plot_poly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_pts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">thr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot an individual frame in the video, with or without the polygonal region superimposed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -229,7 +256,10 @@
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Must set plot_poly to False if polygon not specified&quot;</span><span class="p">)</span>    </div>
 
-<div class="viewcode-block" id="ImageSeries.alps_plot"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.alps_plot">[docs]</a>    <span class="k">def</span> <span class="nf">alps_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ImageSeries.alps_plot">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeries.alps_plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">alps_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the ALPS plots of up to 4 images in the video taken by ImageSeries.</span>
 
@@ -277,9 +307,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">frame_name</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot; and &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ALPS plots: frames &quot;</span><span class="o">+</span><span class="n">frame_name</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div></div>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div>
+</div>
 
-<div class="viewcode-block" id="ImageSeriesPlus"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus">[docs]</a><span class="k">class</span> <span class="nc">ImageSeriesPlus</span><span class="p">(</span><span class="n">VidPol</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ImageSeriesPlus">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus">[docs]</a>
+<span class="k">class</span> <span class="nc">ImageSeriesPlus</span><span class="p">(</span><span class="n">VidPol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reads in an image series (video), either a single or multiple frames. </span>
 
@@ -314,7 +348,9 @@
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">video</span><span class="p">,</span> <span class="n">polygon</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="n">div</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">video</span> <span class="o">=</span> <span class="p">[</span><span class="n">im</span> <span class="k">for</span> <span class="n">im</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">video</span><span class="p">]</span>
     
-<div class="viewcode-block" id="ImageSeriesPlus.fit"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">print_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeriesPlus.fit">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.fit">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">print_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Fit method for ImageSeriesPlus object.</span>
 
@@ -332,10 +368,12 @@
             
             <span class="bp">self</span><span class="o">.</span><span class="n">sigma_</span><span class="o">=</span><span class="n">sigma</span>
             <span class="k">return</span> <span class="bp">self</span></div>
+
         
-<div class="viewcode-block" id="ImageSeriesPlus.pd_threshold"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.pd_threshold">[docs]</a>    <span class="k">def</span> <span class="nf">pd_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeriesPlus.pd_threshold">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.pd_threshold">[docs]</a>
+    <span class="k">def</span> <span class="nf">pd_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        #8/20/24 add in ability to only accept certain frames...</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -370,10 +408,13 @@
             <span class="n">ims_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">smim</span> <span class="o">&gt;</span> <span class="n">thresh</span><span class="p">))</span>
             
         <span class="k">return</span> <span class="n">ims_t</span></div>
+
         
-<div class="viewcode-block" id="ImageSeriesPlus.convert_to_df"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.convert_to_df">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeriesPlus.convert_to_df">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.convert_to_df">[docs]</a>
+    <span class="k">def</span> <span class="nf">convert_to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates pandas DataFrames (self.dfs\_) from persistence information calculated from detectda algorithm.</span>
+<span class="sd">        Creates pandas DataFrames (self.dfs) from persistence information calculated from detectda algorithm.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -382,9 +423,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x_coord&quot;</span><span class="p">,</span> <span class="s2">&quot;y_coord&quot;</span><span class="p">,</span> <span class="s2">&quot;hom_dim&quot;</span><span class="p">,</span> <span class="s2">&quot;birth&quot;</span><span class="p">,</span> <span class="s2">&quot;death&quot;</span><span class="p">,</span> <span class="s2">&quot;in_poly&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dfs_</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">]</span></div>
+
     
-<div class="viewcode-block" id="ImageSeriesPlus.get_lifetimes"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_lifetimes">[docs]</a>    <span class="k">def</span> <span class="nf">get_lifetimes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeriesPlus.get_lifetimes">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_lifetimes">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lifetimes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates persistence lifetimes (self.lifetimes) for each persistence diagram in image series.</span>
 
@@ -398,8 +442,11 @@
         <span class="n">lt0</span> <span class="o">=</span> <span class="p">[</span><span class="n">lt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">,:])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">]</span>
         <span class="n">lt1</span> <span class="o">=</span> <span class="p">[</span><span class="n">lt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">,:])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lifetimes</span> <span class="o">=</span> <span class="p">[</span><span class="n">lt0</span><span class="p">,</span> <span class="n">lt1</span><span class="p">]</span></div>
+
     
-<div class="viewcode-block" id="ImageSeriesPlus.get_midlife_coords"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_midlife_coords">[docs]</a>    <span class="k">def</span> <span class="nf">get_midlife_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeriesPlus.get_midlife_coords">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_midlife_coords">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_midlife_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates persistence midlife coordinates (self.midlife_coords) for each persistence diagram in image series.</span>
 
@@ -413,8 +460,11 @@
         <span class="n">ml0</span> <span class="o">=</span> <span class="p">[</span><span class="n">ml</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">,:])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">]</span>
         <span class="n">ml1</span> <span class="o">=</span> <span class="p">[</span><span class="n">ml</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">,:])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">midlife_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">ml0</span><span class="p">,</span> <span class="n">ml1</span><span class="p">]</span></div>
+
     
-<div class="viewcode-block" id="ImageSeriesPlus.get_pers_im"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_pers_im">[docs]</a>    <span class="k">def</span> <span class="nf">get_pers_im</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bts</span><span class="p">,</span> <span class="n">lts</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeriesPlus.get_pers_im">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_pers_im">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pers_im</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bts</span><span class="p">,</span> <span class="n">lts</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create persistence images from cubical persistent homology for each image in the detectda object,</span>
 <span class="sd">        for homology dimension dim. The resulting dimension of the persistence image vectorizations is bts x lts.</span>
@@ -454,8 +504,11 @@
         <span class="c1">#lifet_bd gives the boundaries of the birth times used in the persistence image</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lifet_bd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">PI_obj</span><span class="o">.</span><span class="n">im_range_fixed_</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">PI_obj</span><span class="o">.</span><span class="n">im_range_fixed_</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">lts</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diags_alt_</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="n">dim</span><span class="p">,</span> <span class="n">d</span><span class="p">[:,</span><span class="mi">5</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">),:][:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">]</span></div>
+
     
-<div class="viewcode-block" id="ImageSeriesPlus.get_pers_mag"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_pers_mag">[docs]</a>    <span class="k">def</span> <span class="nf">get_pers_mag</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeriesPlus.get_pers_mag">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_pers_mag">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pers_mag</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates persistence magnitudes (self.pers_mag) for each persistence diagram in image series.</span>
 
@@ -466,8 +519,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pers_mag</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[:,</span><span class="mi">3</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[:,</span><span class="mi">4</span><span class="p">])))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">]</span></div>
+
     
-<div class="viewcode-block" id="ImageSeriesPlus.get_pers_stats"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_pers_stats">[docs]</a>    <span class="k">def</span> <span class="nf">get_pers_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeriesPlus.get_pers_stats">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.get_pers_stats">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_pers_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get persistence statistics for each image, according to `Topological approaches to skin disease analysis`, along with </span>
 <span class="sd">            persistent entropy and ALPS statistics, constituting an embedding into 36-dimensional Euclidean space.</span>
@@ -508,8 +564,11 @@
         
         <span class="n">stats_df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">stats_vals</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">stats_df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span></div>
+
     
-<div class="viewcode-block" id="ImageSeriesPlus.plot_im"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.plot_im">[docs]</a>    <span class="k">def</span> <span class="nf">plot_im</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">plot_poly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_pts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">thr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageSeriesPlus.plot_im">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.plot_im">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_im</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">plot_poly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_pts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">thr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot an individual frame in the video, with or without the polygonal region superimposed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -526,7 +585,10 @@
         <span class="k">if</span> <span class="n">thr</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
             <span class="k">pass</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">over_thr</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lifetimes</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thr</span><span class="p">)</span> <span class="c1">#just right over the threshold, not as a proportion...</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;lifetimes&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">get_lifetimes</span><span class="p">()</span>
+            
+            <span class="n">over_thr</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lifetimes</span><span class="p">[</span><span class="n">dim</span><span class="p">][</span><span class="n">frame</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thr</span><span class="p">)</span> <span class="c1">#just right over the threshold, not as a proportion...</span>
             <span class="n">which_plt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">over_thr</span><span class="p">,</span> <span class="n">which_plt</span><span class="p">)</span>
             
         <span class="n">lt</span> <span class="o">=</span> <span class="n">imd</span><span class="p">[</span><span class="n">which_plt</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">-</span><span class="n">imd</span><span class="p">[</span><span class="n">which_plt</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -552,9 +614,115 @@
                 <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">polygon</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">))</span> <span class="c1">#&#39;unzip&#39; exterior coordinates of a polygon for plotting</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Must set plot_poly to False if polygon not specified&quot;</span><span class="p">)</span>  </div></div>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Must set plot_poly to False if polygon not specified&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ImageSeriesPickle"><a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPickle">[docs]</a><span class="k">class</span> <span class="nc">ImageSeriesPickle</span><span class="p">(</span><span class="n">ImageSeries</span><span class="p">):</span>
+            
+<div class="viewcode-block" id="ImageSeriesPlus.proc_pers_im">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.proc_pers_im">[docs]</a>
+    <span class="k">def</span> <span class="nf">proc_pers_im</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">betas</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        betas : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Simulated values of beta, such as those contained in self.post_beta </span>
+<span class="sd">            after running fit and transform methods in bclr class. </span>
+<span class="sd">        quantiles : array-like of shape (2,)</span>
+<span class="sd">            Quantiles which must be greater (resp. less) than 0</span>
+<span class="sd">            for positive and negative coefficients.</span>
+<span class="sd">        indices : array-like of shape (n_indices,)</span>
+<span class="sd">            Which frames to consider for processing. </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">high_pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">betas</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">low_pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">betas</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ijs_hi</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">bts</span><span class="p">,</span> <span class="n">k</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">bts</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">high_pi</span><span class="p">]</span>
+            <span class="n">ijs_low</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">bts</span><span class="p">,</span> <span class="n">k</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">bts</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">low_pi</span><span class="p">]</span>
+
+            <span class="n">lb_hi</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">lifet_bd</span><span class="p">[</span><span class="n">ij</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="bp">self</span><span class="o">.</span><span class="n">birtt_bd</span><span class="p">[</span><span class="n">ij</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">ij</span> <span class="ow">in</span> <span class="n">ijs_hi</span><span class="p">]</span>
+            <span class="n">lb_low</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">lifet_bd</span><span class="p">[</span><span class="n">ij</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="bp">self</span><span class="o">.</span><span class="n">birtt_bd</span><span class="p">[</span><span class="n">ij</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">ij</span> <span class="ow">in</span> <span class="n">ijs_low</span><span class="p">]</span>
+
+            <span class="n">lt_diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lifet_bd</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">lifet_bd</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bt_diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">birtt_bd</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">birtt_bd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alts</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">_dh</span><span class="o">.</span><span class="n">calc_close</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">lt_diff</span><span class="p">,</span> <span class="n">bt_diff</span><span class="p">],</span> <span class="n">lb_hi</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">_dh</span><span class="o">.</span><span class="n">calc_close</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">lt_diff</span><span class="p">,</span> <span class="n">bt_diff</span><span class="p">],</span> <span class="n">lb_low</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span> 
+                         <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_alt_</span><span class="p">[</span><span class="n">indices</span><span class="p">]]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">indices</span> <span class="o">=</span> <span class="n">indices</span>
+            
+        <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Make sure to run get_pers_im method first!&quot;</span><span class="p">)</span></div>
+
+            
+<div class="viewcode-block" id="ImageSeriesPlus.plot_pi_sig">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.plot_pi_sig">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_pi_sig</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">betas_feat</span><span class="o">=</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frame : int</span>
+<span class="sd">            Frame which you would like to plot. Should lie in self.indices.</span>
+<span class="sd">        betas_feat : str, optional</span>
+<span class="sd">            Whether to plot positive, negative betas, or both. </span>
+<span class="sd">            The default is &#39;pos&#39;.</span>
+<span class="sd">        smooth : bool, optional</span>
+<span class="sd">            Whether or not to smooth the image. The default is True.</span>
+<span class="sd">        **kwargs : dict</span>
+<span class="sd">            Additional parameters for plotting.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;indices&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Run proc_pers_im first.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">frame</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Frame does not lie within set of indices for which persistence images have been processed.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">smooth</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">video</span><span class="p">[</span><span class="n">frame</span><span class="p">],</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma_</span><span class="p">,</span> <span class="n">preserve_range</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">video</span><span class="p">[</span><span class="n">frame</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">video</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">xy_hi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_alt_</span><span class="p">[</span><span class="n">frame</span><span class="p">][:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]][</span><span class="bp">self</span><span class="o">.</span><span class="n">alts</span><span class="p">[</span><span class="n">frame</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">start</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">xy_lo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diags_alt_</span><span class="p">[</span><span class="n">frame</span><span class="p">][:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]][</span><span class="bp">self</span><span class="o">.</span><span class="n">alts</span><span class="p">[</span><span class="n">frame</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">start</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Make sure to run get_pers_im and proc_pers_im first!&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">betas_feat</span> <span class="o">==</span> <span class="s1">&#39;pos&#39;</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xy_hi</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy_hi</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">betas_feat</span> <span class="o">==</span> <span class="s1">&#39;neg&#39;</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xy_lo</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy_lo</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">betas_feat</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xy_hi</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy_hi</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xy_lo</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy_lo</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="c1"># Plots frame number on the image appropriately.</span>
+        <span class="k">if</span> <span class="n">frame</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.90</span><span class="o">*</span><span class="n">nc</span><span class="p">,</span> <span class="mf">0.95</span><span class="o">*</span><span class="n">nr</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Nunito&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;heavy&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">frame</span> <span class="o">&lt;=</span> <span class="mi">99</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.85</span><span class="o">*</span><span class="n">nc</span><span class="p">,</span> <span class="mf">0.95</span><span class="o">*</span><span class="n">nr</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Nunito&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;heavy&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">frame</span> <span class="o">&lt;=</span> <span class="mi">999</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.80</span><span class="o">*</span><span class="n">nc</span><span class="p">,</span> <span class="mf">0.95</span><span class="o">*</span><span class="n">nr</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Nunito&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;heavy&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">frame</span> <span class="o">&lt;=</span> <span class="mi">9999</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.75</span><span class="o">*</span><span class="n">nc</span><span class="p">,</span> <span class="mf">0.95</span><span class="o">*</span><span class="n">nr</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Nunito&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;heavy&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+        
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="ImageSeriesPickle">
+<a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPickle">[docs]</a>
+<span class="k">class</span> <span class="nc">ImageSeriesPickle</span><span class="p">(</span><span class="n">ImageSeries</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates ImageSeries object from .pkl file. Designed for use with output of identify_polygon script.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -563,6 +731,7 @@
         <span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;video&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;polygon&#39;</span><span class="p">],</span> <span class="n">div</span><span class="p">,</span> <span class="n">n_jobs</span><span class="p">)</span>
         <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
                 
 </pre></div>
 

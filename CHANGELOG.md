@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.5.4 (12/19/2024)
+
+## Added
+
+- proc_pers_im method for ImageSeriesPlus to process "significant" betas according to bclr as in Thomas et al (2024)
+- plot_pi_sig method for ImageSeriesPlus to plot PD points corresponding to these "significant" betas on the image
+
+## Fixed
+
+- calc_close had incorrect indexing
+- Issue with plot_im frame argument
+
+## Changed
+
+- Removed underscore following 'self.dfs_' as this is an attribute meant to be viewed
+
 ## v0.5.3 (8/30/2024)
 
 ## Fixed 

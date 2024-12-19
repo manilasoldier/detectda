@@ -1,15 +1,11 @@
-:py:mod:`detectda.hlpr`
-=======================
+detectda.hlpr
+=============
 
 .. py:module:: detectda.hlpr
 
 
-Module Contents
----------------
-
-
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
@@ -30,6 +26,8 @@ Functions
    detectda.hlpr.weight_func
 
 
+Module Contents
+---------------
 
 .. py:function:: alps(arr)
 
@@ -87,7 +85,7 @@ Functions
 
    :param arr: Should be an array of persistence lifetimes, with nonnegative entries
    :type arr: array_like
-   :param p: Exponent for degree p total lifetime. The default is 1.
+   :param p: Exponent for degree-p total lifetime. The default is 1.
    :type p: double, optional
    :param inf: Whether or not to calculate infinity norm. The default is False.
    :type inf: bool, optional

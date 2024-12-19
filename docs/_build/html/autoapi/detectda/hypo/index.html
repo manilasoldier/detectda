@@ -1,20 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.hypo &mdash; detecTDA 0.5.3 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>detectda.hypo &mdash; detecTDA 0.5.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=08553120"></script>
-        <script src="../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e1a677a5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -50,14 +52,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../detectda_demo.html#hypothesis-testing">Hypothesis testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../detectda_demo.html#plot-the-test-results">Plot the test results</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">detectda</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../hlpr/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.hlpr</span></code></a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.hypo</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../idpo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.idpo</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../imgs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.imgs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hlpr/index.html">detectda.hlpr</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">detectda.hypo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../idpo/index.html">detectda.idpo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../imgs/index.html">detectda.imgs</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#classes">Classes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
@@ -80,8 +83,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">API Reference</a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.hypo</span></code></li>
+          <li class="breadcrumb-item"><a href="../index.html">detectda</a></li>
+      <li class="breadcrumb-item active">detectda.hypo</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/autoapi/detectda/hypo/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -92,11 +95,9 @@
            <div itemprop="articleBody">
              
   <section id="module-detectda.hypo">
-<span id="detectda-hypo"></span><h1><a class="reference internal" href="#module-detectda.hypo" title="detectda.hypo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">detectda.hypo</span></code></a><a class="headerlink" href="#module-detectda.hypo" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<span id="detectda-hypo"></span><h1>detectda.hypo<a class="headerlink" href="#module-detectda.hypo" title="Link to this heading"></a></h1>
 <section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#detectda.hypo.VacuumSeries" title="detectda.hypo.VacuumSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VacuumSeries</span></code></a></p></td>
@@ -104,33 +105,36 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="detectda.hypo.VacuumSeries">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.hypo.</span></span><span class="sig-name descname"><span class="pre">VacuumSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vacuum_video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observed_ImageSeries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">detectda.hypo.</span></span><span class="sig-name descname"><span class="pre">VacuumSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vacuum_video</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observed_ImageSeries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parametric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../imgs/index.html#detectda.imgs.ImageSeries" title="detectda.imgs.ImageSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detectda.imgs.ImageSeries</span></code></a></p>
 <p>Functionality to generate vacuum region videos for multiple hypothesis testing.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.hypo.VacuumSeries.adjust_alpha">
-<span class="sig-name descname"><span class="pre">adjust_alpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.adjust_alpha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.adjust_alpha" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">adjust_alpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.adjust_alpha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.adjust_alpha" title="Link to this definition"></a></dt>
 <dd><p>Adjust p-values based on a different alpha value.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.hypo.VacuumSeries.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">convert_to_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.fit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">convert_to_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.fit" title="Link to this definition"></a></dt>
 <dd><p>Fits the Poisson mle for the vacuum region if parametric==True</p>
 <p>Else, it fits the empirical probability mass function.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.hypo.VacuumSeries.gen_images">
-<span class="sig-name descname"><span class="pre">gen_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.gen_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.gen_images" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">gen_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.gen_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.gen_images" title="Link to this definition"></a></dt>
 <dd><p>Generate and return a random image according to estimated null distribution</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.hypo.VacuumSeries.kolm_dist">
-<span class="sig-name descname"><span class="pre">kolm_dist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.kolm_dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.kolm_dist" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kolm_dist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.kolm_dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.kolm_dist" title="Link to this definition"></a></dt>
 <dd><p>Check how far the empirical distribution of vacuum values is from Poisson
 with parameter equal to mle, in terms of the Kolmogorov distance</p>
 <p>Uses the DKW inequality with the tight constant = 2 for Poisson testing.</p>
@@ -138,19 +142,18 @@ with parameter equal to mle, in terms of the Kolmogorov distance</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.hypo.VacuumSeries.plot_hypo">
-<span class="sig-name descname"><span class="pre">plot_hypo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.plot_hypo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.plot_hypo" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_hypo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.plot_hypo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.plot_hypo" title="Link to this definition"></a></dt>
 <dd><p>Plots hypothesis testing sequence.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.hypo.VacuumSeries.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pers_entr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.transform" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pers_entr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hypo.html#VacuumSeries.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hypo.VacuumSeries.transform" title="Link to this definition"></a></dt>
 <dd><p>Collects p-values and rejections for based off n Monte Carlo simulations…</p>
 </dd></dl>
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 
