@@ -3,13 +3,6 @@ import numpy as np
 from shapely import Polygon
 from skimage import filters
 
-impol = ImageSeriesPickle('test_video.pkl', div=32, n_jobs=2)
-
-impol.fit(sigma=2)
-
-impol.get_pers_entr(neg=False)
-impol.get_alps()
-
 pe = np.array([5.83177356, 5.78757364, 5.75705866, 5.76387676, 5.57014188,
        5.56476744, 5.55905737, 5.53827007, 5.55254119, 5.60307477,
        5.79345152, 5.81101324, 5.76317307, 5.68501903, 5.68366028,
@@ -60,8 +53,13 @@ alps = np.array([1.9615879 , 2.6640929 , 2.64014499, 2.62315035, 2.75734034,
        2.81825799, 2.71084416, 2.78533116, 2.74390122, 2.5215319 ,
        2.51680415, 2.74526832, 2.7820793 , 2.7689674 , 2.41534495])
 
-np.testing.assert_almost_equal(impol.alps, alps, 7)
-np.testing.assert_almost_equal(impol.pers_entr, pe, 7)
+def test_ps():
+    impol = ImageSeriesPickle('test_video.pkl', div=32, n_jobs=2)
+    impol.fit(sigma=2)
+    impol.get_pers_entr(neg=False)
+    impol.get_alps()
+    np.testing.assert_almost_equal(impol.alps, alps, 7)
+    np.testing.assert_almost_equal(impol.pers_entr, pe, 7)
 
 test_poly2 = Polygon([[1, 20], [10, 20], [10, 30], [1, 30]])
 test_im2 = np.full((51, 51), 1)
@@ -71,6 +69,7 @@ test_im2[25,45] = 0.5
 test_im2 = np.round(filters.gaussian(test_im2,1, preserve_range=True),1)
 test_im2[25,6] = 0.8
 
-test_dtda2 = ImageSeries(test_im2, test_poly2)
-test_dtda2.fit(sigma=0)
-test_dtda2.plot_im(0)
+def test_poly():
+    test_dtda2 = ImageSeries(test_im2, test_poly2)
+    test_dtda2.fit(sigma=0)
+    test_dtda2.plot_im(0)

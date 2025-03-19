@@ -509,8 +509,9 @@ class ImageSeriesPlus(VidPol):
             lb_low = [(self.lifet_bd[ij[0]], self.birtt_bd[ij[1]]) for ij in ijs_low]
 
             lt_diff = self.lifet_bd[1]-self.lifet_bd[0]; bt_diff = self.birtt_bd[1]-self.birtt_bd[0]
-            self.alts = [np.maximum(_dh.calc_close(d, [lt_diff, bt_diff], lb_hi, 1), _dh.calc_close(d, [lt_diff, bt_diff], lb_low, 0.5)) 
-                         for d in self.diags_alt_[indices]]
+            self.alts = [np.maximum(_dh.calc_close(self.diags_alt_[i], [lt_diff, bt_diff], lb_hi, 1), 
+                                    _dh.calc_close(self.diags_alt_[i], [lt_diff, bt_diff], lb_low, 0.5)) 
+                         for i in indices]
             self.indices = indices
             
         except NameError:
@@ -548,9 +549,10 @@ class ImageSeriesPlus(VidPol):
             plt.imshow(self.video[frame], cmap='gray')
         nr, nc = self.video[frame].shape
         
+        fi = np.min(self.indices)
         try:
-            xy_hi = self.diags_alt_[frame][:, [0,1]][self.alts[frame-self.indices.start] == 1]
-            xy_lo = self.diags_alt_[frame][:, [0,1]][self.alts[frame-self.indices.start] == 0.5]
+            xy_hi = self.diags_alt_[frame][:, [0,1]][self.alts[frame-fi] == 1]
+            xy_lo = self.diags_alt_[frame][:, [0,1]][self.alts[frame-fi] == 0.5]
         except NameError:
             print("Make sure to run get_pers_im and proc_pers_im first!")
         

@@ -433,7 +433,7 @@ def persmoo(im, polygon=None, sigma=None):
     nr, nc = im.shape
     
     #reassign infinite death pixels
-    cu_pers[cu_pers==np.inf] = np.max(im)
+    cu_pers[np.logical_and(cu_pers[:, 0]==0, cu_pers[:,2]==np.inf), 2] = np.max(im[im < np.inf])
     
     #get locations of cells...
     cu_pers_pairs_ = cu_comp.cofaces_of_persistence_pairs()
