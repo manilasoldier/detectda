@@ -1,6 +1,4 @@
-![detecTDA logo](detectda_logo.png)
-
-![PyPI - Version](https://img.shields.io/pypi/v/detectda) [![DOI](https://zenodo.org/badge/525078067.svg)](https://doi.org/10.5281/zenodo.14226964)
+![detecTDA logo](https://camo.githubusercontent.com/8b323f6c89c3088d2f11d0e4859887fc8435125ee4269b0dd9c255110db8f846/68747470733a2f2f616e647265776d74686f6d61732e636f6d2f77702d636f6e74656e742f75706c6f6164732f323032342f31312f64657465637464615f6c6f676f2e706e67)
 
 ***
 
@@ -32,7 +30,7 @@ $ python3 setup.py install
 
 With a video (and optional polygonal region&mdash;see below), extracting statistics related to structure and shape of your noisy image could not be easier. detecTDA leverages TDA (topological data analysis) to derive such quantities, an illustration of which can be seen below. 
 
-![Illustration of the detectda algorithm](detectdaALGORITHM.png)
+![Illustration of the detectda algorithm](https://camo.githubusercontent.com/edde2885ddd0312753c89368c2468e2a189d40b641143569cc8be7fb7ad3f1dc/68747470733a2f2f616e647265776d74686f6d61732e636f6d2f77702d636f6e74656e742f75706c6f6164732f323032342f30372f6465746563746461414c474f524954484d2e706e67)
 
 Such processing is accomplished by fitting the class ImageSeries (or ImageSeriesPlus) to your data. Hypothesis testing whether or not images are generated from a vacuum region within the images is accomplished by fitting and transforming VacuumSeries objects. Note that hypothesis testing is only currently supported for the ImageSeries class. 
 

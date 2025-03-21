@@ -1,16 +1,17 @@
 # Changelog
 
-## v0.5.4 (12/19/2024)
+## v0.5.4 (3/20/2025)
 
 ## Added
 
-- proc_pers_im method for ImageSeriesPlus to process "significant" betas according to bclr as in Thomas et al (2024)
+- proc_pers_im method for ImageSeriesPlus to process "significant" betas according to bclr as in Thomas et al (2025)
 - plot_pi_sig method for ImageSeriesPlus to plot PD points corresponding to these "significant" betas on the image
 
 ## Fixed
 
 - calc_close had incorrect indexing
 - Issue with plot_im frame argument
+- how ImageSeriesPlus dealth with infinite values in calculating PH
 
 ## Changed
 
