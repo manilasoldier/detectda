@@ -1,19 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.idpo &mdash; detectda 0.4.3 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>detectda.idpo &mdash; detecTDA 0.5.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=79807b79"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="shortcut icon" href="../../_static/AMT_logo.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e1a677a5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -23,12 +26,13 @@
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #cfffff" >
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            detectda
+          <a href="../../index.html">
+            
+              <img src="../../_static/detectda_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -39,21 +43,79 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../detectda_demo.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../detectda_demo.html">Example <code class="docutils literal notranslate"><span class="pre">detecTDA</span></code> usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../detectda_demo.html#calculate-persistent-homology">Calculate persistent homology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../detectda_demo.html#visualize-the-results-of-the-fit">Visualize the results of the fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../detectda_demo.html#calculate-and-plot-summaries">Calculate and plot summaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../detectda_demo.html#hypothesis-testing-and-plotting">Hypothesis testing and plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../science_example.html">Example from <i>Science</i></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../science_example.html#upload-video-and-configure-polygonal-region">Upload video and configure polygonal region</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../science_example.html#reproduce-figure-4-plot">Reproduce Figure 4 plot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#changed">Changed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-3-8-30-2024">v0.5.3 (8/30/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id1">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id2">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id3">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id4">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id5">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-4-6-6-17-2024">v0.4.6 (6/17/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id6">Fixed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../autoapi/detectda/index.html">detectda</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../autoapi/detectda/index.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../autoapi/detectda/hlpr/index.html">detectda.hlpr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../autoapi/detectda/hypo/index.html">detectda.hypo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../autoapi/detectda/idpo/index.html">detectda.idpo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../autoapi/detectda/imgs/index.html">detectda.imgs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../autoapi/detectda/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../autoapi/detectda/index.html#package-contents">Package Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../autoapi/detectda/index.html#detectda.ImageSeries"><code class="docutils literal notranslate"><span class="pre">ImageSeries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../autoapi/detectda/index.html#detectda.ImageSeriesPickle"><code class="docutils literal notranslate"><span class="pre">ImageSeriesPickle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../autoapi/detectda/index.html#detectda.ImageSeriesPlus"><code class="docutils literal notranslate"><span class="pre">ImageSeriesPlus</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../autoapi/detectda/index.html#detectda.VacuumSeries"><code class="docutils literal notranslate"><span class="pre">VacuumSeries</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #cfffff" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">detectda</a>
+          <a href="../../index.html">detecTDA</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
@@ -77,7 +139,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 
-<div class="viewcode-block" id="_click_event"><a class="viewcode-back" href="../../autoapi/detectda/idpo/index.html#detectda.idpo._click_event">[docs]</a><span class="k">class</span> <span class="nc">_click_event</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">_click_event</span><span class="p">:</span>
 	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span> 
 		<span class="bp">self</span><span class="o">.</span><span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1">#so original image isn&#39;t modified with polylines information.</span>
 		
@@ -90,7 +152,7 @@
 		<span class="c1">#sets the thickness of the lines of the polygon</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">thickness</span> <span class="o">=</span> <span class="mi">2</span>
 
-<div class="viewcode-block" id="_click_event.upon_click"><a class="viewcode-back" href="../../autoapi/detectda/idpo/index.html#detectda.idpo._click_event.upon_click">[docs]</a>	<span class="k">def</span> <span class="nf">upon_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">upon_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
 		<span class="c1"># checking for left mouse clicks</span>
 		<span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_LBUTTONDOWN</span><span class="p">:</span>
 			<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -105,9 +167,9 @@
 			<span class="n">isClosed</span> <span class="o">=</span> <span class="kc">True</span>
 			<span class="n">img2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">polylines</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">],</span>
 						    <span class="n">isClosed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">thickness</span><span class="p">)</span>
-			<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">img2</span><span class="p">)</span></div>
+			<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">img2</span><span class="p">)</span>
 
-<div class="viewcode-block" id="_click_event.crop_poly"><a class="viewcode-back" href="../../autoapi/detectda/idpo/index.html#detectda.idpo._click_event.crop_poly">[docs]</a>	<span class="k">def</span> <span class="nf">crop_poly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">crop_poly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">	    Crops the video to the x and y coordinates of the polygon, with buffer.</span>
 <span class="sd">		</span>
@@ -121,12 +183,14 @@
 		<span class="c1">### chosen polygon does not exceed original dimensions</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">new_bounds_x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">xmin</span><span class="o">-</span><span class="n">buff</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">xmax</span><span class="o">+</span><span class="n">buff</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">new_bounds_y</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">ymin</span><span class="o">-</span><span class="n">buff</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">ymax</span><span class="o">+</span><span class="n">buff</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([[</span><span class="bp">self</span><span class="o">.</span><span class="n">new_bounds_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_bounds_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]]],</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span></div>
+		<span class="bp">self</span><span class="o">.</span><span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([[</span><span class="bp">self</span><span class="o">.</span><span class="n">new_bounds_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_bounds_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]]],</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 	    
-<div class="viewcode-block" id="_click_event.get_poly"><a class="viewcode-back" href="../../autoapi/detectda/idpo/index.html#detectda.idpo._click_event.get_poly">[docs]</a>	<span class="k">def</span> <span class="nf">get_poly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="k">return</span> <span class="n">Polygon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">)</span></div></div>
+	<span class="k">def</span> <span class="nf">get_poly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="n">Polygon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pts</span><span class="p">)</span>
 
-<div class="viewcode-block" id="identify_polygon"><a class="viewcode-back" href="../../autoapi/detectda/idpo/index.html#detectda.idpo.identify_polygon">[docs]</a><span class="k">def</span> <span class="nf">identify_polygon</span><span class="p">():</span>	
+<div class="viewcode-block" id="identify_polygon">
+<a class="viewcode-back" href="../../autoapi/detectda/idpo/index.html#detectda.idpo.identify_polygon">[docs]</a>
+<span class="k">def</span> <span class="nf">identify_polygon</span><span class="p">():</span>	
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">	Takes as input a greyscale video or a color image.</span>
 <span class="sd">	&quot;&quot;&quot;</span>
@@ -182,6 +246,7 @@
     <span class="n">F</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">savefile</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
     <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">output_dict</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
     <span class="n">F</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>	</div>
+
 </pre></div>
 
            </div>
@@ -191,7 +256,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Andrew Michael Thomas.</p>
+    <p>&#169; Copyright 2026, Andrew Michael Thomas.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
@@ -206,7 +271,7 @@
   </div>
   <script>
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.Navigation.enable(false);
       });
   </script> 
 
