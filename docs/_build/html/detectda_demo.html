@@ -6,12 +6,13 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda demo &mdash; detecTDA 0.5.4 documentation</title>
+  <title>Example detecTDA usage &mdash; detecTDA 0.5.4 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
 
   
+    <link rel="shortcut icon" href="_static/AMT_logo.png"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=e1a677a5"></script>
@@ -20,20 +21,21 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Reference" href="autoapi/index.html" />
-    <link rel="prev" title="Installation" href="index.html" /> 
+    <link rel="next" title="Example from Science" href="science_example.html" />
+    <link rel="prev" title="detecTDA" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #cfffff" >
 
           
           
-          <a href="index.html" class="icon icon-home">
-            detecTDA
+          <a href="index.html">
+            
+              <img src="_static/detectda_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -44,31 +46,83 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">detectda</span></code> demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#calculate-persistent-homology">Calculate persistent homology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#visualize-the-results-of-the-fit">Visualize the results of the fit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#calculate-summaries">Calculate summaries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#plot-the-summaries">Plot the summaries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#hypothesis-testing">Hypothesis testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#plot-the-test-results">Plot the test results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example <code class="docutils literal notranslate"><span class="pre">detecTDA</span></code> usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#calculate-persistent-homology">Calculate persistent homology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualize-the-results-of-the-fit">Visualize the results of the fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calculate-and-plot-summaries">Calculate and plot summaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hypothesis-testing-and-plotting">Hypothesis testing and plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="science_example.html">Example from <i>Science</i></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="science_example.html#upload-video-and-configure-polygonal-region">Upload video and configure polygonal region</a></li>
+<li class="toctree-l2"><a class="reference internal" href="science_example.html#reproduce-figure-4-plot">Reproduce Figure 4 plot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#changed">Changed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-3-8-30-2024">v0.5.3 (8/30/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id1">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id2">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-4-6-6-17-2024">v0.4.6 (6/17/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/detectda/index.html">detectda</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/detectda/index.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/detectda/hlpr/index.html">detectda.hlpr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/detectda/hypo/index.html">detectda.hypo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/detectda/idpo/index.html">detectda.idpo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/detectda/imgs/index.html">detectda.imgs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/detectda/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/detectda/index.html#package-contents">Package Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/detectda/index.html#detectda.ImageSeries"><code class="docutils literal notranslate"><span class="pre">ImageSeries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/detectda/index.html#detectda.ImageSeriesPickle"><code class="docutils literal notranslate"><span class="pre">ImageSeriesPickle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/detectda/index.html#detectda.ImageSeriesPlus"><code class="docutils literal notranslate"><span class="pre">ImageSeriesPlus</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/detectda/index.html#detectda.VacuumSeries"><code class="docutils literal notranslate"><span class="pre">VacuumSeries</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #cfffff" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">detecTDA</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">detectda</span></code> demo</li>
+      <li class="breadcrumb-item active">Example <code class="docutils literal notranslate"><span class="pre">detecTDA</span></code> usage</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/detectda_demo.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,8 +132,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="detectda-demo">
-<h1><code class="docutils literal notranslate"><span class="pre">detectda</span></code> demo<a class="headerlink" href="#detectda-demo" title="Link to this heading"></a></h1>
+  <section id="example-detectda-usage">
+<h1>Example <code class="docutils literal notranslate"><span class="pre">detecTDA</span></code> usage<a class="headerlink" href="#example-detectda-usage" title="Link to this heading"></a></h1>
 <p>In the below, <code>test_video.pkl</code> is the output of the “identify_polygon” python script, <br>
 which allows choose your desired polygonal subregion.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span><span class="p">,</span> <span class="n">filters</span>
@@ -88,43 +142,38 @@ which allows choose your desired polygonal subregion.</p>
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Here we divide each pixel by 32 (div=32) and round to the nearest integer because of various properties</span>
-<span class="sd">of the detector which captured the video. Outside of hypothesis testing context, it is fine to set div equal to</span>
-<span class="sd">its default value of div=1!</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
 <span class="n">impol</span> <span class="o">=</span> <span class="n">dtda</span><span class="o">.</span><span class="n">ImageSeriesPickle</span><span class="p">(</span><span class="s1">&#39;detectda/tests/test_video.pkl&#39;</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Here we divide each pixel by 32 (div=32) and round to the nearest integer because of various properties
+of the detector which captured the video. Outside of hypothesis testing context, it is fine to set div equal to
+its default value of div=1.</p>
+</div>
 <section id="calculate-persistent-homology">
-<h1>Calculate persistent homology<a class="headerlink" href="#calculate-persistent-homology" title="Link to this heading"></a></h1>
+<h2>Calculate persistent homology<a class="headerlink" href="#calculate-persistent-homology" title="Link to this heading"></a></h2>
 <p>Fit the persistence diagrams for every image in the polygonal region of the test video. We found smoothing parameter of 2 worked well for these nanoparticle videos.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="visualize-the-results-of-the-fit">
-<h1>Visualize the results of the fit<a class="headerlink" href="#visualize-the-results-of-the-fit" title="Link to this heading"></a></h1>
+<h2>Visualize the results of the fit<a class="headerlink" href="#visualize-the-results-of-the-fit" title="Link to this heading"></a></h2>
 <p>See where the homology generators appears and how long they live. Below, we see the raw image with the points of the 0<sup>th</sup> persistence diagram overlaid, after removing points with lifetimes less than <code>thr</code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">plot_im</span><span class="p">(</span><span class="mi">73</span><span class="p">,</span> <span class="n">thr</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><img alt="png" src="_images/output_6_0.png" /></p>
 </section>
-<section id="calculate-summaries">
-<h1>Calculate summaries<a class="headerlink" href="#calculate-summaries" title="Link to this heading"></a></h1>
-<p>Run these routines to get persistent entropy and the ALPS statistic</p>
+<section id="calculate-and-plot-summaries">
+<h2>Calculate and plot summaries<a class="headerlink" href="#calculate-and-plot-summaries" title="Link to this heading"></a></h2>
+<p>Run these routines to get persistent entropy and the ALPS statistic (cf. ALPS statistic calculation in the <a class="reference internal" href="science_example.html#rep-plot"><span class="std std-ref">“Example from <i>Science</i>”</span></a>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">get_pers_entr</span><span class="p">(</span><span class="n">neg</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">impol</span><span class="o">.</span><span class="n">get_alps</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
-<section id="plot-the-summaries">
-<h1>Plot the summaries<a class="headerlink" href="#plot-the-summaries" title="Link to this heading"></a></h1>
-<p>Plot the ALPS statistic across all the frames</p>
+<p>Then, we can plot the ALPS statistic across all the frames.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">impol</span><span class="o">.</span><span class="n">alps</span><span class="p">)</span> <span class="c1">#or impol.pers_entr</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ALPS statistic&#39;</span><span class="p">)</span>
@@ -132,8 +181,8 @@ which allows choose your desired polygonal subregion.</p>
 </div>
 <p><img alt="png" src="_images/output_10_1.png" /></p>
 </section>
-<section id="hypothesis-testing">
-<h1>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Link to this heading"></a></h1>
+<section id="hypothesis-testing-and-plotting">
+<h2>Hypothesis testing and plotting<a class="headerlink" href="#hypothesis-testing-and-plotting" title="Link to this heading"></a></h2>
 <p>Run hypothesis testing using the observed image series above, by generating 500 Monte Carlo noise images</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;detectda/tests/test_video_vacuum.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="n">tv_vacuum</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">G</span><span class="p">)[</span><span class="s1">&#39;video&#39;</span><span class="p">]</span>
@@ -142,28 +191,26 @@ which allows choose your desired polygonal subregion.</p>
 <span class="n">impol_vac</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;alps&quot;</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="plot-the-test-results">
-<h1>Plot the test results<a class="headerlink" href="#plot-the-test-results" title="Link to this heading"></a></h1>
-<p>Plot the results of the hypothesis testing</p>
+<p>Finally, we plot the results of the hypothesis testing</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol_vac</span><span class="o">.</span><span class="n">plot_hypo</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><img alt="png" src="_images/output_14_0.png" /></p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="autoapi/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="detecTDA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="science_example.html" class="btn btn-neutral float-right" title="Example from Science" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Andrew Michael Thomas.</p>
+    <p>&#169; Copyright 2026, Andrew Michael Thomas.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
@@ -178,7 +225,7 @@ which allows choose your desired polygonal subregion.</p>
   </div>
   <script>
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.Navigation.enable(false);
       });
   </script> 
 

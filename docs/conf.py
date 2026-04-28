@@ -11,7 +11,7 @@ sys.path.insert(0, '../')
 from detectda import __version__
 
 project = 'detecTDA'
-copyright = '2023, Andrew Michael Thomas'
+copyright = '2026, Andrew Michael Thomas'
 author = 'Andrew Michael Thomas'
 release = __version__ 
 
@@ -50,3 +50,14 @@ autoapi_dirs = ["../detectda"]
 autoapi_member_order = "groupwise"
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+
+html_theme_options = {
+    'collapse_navigation': False,
+    'sticky_navigation': False,
+    'logo_only': True,
+    'style_nav_header_background': '#cfffff',
+    'style_external_links': True,
+}
+
+html_logo = '../detectda_logo.png'
+html_favicon = 'AMT_logo.png'

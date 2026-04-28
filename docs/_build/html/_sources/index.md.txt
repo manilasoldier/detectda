@@ -6,5 +6,7 @@
 :hidden: 
 
 detectda_demo.md
+science_example.md
+changelog.md
 autoapi/index
 ```

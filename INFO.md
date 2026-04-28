@@ -1,8 +1,6 @@
-![detecTDA logo](detectda_logo.png)
+# detecTDA
 
-***
-
-**A package for detecting topological features in images**. 
+**A package for detecting and depicting topological features in images**. 
 
 Tailor-made to perform hypothesis testing on sequences of noisy images in catalysis. 
 
