@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example detecTDA usage &mdash; detecTDA 0.5.4 documentation</title>
+  <title>Example detecTDA usage &mdash; detecTDA 0.5.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/AMT_logo.png"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=e1a677a5"></script>
+      <script src="_static/documentation_options.js?v=45def3bc"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -59,28 +59,32 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#added">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#fixed">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#changed">Changed</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id1">Changed</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-3-8-30-2024">v0.5.3 (8/30/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id1">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id2">Fixed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id2">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Fixed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-4-6-6-17-2024">v0.4.6 (6/17/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id7">Fixed</a></li>
 </ul>
 </li>
 </ul>
@@ -135,13 +139,10 @@
   <section id="example-detectda-usage">
 <h1>Example <code class="docutils literal notranslate"><span class="pre">detecTDA</span></code> usage<a class="headerlink" href="#example-detectda-usage" title="Link to this heading"></a></h1>
 <p>In the below, <code>test_video.pkl</code> is the output of the “identify_polygon” python script, <br>
-which allows choose your desired polygonal subregion.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span><span class="p">,</span> <span class="n">filters</span>
-<span class="kn">import</span> <span class="nn">detectda</span> <span class="k">as</span> <span class="nn">dtda</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+which allows choose your desired polygonal subregion. The video has been preprocessed so each frame is the sum of disjoint blocks of 16 consecutive frames in the original video<a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">detectda</span> <span class="k">as</span> <span class="nn">dtda</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
 <span class="n">impol</span> <span class="o">=</span> <span class="n">dtda</span><span class="o">.</span><span class="n">ImageSeriesPickle</span><span class="p">(</span><span class="s1">&#39;detectda/tests/test_video.pkl&#39;</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -153,51 +154,65 @@ its default value of div=1.</p>
 </div>
 <section id="calculate-persistent-homology">
 <h2>Calculate persistent homology<a class="headerlink" href="#calculate-persistent-homology" title="Link to this heading"></a></h2>
-<p>Fit the persistence diagrams for every image in the polygonal region of the test video. We found smoothing parameter of 2 worked well for these nanoparticle videos.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<p>Fit the persistence diagrams for every image in the polygonal region of the test video. We chose a smoothing parameter of 4 worked well for this very noisy nanoparticle video.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="visualize-the-results-of-the-fit">
 <h2>Visualize the results of the fit<a class="headerlink" href="#visualize-the-results-of-the-fit" title="Link to this heading"></a></h2>
-<p>See where the homology generators appears and how long they live. Below, we see the raw image with the points of the 0<sup>th</sup> persistence diagram overlaid, after removing points with lifetimes less than <code>thr</code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">plot_im</span><span class="p">(</span><span class="mi">73</span><span class="p">,</span> <span class="n">thr</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<p>See where the persistence features are located and what their lifetimes are. Below, we see a few images with the points of the 0<sup>th</sup> persistence diagram overlaid, after removing points with lifetimes less than <code>thr</code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">32</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Frame &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">impol</span><span class="o">.</span><span class="n">plot_im</span><span class="p">(</span><span class="n">fs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">thr</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="png" src="_images/output_6_0.png" /></p>
+<p><img alt="png" src="_images/4frames.png" /></p>
 </section>
 <section id="calculate-and-plot-summaries">
 <h2>Calculate and plot summaries<a class="headerlink" href="#calculate-and-plot-summaries" title="Link to this heading"></a></h2>
-<p>Run these routines to get persistent entropy and the ALPS statistic (cf. ALPS statistic calculation in the <a class="reference internal" href="science_example.html#rep-plot"><span class="std std-ref">“Example from <i>Science</i>”</span></a>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">get_pers_entr</span><span class="p">(</span><span class="n">neg</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">impol</span><span class="o">.</span><span class="n">get_alps</span><span class="p">()</span>
+<p>Run the <code class="docutils literal notranslate"><span class="pre">get_alps</span></code> method to calculate the ALPS statistic for each frame (cf. ALPS statistic calculation in the <a class="reference internal" href="science_example.html#rep-plot"><span class="std std-ref">“Example from <i>Science</i>”</span></a>). We can visualize the ALPS statistic with the following ALPS plot<a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, to see how the persistence lifetimes are distributed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol</span><span class="o">.</span><span class="n">get_alps</span><span class="p">()</span>
+<span class="n">impol</span><span class="o">.</span><span class="n">alps_plot</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">32</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>Then, we can plot the ALPS statistic across all the frames.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">impol</span><span class="o">.</span><span class="n">alps</span><span class="p">)</span> <span class="c1">#or impol.pers_entr</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ALPS statistic&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><img alt="png" src="_images/output_10_1.png" /></p>
+<p><img alt="png" src="_images/4alps_plots.png" /></p>
 </section>
 <section id="hypothesis-testing-and-plotting">
 <h2>Hypothesis testing and plotting<a class="headerlink" href="#hypothesis-testing-and-plotting" title="Link to this heading"></a></h2>
-<p>Run hypothesis testing using the observed image series above, by generating 500 Monte Carlo noise images</p>
+<p>First, we load the video corresponding to the pixels in the vacuum region of the video.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;detectda/tests/test_video_vacuum.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="n">tv_vacuum</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">G</span><span class="p">)[</span><span class="s1">&#39;video&#39;</span><span class="p">]</span>
-<span class="n">impol_vac</span> <span class="o">=</span> <span class="n">dtda</span><span class="o">.</span><span class="n">VacuumSeries</span><span class="p">(</span><span class="n">tv_vacuum</span><span class="p">,</span> <span class="n">observed_ImageSeries</span><span class="o">=</span><span class="n">impol</span><span class="p">,</span> <span class="n">parametric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
-<span class="n">impol_vac</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">convert_to_int</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">impol_vac</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;alps&quot;</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Finally, we plot the results of the hypothesis testing</p>
+<p>Then, we run the hypothesis testing method described in <a class="reference external" href="https://www.tandfonline.com/doi/full/10.1080/00401706.2023.2203744">Section 5.3 of Thomas et al. (2023)</a> using the observed image series above, by generating 499 Monte Carlo noise images.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol_vac</span> <span class="o">=</span> <span class="n">dtda</span><span class="o">.</span><span class="n">VacuumSeries</span><span class="p">(</span><span class="n">tv_vacuum</span><span class="p">,</span> <span class="n">observed_ImageSeries</span><span class="o">=</span><span class="n">impol</span><span class="p">,</span> 
+			      <span class="n">parametric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">impol_vac</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">convert_to_int</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">impol_vac</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="mi">499</span><span class="p">,</span> <span class="s2">&quot;alps&quot;</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we plot the results of the hypothesis testing. The original image series consists of 656 frames, and the output here indicates there are quite a few 16-frame blocks with significant topological signal.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impol_vac</span><span class="o">.</span><span class="n">plot_hypo</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="_images/output_14_0.png" /></p>
+<p><img alt="png" src="_images/hypo_output.png" /></p>
 </section>
 </section>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Compare with <a class="reference external" href="https://www.tandfonline.com/doi/full/10.1080/00401706.2023.2203744">Section 5.3 of Thomas et al. (2023)</a> where blocks of 5 frames were chosen in a higher signal-to-noise ratio context.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>The area under the curve for a given frame in the ALPS plot corresponds to the ALPS statistic—see Figure S6.3 in <a class="reference external" href="https://www.science.org/doi/full/10.1126/science.ads2688">Crozier et al. (2025)</a>.</p>
+</aside>
+</aside>
 
 
            </div>

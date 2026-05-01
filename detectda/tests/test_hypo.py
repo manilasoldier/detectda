@@ -1,0 +1,16 @@
+from ..imgs import ImageSeriesPickle
+from ..hypo import VacuumSeries
+import pickle
+
+def test_hypo():
+    impol = ImageSeriesPickle('detectda/tests/test_video.pkl', div=32)
+    impol.fit(sigma=4)
+    
+    G = open('detectda/tests/test_video_vacuum.pkl', 'rb')
+    tv_vacuum = pickle.load(G)['video']
+    
+    impol_vac = VacuumSeries(tv_vacuum, observed_ImageSeries=impol, parametric=False, div=32, n_jobs=4)
+    impol_vac.fit(convert_to_int=True)
+    impol_vac.transform(499, "alps", conservative=False)
+    
+    impol_vac.plot_hypo()

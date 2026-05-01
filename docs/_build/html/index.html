@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detecTDA &mdash; detecTDA 0.5.4 documentation</title>
+  <title>detecTDA &mdash; detecTDA 0.5.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/AMT_logo.png"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=e1a677a5"></script>
+      <script src="_static/documentation_options.js?v=45def3bc"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -59,28 +59,32 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#added">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#fixed">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#changed">Changed</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id1">Changed</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-3-8-30-2024">v0.5.3 (8/30/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id1">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id2">Fixed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id2">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Fixed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-4-6-6-17-2024">v0.4.6 (6/17/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id7">Fixed</a></li>
 </ul>
 </li>
 </ul>
@@ -161,20 +165,21 @@
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">detectda</span></code> is a Python package for detection and hypothesis testing of noisy greyscale images and videos using TDA.</p>
 <p>To use the <code class="docutils literal notranslate"><span class="pre">identify_polygon</span></code> script, run the script in the command line (after having installed the package). Then follow these steps:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. Enter the name of your .tif video (such as test_video.tif). 
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. Enter the name of your `.tif` video. 
 
 2. Then right-click to select the boundaries of your polygon. 
    Double-click to connect the polygon together and press any key 
    (such as &quot;space&quot; or &quot;enter&quot;) to exit and save. 
 
 3. Then you will name a .pkl file (you do not need to add the .pkl at the end) 
-   corresponding to your video (such as test_video.pkl). 
+   corresponding to your video (such as `test_video.pkl`). 
 
-4. Finally, the file test_video.pkl (or whatever you have called it) contains the cropped video 
-   (according to the boundaries of your polygon) as well as the polygonal region of interest. 
+4. Finally, the file `test_video.pkl` (or whatever you have called it) contains 
+   the cropped video (according to the boundaries of your polygon) 
+   as well as the polygonal region of interest. 
 </pre></div>
 </div>
-<p>You will then be able to use this data to process your video with the persistent entropy or ALPS statistic—see “detectda demo.ipynb”.</p>
+<p>You will then be able to use this data to process your video with the persistent entropy or ALPS statistic—check out the <a class="reference internal" href="detectda_demo.html"><span class="std std-doc">main example</span></a>.</p>
 </section>
 <section id="test-video">
 <h2>Test video<a class="headerlink" href="#test-video" title="Link to this heading"></a></h2>

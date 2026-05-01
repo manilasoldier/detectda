@@ -1,0 +1,12 @@
+[run]
+source =
+    detectda
+
+[report]
+omit =
+    */tests/*
+    */site-packages/*
+    */dist-packages/*
+    .venv/*
+    venv/*
+

@@ -1,4 +1,4 @@
-![detecTDA logo](https://camo.githubusercontent.com/8b323f6c89c3088d2f11d0e4859887fc8435125ee4269b0dd9c255110db8f846/68747470733a2f2f616e647265776d74686f6d61732e636f6d2f77702d636f6e74656e742f75706c6f6164732f323032342f31312f64657465637464615f6c6f676f2e706e67)
+![detecTDA logo](https://andrewmthomas.com/wp-content/uploads/2024/11/detectda_logo.png)
 
 ***
 
@@ -30,9 +30,9 @@ $ python3 setup.py install
 
 With a video (and optional polygonal region&mdash;see below), extracting statistics related to structure and shape of your noisy image could not be easier. detecTDA leverages TDA (topological data analysis) to derive such quantities, an illustration of which can be seen below. 
 
-![Illustration of the detectda algorithm](https://camo.githubusercontent.com/edde2885ddd0312753c89368c2468e2a189d40b641143569cc8be7fb7ad3f1dc/68747470733a2f2f616e647265776d74686f6d61732e636f6d2f77702d636f6e74656e742f75706c6f6164732f323032342f30372f6465746563746461414c474f524954484d2e706e67)
+![Illustration of the detectda algorithm](https://andrewmthomas.com/wp-content/uploads/2024/07/detectdaALGORITHM.png)
 
-Such processing is accomplished by fitting the class ImageSeries (or ImageSeriesPlus) to your data. Hypothesis testing whether or not images are generated from a vacuum region within the images is accomplished by fitting and transforming VacuumSeries objects. Note that hypothesis testing is only currently supported for the ImageSeries class. 
+Such processing is accomplished by fitting the class `ImageSeries` (or `ImageSeriesPlus`) to your data. Hypothesis testing whether or not images are generated from a vacuum region within the images is accomplished by fitting and transforming `VacuumSeries` objects. Note that hypothesis testing is only currently supported for the `ImageSeries` class. 
 
 ## Usage
 
@@ -40,19 +40,19 @@ Such processing is accomplished by fitting the class ImageSeries (or ImageSeries
 
 To use the `identify_polygon` script, run the script in the command line (after having installed the package). Then follow these steps: 
 
-	1. Enter the name of your .tif video (such as test_video.tif). 
+	1. Enter the name of your .tif video. 
 
 	2. Then right-click to select the boundaries of your polygon. 
 	   Double-click to connect the polygon together and press any key 
 	   (such as "space" or "enter") to exit and save. 
 
 	3. Then you will name a .pkl file (you do not need to add the .pkl at the end) 
-	   corresponding to your video (such as test_video.pkl). 
+	   corresponding to your video (such as `test_video.pkl`). 
 
-	4. Finally, the file test_video.pkl (or whatever you have called it) contains the cropped video 
+	4. Finally, the file `test_video.pkl` (or whatever you have called it) contains the cropped video 
 	   (according to the boundaries of your polygon) as well as the polygonal region of interest. 
 
-You will then be able to use this data to process your video with the persistent entropy or ALPS statistic&mdash;see "detectda demo.ipynb".
+You will then be able to use this data to process your video with the persistent entropy or ALPS statistic&mdash;see the 'Read the Docs' page, linked to below.
 
 ## Documentation
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.5.5 (5/1/2026)
+
+### Changed
+
+- `test_video.pkl` and `test_video_vacuum.pkl` to a better illustration of the Thomas et al (2023) method. 
+- Modified the documentation "Read the Docs" to include nicer documentation. 
+- Edited axis labels for `plot_hypo` method of `VacuumSeries`.
+
 ## v0.5.4 (3/20/2025)
 
 ### Added

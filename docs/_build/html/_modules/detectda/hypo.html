@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.hypo &mdash; detecTDA 0.5.4 documentation</title>
+  <title>detectda.hypo &mdash; detecTDA 0.5.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="../../_static/AMT_logo.png"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=e1a677a5"></script>
+      <script src="../../_static/documentation_options.js?v=45def3bc"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -56,28 +56,32 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#added">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#fixed">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#changed">Changed</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id1">Changed</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-3-8-30-2024">v0.5.3 (8/30/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id1">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id2">Fixed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id2">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id3">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id4">Fixed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id4">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id5">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id5">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id6">Fixed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-4-6-6-17-2024">v0.4.6 (6/17/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id6">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id7">Fixed</a></li>
 </ul>
 </li>
 </ul>
@@ -234,7 +238,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
         
         <span class="c1">#Here add in the rejections from the BH procedure</span>
-        <span class="c1">#See Catalysis Nanoparticles Multiple Testing.ipynb</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span> <span class="o">=</span> <span class="n">_dh</span><span class="o">.</span><span class="n">calc_reject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pvals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="n">conservative</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span></div>
 
@@ -257,8 +260,9 @@
 <span class="sd">        Plots hypothesis testing sequence. </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">begins</span><span class="p">,</span> <span class="n">ends</span> <span class="o">=</span> <span class="n">_dh</span><span class="o">.</span><span class="n">get_be</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_bool&quot;</span><span class="p">])</span>
+        <span class="n">xv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">==</span> <span class="s2">&quot;pers_entr&quot;</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xv</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">]],</span> 
                         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             
@@ -270,12 +274,12 @@
             
             <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">begins</span><span class="p">)),</span> <span class="n">xmin</span><span class="o">=</span><span class="n">begins</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">ends</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
             <span class="c1">#should adjust this 0.1 to be different based on scale...</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$&#39;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$H(A(I_</span><span class="si">{k}</span><span class="s1">))$&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Persistent entropy&quot;</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Persistent entropy across frames&quot;</span><span class="p">)</span>
         
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xv</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">]],</span> 
                         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             
@@ -287,12 +291,13 @@
             
             <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">begins</span><span class="p">)),</span> <span class="n">xmin</span><span class="o">=</span><span class="n">begins</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">ends</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
             <span class="c1">#should adjust this 0.1 to be different based on scale...</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">==</span> <span class="s2">&quot;alps&quot;</span><span class="p">:</span>
-                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\Delta(A(I_</span><span class="si">{k}</span><span class="s1">))$&#39;</span><span class="p">)</span>
+                <span class="c1"># plt.ylabel(r&#39;$\Delta(A(I_{k}))$&#39;)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;ALPS statistic&quot;</span><span class="p">)</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ALPS statistic across frames&quot;</span><span class="p">)</span>
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">==</span> <span class="s2">&quot;degp_totp&quot;</span><span class="p">:</span>
-                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$L_1(A(I_</span><span class="si">{k}</span><span class="s1">))$&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Lifetime sum&quot;</span><span class="p">)</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Lifetime sum across frames&quot;</span><span class="p">)</span></div>
 </div>
 

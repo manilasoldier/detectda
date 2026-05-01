@@ -89,7 +89,6 @@ class VacuumSeries(imgs.ImageSeries):
         self.func = func
         
         #Here add in the rejections from the BH procedure
-        #See Catalysis Nanoparticles Multiple Testing.ipynb
         self.reject_dict = _dh.calc_reject(self.__pvals, self.obs_vals, alpha=alpha, conservative=conservative)
         self.alpha=alpha
         
@@ -106,8 +105,9 @@ class VacuumSeries(imgs.ImageSeries):
         Plots hypothesis testing sequence. 
         """
         begins, ends = _dh.get_be(self.reject_dict["reject_bool"])
+        xv = np.arange(1, len(self.obs_vals)+1)
         if self.func == "pers_entr":
-            plt.plot(-self.obs_vals, lw=0.7, color="black")
+            plt.plot(xv, -self.obs_vals, lw=0.7, color="black")
             plt.scatter(x=self.reject_dict["reject_ind"], y=-self.obs_vals[self.reject_dict["reject_ind"]], 
                         color="red", s=2)
             
@@ -119,12 +119,12 @@ class VacuumSeries(imgs.ImageSeries):
             
             plt.hlines(y=-np.repeat(np.max(self.obs_vals)+0.1, len(begins)), xmin=begins, xmax=ends, color="black")
             #should adjust this 0.1 to be different based on scale...
-            plt.xlabel(r'$k$')
-            plt.ylabel(r'$H(A(I_{k}))$')
+            plt.xlabel("Frame")
+            plt.ylabel("Persistent entropy")
             plt.title("Persistent entropy across frames")
         
         else:
-            plt.plot(self.obs_vals, lw=0.7, color="black")
+            plt.plot(xv, self.obs_vals, lw=0.7, color="black")
             plt.scatter(x=self.reject_dict["reject_ind"], y=self.obs_vals[self.reject_dict["reject_ind"]], 
                         color="red", s=2)
             
@@ -136,12 +136,13 @@ class VacuumSeries(imgs.ImageSeries):
             
             plt.hlines(y=np.repeat(np.max(self.obs_vals)+0.1, len(begins)), xmin=begins, xmax=ends, color="black")
             #should adjust this 0.1 to be different based on scale...
-            plt.xlabel(r'$k$')
+            plt.xlabel("Frame")
             if self.func == "alps":
-                plt.ylabel(r'$\Delta(A(I_{k}))$')
+                # plt.ylabel(r'$\Delta(A(I_{k}))$')
+                plt.ylabel("ALPS statistic")
                 plt.title("ALPS statistic across frames")
             elif self.func == "degp_totp":
-                plt.ylabel(r'$L_1(A(I_{k}))$')
+                plt.ylabel("Lifetime sum")
                 plt.title("Lifetime sum across frames")
         
         
