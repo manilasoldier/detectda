@@ -1,9 +1,13 @@
-.version-switch {
+.switch-menus {
     color: #000000 !important;
 }
 
 select {
     color: #000000 !important;
+}
+
+a {
+    margin: 0;
 }
 
 @font-face {
