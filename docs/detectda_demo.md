@@ -67,10 +67,9 @@ tv_vacuum = pickle.load(G)['video']
 Then, we run the hypothesis testing method described in [Section 5.3 of Thomas et al. (2023)](https://www.tandfonline.com/doi/full/10.1080/00401706.2023.2203744) using the observed image series above, by generating 499 Monte Carlo noise images.
  
 ```python 
-impol_vac = dtda.VacuumSeries(tv_vacuum, observed_ImageSeries=impol, 
-			      parametric=False, div=32, n_jobs=4)
+impol_vac = dtda.VacuumSeries(tv_vacuum, observed_ImageSeries=impol, div=32, n_jobs=4)
 impol_vac.fit(convert_to_int=True)
-impol_vac.transform(499, "alps", conservative=False)
+impol_vac.transform(499, "alps")
 ```
 
 Finally, we plot the results of the hypothesis testing. The original image series consists of 656 frames, and the output here indicates there are quite a few 16-frame blocks with significant topological signal. 

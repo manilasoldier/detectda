@@ -137,7 +137,7 @@ Package Contents
                   processors.
    :type n_jobs: int or None, optional, default is ``None``
    :param im_list: Bool indicating whether or not a list of numpy arrays is given (True) rather than a 3d numpy array.
-   :type im_list: bool, defautl is ``False``
+   :type im_list: bool, default is ``False``
 
 
    .. py:method:: convert_to_df()
@@ -206,15 +206,20 @@ Package Contents
 
 
 
-   .. py:method:: pd_threshold(minv, maxv, dim='both', num=50)
+   .. py:method:: pd_threshold(minq=0.05, maxq=0.95, dim='both', num=50)
 
-      :param minv: Minimum threshold to consider.
-      :type minv: float
-      :param maxv: Maximum threshold to consider.
-      :type maxv: float
+      Calculates binary images for all frames in video based on best
+      persistence-preserving threshold as described in Chung and Day (2018).
+
+      :param minq: Minimum pixel quantile threshold to consider.
+      :type minq: float
+      :param maxq: Maximum pixel quantile threshold to consider.
+      :type maxq: float
       :param dim: Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
                   The default is "both", corresponding to both dimensions 0 and 1.
       :type dim: str or int, optional
+      :param num: Number of quantile thresholds to choose.
+      :type num: int, optional
 
       :raises HomologyError: Error raised due to lack of sufficient homology to perform PD thresholding.
 
@@ -268,10 +273,17 @@ Package Contents
    Functionality to generate vacuum region videos for multiple hypothesis testing.
 
 
-   .. py:method:: adjust_alpha(alpha, conservative=True)
+   .. py:method:: adjust_alpha(alpha, conservative=False)
 
       Adjust p-values based on a different alpha value.
 
+
+      :param alpha: Statistical significance level.
+      :type alpha: float
+      :param conservative: Whether to use Benjamini-Yekutieli. The default is False.
+      :type conservative: bool, optional
+
+      :rtype: None.
 
 
 
@@ -304,7 +316,7 @@ Package Contents
 
 
 
-   .. py:method:: transform(n, func='pers_entr', seed=0, alpha=0.05, conservative=True)
+   .. py:method:: transform(n, func='pers_entr', seed=0, alpha=0.05, conservative=False)
 
       Collects p-values and rejections for based off n Monte Carlo simulations...
 

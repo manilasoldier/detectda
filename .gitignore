@@ -1,7 +1,7 @@
 detectda_info.txt
 TODO.md
 test_detectda.ipynb
-detectda_persim.ipynb
+detectda_*.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

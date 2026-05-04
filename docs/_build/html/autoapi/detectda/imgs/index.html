@@ -6,16 +6,17 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.imgs &mdash; detecTDA 0.5.5 documentation</title>
+  <title>detectda.imgs &mdash; detecTDA 0.5.5b1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=8edf2551" />
 
   
     <link rel="shortcut icon" href="../../../_static/AMT_logo.png"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=45def3bc"></script>
+      <script src="../../../_static/documentation_options.js?v=ca360392"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -58,32 +59,37 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-6-5-5-2026">v0.5.6 (5/5/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#fixed">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id1">Changed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#added">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#fixed">Fixed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id1">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id2">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id3">Changed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-3-8-30-2024">v0.5.3 (8/30/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id2">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id3">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id4">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id5">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id6">Fixed</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id7">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id8">Fixed</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-4-6-6-17-2024">v0.4.6 (6/17/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id7">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id9">Fixed</a></li>
 </ul>
 </li>
 </ul>
@@ -291,7 +297,7 @@ to common parametric assumptions.</p></li>
 <li><p><strong>n_jobs</strong> (int or None, optional, default is <code class="docutils literal notranslate"><span class="pre">None</span></code>) – The number of jobs to use for the computation. <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless
 in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> context. <code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all
 processors.</p></li>
-<li><p><strong>im_list</strong> (bool, defautl is <code class="docutils literal notranslate"><span class="pre">False</span></code>) – Bool indicating whether or not a list of numpy arrays is given (True) rather than a 3d numpy array.</p></li>
+<li><p><strong>im_list</strong> (bool, default is <code class="docutils literal notranslate"><span class="pre">False</span></code>) – Bool indicating whether or not a list of numpy arrays is given (True) rather than a 3d numpy array.</p></li>
 </ul>
 </dd>
 </dl>
@@ -377,14 +383,17 @@ for homology dimension dim. The resulting dimension of the persistence image vec
 
 <dl class="py method">
 <dt class="sig sig-object py" id="detectda.imgs.ImageSeriesPlus.pd_threshold">
-<span class="sig-name descname"><span class="pre">pd_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.pd_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.pd_threshold" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<span class="sig-name descname"><span class="pre">pd_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/imgs.html#ImageSeriesPlus.pd_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.imgs.ImageSeriesPlus.pd_threshold" title="Link to this definition"></a></dt>
+<dd><p>Calculates binary images for all frames in video based on best
+persistence-preserving threshold as described in Chung and Day (2018).</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>minv</strong> (<em>float</em>) – Minimum threshold to consider.</p></li>
-<li><p><strong>maxv</strong> (<em>float</em>) – Maximum threshold to consider.</p></li>
+<li><p><strong>minq</strong> (<em>float</em>) – Minimum pixel quantile threshold to consider.</p></li>
+<li><p><strong>maxq</strong> (<em>float</em>) – Maximum pixel quantile threshold to consider.</p></li>
 <li><p><strong>dim</strong> (<em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
 The default is “both”, corresponding to both dimensions 0 and 1.</p></li>
+<li><p><strong>num</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of quantile thresholds to choose.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>

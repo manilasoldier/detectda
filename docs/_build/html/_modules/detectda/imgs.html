@@ -5,16 +5,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.imgs &mdash; detecTDA 0.5.5 documentation</title>
+  <title>detectda.imgs &mdash; detecTDA 0.5.5b1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=8edf2551" />
 
   
     <link rel="shortcut icon" href="../../_static/AMT_logo.png"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=45def3bc"></script>
+      <script src="../../_static/documentation_options.js?v=ca360392"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -56,32 +57,37 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-6-5-5-2026">v0.5.6 (5/5/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#fixed">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id1">Changed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#added">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#fixed">Fixed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id1">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id2">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id3">Changed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-3-8-30-2024">v0.5.3 (8/30/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id2">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id3">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id4">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id5">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id6">Fixed</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id7">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id8">Fixed</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-4-6-6-17-2024">v0.4.6 (6/17/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id7">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id9">Fixed</a></li>
 </ul>
 </li>
 </ul>
@@ -393,7 +399,7 @@
 <span class="sd">            The number of jobs to use for the computation. ``None`` means 1 unless</span>
 <span class="sd">            in a :obj:`joblib.parallel_backend` context. ``-1`` means using all</span>
 <span class="sd">            processors.</span>
-<span class="sd">    im_list: bool, defautl is ``False``</span>
+<span class="sd">    im_list: bool, default is ``False``</span>
 <span class="sd">            Bool indicating whether or not a list of numpy arrays is given (True) rather than a 3d numpy array.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">video</span><span class="p">,</span> <span class="n">polygon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">im_list</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -430,18 +436,22 @@
         
 <div class="viewcode-block" id="ImageSeriesPlus.pd_threshold">
 <a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.imgs.ImageSeriesPlus.pd_threshold">[docs]</a>
-    <span class="k">def</span> <span class="nf">pd_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pd_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minq</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">maxq</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates binary images for all frames in video based on best </span>
+<span class="sd">        persistence-preserving threshold as described in Chung and Day (2018).</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        minv : float</span>
-<span class="sd">            Minimum threshold to consider.</span>
-<span class="sd">        maxv : float</span>
-<span class="sd">            Maximum threshold to consider.</span>
+<span class="sd">        minq : float</span>
+<span class="sd">            Minimum pixel quantile threshold to consider.</span>
+<span class="sd">        maxq : float</span>
+<span class="sd">            Maximum pixel quantile threshold to consider.</span>
 <span class="sd">        dim : str or int, optional</span>
 <span class="sd">            Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.</span>
 <span class="sd">            The default is &quot;both&quot;, corresponding to both dimensions 0 and 1. </span>
+<span class="sd">        num : int, optional</span>
+<span class="sd">            Number of quantile thresholds to choose. </span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -458,6 +468,7 @@
         <span class="n">ims_t</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">im</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">video</span><span class="p">):</span>
             <span class="n">smim</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma_</span><span class="p">,</span> <span class="n">preserve_range</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">smim</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="p">[</span><span class="n">minq</span><span class="p">,</span> <span class="n">maxq</span><span class="p">])</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">thresh</span> <span class="o">=</span> <span class="n">_dh</span><span class="o">.</span><span class="n">pd_thresh_calc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diags_</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">smim</span><span class="p">),</span> <span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>

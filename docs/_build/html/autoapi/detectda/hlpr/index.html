@@ -6,16 +6,17 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.hlpr &mdash; detecTDA 0.5.5 documentation</title>
+  <title>detectda.hlpr &mdash; detecTDA 0.5.5b1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=8edf2551" />
 
   
     <link rel="shortcut icon" href="../../../_static/AMT_logo.png"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=45def3bc"></script>
+      <script src="../../../_static/documentation_options.js?v=ca360392"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -60,32 +61,37 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-6-5-5-2026">v0.5.6 (5/5/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#fixed">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id1">Changed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#added">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#fixed">Fixed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id1">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id2">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id3">Changed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-3-8-30-2024">v0.5.3 (8/30/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id2">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id3">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id4">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id5">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id6">Fixed</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id7">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id8">Fixed</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-4-6-6-17-2024">v0.4.6 (6/17/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id7">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../changelog.html#id9">Fixed</a></li>
 </ul>
 </li>
 </ul>
@@ -235,7 +241,7 @@ one of the elements of prox_arr. This is indicated with a non-zero entry in prox
 
 <dl class="py function">
 <dt class="sig sig-object py" id="detectda.hlpr.calc_reject">
-<span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">calc_reject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#calc_reject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.calc_reject" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">detectda.hlpr.</span></span><span class="sig-name descname"><span class="pre">calc_reject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conservative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/detectda/hlpr.html#calc_reject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#detectda.hlpr.calc_reject" title="Link to this definition"></a></dt>
 <dd><p>Returns dictionary of index array, boolean array, rejection threshold index
 array of indices of hypotheses that are rejected via BH procedure, and
 boolean array of whether or not hypothesis is rejected.</p>
@@ -245,7 +251,7 @@ boolean array of whether or not hypothesis is rejected.</p>
 <li><p><strong>arr</strong> (<em>array_like</em>) – Array of probabilities (p-values) between 0 and 1.</p></li>
 <li><p><strong>val_arr</strong> (<em>array_like</em>) – Array of values to break ties in p-values.</p></li>
 <li><p><strong>alpha</strong> (<em>value between 0 and 1</em><em>, </em><em>optional</em>) – Signficance level for BH procedure. The default is 0.05.</p></li>
-<li><p><strong>conservative</strong> (<em>default = True</em>) – Dictates whether or not conservative BH procedure is used.</p></li>
+<li><p><strong>conservative</strong> (<em>default = False</em>) – Dictates whether or not conservative BH procedure is used.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

@@ -23,10 +23,17 @@ Module Contents
    Functionality to generate vacuum region videos for multiple hypothesis testing.
 
 
-   .. py:method:: adjust_alpha(alpha, conservative=True)
+   .. py:method:: adjust_alpha(alpha, conservative=False)
 
       Adjust p-values based on a different alpha value.
 
+
+      :param alpha: Statistical significance level.
+      :type alpha: float
+      :param conservative: Whether to use Benjamini-Yekutieli. The default is False.
+      :type conservative: bool, optional
+
+      :rtype: None.
 
 
 
@@ -59,7 +66,7 @@ Module Contents
 
 
 
-   .. py:method:: transform(n, func='pers_entr', seed=0, alpha=0.05, conservative=True)
+   .. py:method:: transform(n, func='pers_entr', seed=0, alpha=0.05, conservative=False)
 
       Collects p-values and rejections for based off n Monte Carlo simulations...
 

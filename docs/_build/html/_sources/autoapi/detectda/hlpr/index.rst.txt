@@ -60,7 +60,7 @@ Module Contents
    :rtype: list
 
 
-.. py:function:: calc_reject(arr, val_arr, alpha=0.05, conservative=True)
+.. py:function:: calc_reject(arr, val_arr, alpha=0.05, conservative=False)
 
    Returns dictionary of index array, boolean array, rejection threshold index
    array of indices of hypotheses that are rejected via BH procedure, and
@@ -73,7 +73,7 @@ Module Contents
    :param alpha: Signficance level for BH procedure. The default is 0.05.
    :type alpha: value between 0 and 1, optional
    :param conservative: Dictates whether or not conservative BH procedure is used.
-   :type conservative: default = True
+   :type conservative: default = False
 
    :returns: **out** -- Dictionary containing information listed above.
    :rtype: dict

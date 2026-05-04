@@ -1,0 +1,12 @@
+.rst-versions .rst-current-version {
+    color: #000000; /* Replace with your desired hex color */
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('../fonts/Nunito-Regular.ttf.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+}

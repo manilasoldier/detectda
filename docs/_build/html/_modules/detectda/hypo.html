@@ -5,16 +5,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detectda.hypo &mdash; detecTDA 0.5.5 documentation</title>
+  <title>detectda.hypo &mdash; detecTDA 0.5.5b1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=8edf2551" />
 
   
     <link rel="shortcut icon" href="../../_static/AMT_logo.png"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=45def3bc"></script>
+      <script src="../../_static/documentation_options.js?v=ca360392"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -56,32 +57,37 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-6-5-5-2026">v0.5.6 (5/5/2026)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#fixed">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-5-5-1-2026">v0.5.5 (5/1/2026)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id1">Changed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-4-3-20-2025">v0.5.4 (3/20/2025)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#added">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#fixed">Fixed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id1">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id2">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id3">Changed</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-3-8-30-2024">v0.5.3 (8/30/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id2">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id3">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id4">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-2-8-1-2024">v0.5.2 (8/1/2024)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id5">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id6">Fixed</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-5-0-7-25-2024">v0.5.0 (7/25/2024)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id7">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id8">Fixed</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html#v0-4-6-6-17-2024">v0.4.6 (6/17/2024)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id7">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../changelog.html#id9">Fixed</a></li>
 </ul>
 </li>
 </ul>
@@ -191,8 +197,7 @@
 <span class="sd">        Check how far the empirical distribution of vacuum values is from Poisson </span>
 <span class="sd">        with parameter equal to mle, in terms of the Kolmogorov distance</span>
 <span class="sd">        </span>
-<span class="sd">        Uses the DKW inequality with the tight constant = 2 for Poisson testing.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        Uses the DKW inequality with the tight constant = 2 for Poisson testing.        &quot;&quot;&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">emp_dist</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">rv_discrete</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vals_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">probs_</span><span class="p">))</span>
         <span class="n">ks_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">emp_dist</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">-</span><span class="n">stat</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mle_</span><span class="p">))</span>
@@ -215,7 +220,7 @@
             
 <div class="viewcode-block" id="VacuumSeries.transform">
 <a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.hypo.VacuumSeries.transform">[docs]</a>
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s2">&quot;pers_entr&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s2">&quot;pers_entr&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Collects p-values and rejections for based off n Monte Carlo simulations...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -244,9 +249,22 @@
         
 <div class="viewcode-block" id="VacuumSeries.adjust_alpha">
 <a class="viewcode-back" href="../../autoapi/detectda/index.html#detectda.hypo.VacuumSeries.adjust_alpha">[docs]</a>
-    <span class="k">def</span> <span class="nf">adjust_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">adjust_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adjust p-values based on a different alpha value.</span>
+<span class="sd">        </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        alpha : float</span>
+<span class="sd">            Statistical significance level.</span>
+<span class="sd">        conservative : bool, optional</span>
+<span class="sd">            Whether to use Benjamini-Yekutieli. The default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None.</span>
+<span class="sd">       </span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span> <span class="o">=</span> <span class="n">_dh</span><span class="o">.</span><span class="n">calc_reject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pvals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">conservative</span><span class="o">=</span><span class="n">conservative</span><span class="p">)</span>
@@ -263,7 +281,7 @@
         <span class="n">xv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">==</span> <span class="s2">&quot;pers_entr&quot;</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xv</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">]],</span> 
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">]],</span> 
                         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             
             <span class="c1">####Note this plot becomes really bad when there are ties...</span>
@@ -272,7 +290,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_thr_ind&quot;</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
             
-            <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">begins</span><span class="p">)),</span> <span class="n">xmin</span><span class="o">=</span><span class="n">begins</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">ends</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">begins</span><span class="p">)),</span> <span class="n">xmin</span><span class="o">=</span><span class="n">begins</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">ends</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
             <span class="c1">#should adjust this 0.1 to be different based on scale...</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Persistent entropy&quot;</span><span class="p">)</span>
@@ -280,7 +298,7 @@
         
         <span class="k">else</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xv</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">]],</span> 
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_ind&quot;</span><span class="p">]],</span> 
                         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             
             <span class="c1">####Note this plot becomes really bad when there are ties...</span>
@@ -289,7 +307,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reject_dict</span><span class="p">[</span><span class="s2">&quot;reject_thr_ind&quot;</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
             
-            <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">begins</span><span class="p">)),</span> <span class="n">xmin</span><span class="o">=</span><span class="n">begins</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">ends</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obs_vals</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">begins</span><span class="p">)),</span> <span class="n">xmin</span><span class="o">=</span><span class="n">begins</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">ends</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
             <span class="c1">#should adjust this 0.1 to be different based on scale...</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">==</span> <span class="s2">&quot;alps&quot;</span><span class="p">:</span>

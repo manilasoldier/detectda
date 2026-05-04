@@ -68,7 +68,6 @@ class ImageSeries(VidPol):
     """
     def __init__(self, video, polygon=None, div=1, n_jobs=None):
         super().__init__(video, polygon, div=div, n_jobs=n_jobs)
-        self.degp_totp = {}
     
     def fit(self, sigma=None, max_death_pixel_int=True, print_time=True):
         """
@@ -96,10 +95,7 @@ class ImageSeries(VidPol):
         "Get degree-p total persistence of each image frame from fitted object."
         check_is_fitted(self)
         dgtp = np.fromiter((_dh.degp_totp(x[x[:,3].astype(bool),2], p, inf) for x in self.diags_), float)
-        if inf:
-            self.degp_totp['inf'] = dgtp
-        else:
-            self.degp_totp[str(p)] = dgtp
+        self.degp_totp = dgtp
 
     def get_pers_entr(self, neg=True):    
         """
@@ -225,7 +221,7 @@ class ImageSeriesPlus(VidPol):
             The number of jobs to use for the computation. ``None`` means 1 unless
             in a :obj:`joblib.parallel_backend` context. ``-1`` means using all
             processors.
-    im_list: bool, defautl is ``False``
+    im_list: bool, default is ``False``
             Bool indicating whether or not a list of numpy arrays is given (True) rather than a 3d numpy array.
     """
     def __init__(self, video, polygon=None, div=1, n_jobs=None, im_list=False):
@@ -257,18 +253,22 @@ class ImageSeriesPlus(VidPol):
             self.sigma_=sigma
             return self
         
-    def pd_threshold(self, minv, maxv, dim="both", num=50):
+    def pd_threshold(self, minq=0.05, maxq=0.95, dim="both", num=50):
         """
+        Calculates binary images for all frames in video based on best 
+        persistence-preserving threshold as described in Chung and Day (2018).
         
         Parameters
         ----------
-        minv : float
-            Minimum threshold to consider.
-        maxv : float
-            Maximum threshold to consider.
+        minq : float
+            Minimum pixel quantile threshold to consider.
+        maxq : float
+            Maximum pixel quantile threshold to consider.
         dim : str or int, optional
             Integer 0 or 1 corresponds to thresholding only based on dimension 0 and 1 persistence features.
             The default is "both", corresponding to both dimensions 0 and 1. 
+        num : int, optional
+            Number of quantile thresholds to choose. 
 
         Raises
         ------
@@ -285,6 +285,7 @@ class ImageSeriesPlus(VidPol):
         ims_t = []
         for index, im in enumerate(self.video):
             smim = filters.gaussian(im, sigma=self.sigma_, preserve_range=True)
+            minv, maxv = np.quantile(smim, q=[minq, maxq])
             try:
                 thresh = _dh.pd_thresh_calc(self.diags_[index], np.unique(smim), minv, maxv, dim, num)
             except ValueError:

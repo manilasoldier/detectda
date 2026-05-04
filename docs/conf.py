@@ -51,13 +51,16 @@ autoapi_member_order = "groupwise"
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
+html_css_files = [
+    'css/custom.css',
+]
+
 html_theme_options = {
     'collapse_navigation': False,
     'sticky_navigation': False,
     'logo_only': True,
     'style_nav_header_background': '#cfffff',
-    'style_external_links': True,
-    'version_selector': False
+    'style_external_links': True
 }
 
 html_logo = '../detectda_logo.png'

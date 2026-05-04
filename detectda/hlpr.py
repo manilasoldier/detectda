@@ -244,7 +244,7 @@ def get_be(arr):
 
     return (np.array(begins), np.array(ends))
     
-def calc_reject(arr, val_arr, alpha=0.05, conservative=True):
+def calc_reject(arr, val_arr, alpha=0.05, conservative=False):
     """
     Returns dictionary of index array, boolean array, rejection threshold index 
     array of indices of hypotheses that are rejected via BH procedure, and 
@@ -258,7 +258,7 @@ def calc_reject(arr, val_arr, alpha=0.05, conservative=True):
         Array of values to break ties in p-values.
     alpha : value between 0 and 1, optional
         Signficance level for BH procedure. The default is 0.05.
-    conservative: default = True
+    conservative: default = False
         Dictates whether or not conservative BH procedure is used. 
 
     Returns

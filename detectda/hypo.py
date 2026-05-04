@@ -48,8 +48,7 @@ class VacuumSeries(imgs.ImageSeries):
         Check how far the empirical distribution of vacuum values is from Poisson 
         with parameter equal to mle, in terms of the Kolmogorov distance
         
-        Uses the DKW inequality with the tight constant = 2 for Poisson testing.
-        """
+        Uses the DKW inequality with the tight constant = 2 for Poisson testing.        """
         check_is_fitted(self)
         emp_dist = stat.rv_discrete(values=(self.vals_, self.probs_))
         ks_dist = np.max([np.abs(emp_dist.cdf(k)-stat.poisson.cdf(k, self.mle_))
@@ -66,7 +65,7 @@ class VacuumSeries(imgs.ImageSeries):
         else:
             return np.random.choice(self.vals_, size=(n, *self.size), p=self.probs_)
             
-    def transform(self, n, func="pers_entr", seed=0, alpha=0.05, conservative=True):
+    def transform(self, n, func="pers_entr", seed=0, alpha=0.05, conservative=False):
         """
         Collects p-values and rejections for based off n Monte Carlo simulations...
         """
@@ -92,9 +91,22 @@ class VacuumSeries(imgs.ImageSeries):
         self.reject_dict = _dh.calc_reject(self.__pvals, self.obs_vals, alpha=alpha, conservative=conservative)
         self.alpha=alpha
         
-    def adjust_alpha(self, alpha, conservative=True):
+    def adjust_alpha(self, alpha, conservative=False):
         """
         Adjust p-values based on a different alpha value.
+        
+
+        Parameters
+        ----------
+        alpha : float
+            Statistical significance level.
+        conservative : bool, optional
+            Whether to use Benjamini-Yekutieli. The default is False.
+
+        Returns
+        -------
+        None.
+       
 
         """
         self.reject_dict = _dh.calc_reject(self.__pvals, self.obs_vals, alpha=alpha, conservative=conservative)
@@ -108,16 +120,16 @@ class VacuumSeries(imgs.ImageSeries):
         xv = np.arange(1, len(self.obs_vals)+1)
         if self.func == "pers_entr":
             plt.plot(xv, -self.obs_vals, lw=0.7, color="black")
-            plt.scatter(x=self.reject_dict["reject_ind"], y=-self.obs_vals[self.reject_dict["reject_ind"]], 
-                        color="red", s=2)
             
             ####Note this plot becomes really bad when there are ties...
-            if self.reject_dict["reject_thr_ind"]==None:
+            if self.reject_dict["reject_thr_ind"] is None:
                 print("No hypotheses were rejected.")
             else:
                 plt.axhline(y=-self.obs_vals[self.reject_dict["reject_thr_ind"]], color="black", linestyle="dashed", linewidth=0.75)
+                plt.scatter(x=self.reject_dict["reject_ind"]+1, y=-self.obs_vals[self.reject_dict["reject_ind"]], 
+                            color="red", s=2)
+                plt.hlines(y=-np.repeat(np.max(self.obs_vals)+0.1, len(begins)), xmin=begins+1, xmax=ends+1, color="black")
             
-            plt.hlines(y=-np.repeat(np.max(self.obs_vals)+0.1, len(begins)), xmin=begins, xmax=ends, color="black")
             #should adjust this 0.1 to be different based on scale...
             plt.xlabel("Frame")
             plt.ylabel("Persistent entropy")
@@ -125,16 +137,16 @@ class VacuumSeries(imgs.ImageSeries):
         
         else:
             plt.plot(xv, self.obs_vals, lw=0.7, color="black")
-            plt.scatter(x=self.reject_dict["reject_ind"], y=self.obs_vals[self.reject_dict["reject_ind"]], 
-                        color="red", s=2)
             
             ####Note this plot becomes really bad when there are ties...
-            if self.reject_dict["reject_thr_ind"]==None:
+            if self.reject_dict["reject_thr_ind"] is None:
                 print("No hypotheses were rejected.")
             else:
                 plt.axhline(y=self.obs_vals[self.reject_dict["reject_thr_ind"]], color="black", linestyle="dashed", linewidth=0.75)
+                plt.scatter(x=self.reject_dict["reject_ind"]+1, y=self.obs_vals[self.reject_dict["reject_ind"]], 
+                            color="red", s=2)
+                plt.hlines(y=np.repeat(np.max(self.obs_vals)+0.1, len(begins)), xmin=begins+1, xmax=ends+1, color="black")
             
-            plt.hlines(y=np.repeat(np.max(self.obs_vals)+0.1, len(begins)), xmin=begins, xmax=ends, color="black")
             #should adjust this 0.1 to be different based on scale...
             plt.xlabel("Frame")
             if self.func == "alps":
