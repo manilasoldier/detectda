@@ -1,5 +1,9 @@
 .rst-versions .rst-current-version {
-    color: #000000; /* Replace with your desired hex color */
+    color: #000000; 
+}
+
+.version-switcher__button {
+    color: #000000 !important;
 }
 
 @font-face {
