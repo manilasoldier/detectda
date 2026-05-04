@@ -61,7 +61,7 @@ html_theme_options = {
     'logo_only': True,
     'style_nav_header_background': '#cfffff',
     'style_external_links': True,
-    'version_selector': 'attached'
+    'version_selector': True
 }
 
 html_logo = '../detectda_logo.png'
