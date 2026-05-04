@@ -1,8 +1,8 @@
-.rst-versions .rst-current-version {
-    color: #000000; 
+.version-switch {
+    color: #000000 !important;
 }
 
-.version-switch {
+select {
     color: #000000 !important;
 }
 
